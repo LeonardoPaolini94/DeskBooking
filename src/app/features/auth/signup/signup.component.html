@@ -6,7 +6,7 @@
 
   <div class="login-external-div">
 
-    <form class="login-internal-div" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <form class="login-internal-div" [formGroup]="signupForm" (ngSubmit)="onSubmit()" ngNativeValidate>
 
       <div class="login-title-div">
         <h1 class="login-title">Desk Booking</h1>
@@ -14,11 +14,11 @@
 
       <div class="signup-form-div">
         <div class="input-div">
-          <input type="text" placeholder="Name" class="input-box" formControlName="name" required/>
+          <input type="text" placeholder="Name" class="input-box" formControlName="name" required minlength="4" maxlength="40"/>
         </div>
 
         <div class="input-div">
-          <input type="text" placeholder="Lastname" class="input-box" formControlName="lastname" required/>
+          <input type="text" placeholder="Lastname" class="input-box" formControlName="lastname" required minlength="4" maxlength="40"/>
         </div>
 
         <div class="email-input-div">
@@ -26,21 +26,25 @@
         </div>
 
         <div class="input-div">
-          <input type="text" placeholder="Phone" class="input-box" formControlName="phone" required/>
+          <input type="text" placeholder="Phone" class="input-box" formControlName="phone" required maxlength="10"/>
         </div>
 
         <div class="password-input-div">
-          <input type="password" placeholder="Password" class="input-box" formControlName="password" required/>
+          <input type="password" placeholder="Password" class="input-box" formControlName="password" required minlength="7"/>
         </div>
 
         <div class="password-input-div">
-          <input type="password" placeholder="Confirm Password" class="input-box" formControlName="confirmPassword" required/>
+          <input type="password" placeholder="Confirm Password" class="input-box" formControlName="confirmPassword" required minlength="7"/>
         </div>
       </div>
       <div class="login-buttons-div">
         <button type="submit" [disabled] = "signupForm.pristine || signupForm.invalid" class="signup-button signup-btn blue-btn">Signup</button>
       </div>
+      <div class="back-to-login" routerLink="/auth/login">
+        <span>Already registered? Take me to the login</span>
+      </div>
     </form>
+
   </div>
 </div>
 

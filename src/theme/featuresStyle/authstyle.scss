@@ -32,7 +32,7 @@ body{
 
 .login-external-div{
   width: 55vw;
-  height: 100vh;
+  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,7 +75,7 @@ body{
 
 
 .login-buttons-div{
-  height: 20%;
+  height: fit-content;
   display: flex;
   justify-content: space-evenly;
 }
@@ -100,7 +100,7 @@ body{
 }
 
 .input-box.ng-invalid.ng-touched{
-  border: 1px solid #dc3545;
+  border: 2px solid #dc3545;
 }
 
 .white-btn{
@@ -141,6 +141,14 @@ body{
 .input-box:focus{
   outline: none;
   border-color: #0278DB;
+}
+
+.back-to-login{
+  margin: 1rem;
+  text-align: center;
+  color: #a1a1a1;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1600px){

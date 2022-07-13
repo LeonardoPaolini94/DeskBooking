@@ -14,12 +14,12 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
     this.signupForm = new FormGroup(
       {
-        name: new FormControl('', [Validators.required,Validators.pattern("^[a-zA-Z]*$")]),
-        lastname: new FormControl('', [Validators.required,Validators.pattern("^[a-zA-Z]*$")]),
+        name: new FormControl('', [Validators.required,Validators.pattern("^[a-zA-Z]*$"),Validators.minLength(2), Validators.maxLength(40)]),
+        lastname: new FormControl('', [Validators.required,Validators.pattern("^[a-zA-Z]*$"),Validators.minLength(2), Validators.maxLength(40)]),
         email: new FormControl('', Validators.compose([Validators.email, Validators.required])),
         phone: new FormControl('',[Validators.required, Validators.pattern("[0-9]{10}")]),
-        password: new FormControl('', Validators.required),
-        confirmPassword: new FormControl('',Validators.required)
+        password: new FormControl('',[Validators.required ,Validators.minLength(7)]),
+        confirmPassword: new FormControl('',[Validators.required ,Validators.minLength(7)])
       },{validators: this.passwordMatcher}
     );
   }
