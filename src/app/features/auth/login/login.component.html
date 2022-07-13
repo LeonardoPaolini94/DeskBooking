@@ -10,7 +10,7 @@
 
   <div class="login-external-div">
 
-    <form [formGroup]="loginForm" (ngSubmit)="submit()" class="login-internal-div">
+    <form [formGroup]="loginForm" (ngSubmit)="submit()" class="login-internal-div" ngNativeValidate>
 
       <div class="login-title-div">
         <h1 class="login-title">Desk Booking</h1>
@@ -25,13 +25,13 @@
 
           <div class="password-input-div">
             <label class="form-label" for="password"></label>
-            <input type="password" id="password" placeholder="password" class="input-box" formControlName="password" required/>
+            <input type="password" id="password" placeholder="password" class="input-box" formControlName="password" minlength="7" required/>
           </div>
         </div>
 
       <div class="login-buttons-div">
         <button class="signup-btn white-btn">Signup</button>
-        <button type="submit" class="login-btn blue-btn">Login</button>
+        <button [disabled]="!loginForm.valid" type="submit" class="login-btn blue-btn">Login</button>
       </div>
 
 
