@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../../core/models/User";
 
 @Component({
@@ -14,13 +14,13 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
     this.signupForm = new FormGroup(
       {
-        name: new FormControl('', Validators.required),
-        lastname: new FormControl('', Validators.required),
+        name: new FormControl('', [Validators.required,Validators.pattern("^[a-zA-Z]*$")]),
+        lastname: new FormControl('', [Validators.required,Validators.pattern("^[a-zA-Z]*$")]),
         email: new FormControl('', Validators.compose([Validators.email, Validators.required])),
-        phone: new FormControl('',Validators.required),
+        phone: new FormControl('',[Validators.required, Validators.pattern("[0-9]{10}")]),
         password: new FormControl('', Validators.required),
         confirmPassword: new FormControl('',Validators.required)
-      }/*,{validators: this.checkPasswords}*/
+      },{validators: this.passwordMatcher}
     );
   }
 
@@ -40,9 +40,18 @@ export class SignupComponent implements OnInit {
   };
   console.log(newSignup);
   }
-/*  checkPasswords: ValidatorFn = (group: AbstractControl):  ValidationErrors | null => {
-    let pass = group.get('password');
-    let confirmPass = group.get('confirmPassword')
-    return pass === confirmPass ? null : { notSame: true }
-  }*/
+
+   passwordMatcher(c: AbstractControl): { [key: string]: boolean } | null {
+     const passwordcontrol = c.get('password');
+     const confirmPasswordcontrol = c.get('confirmPassword');
+
+    if (passwordcontrol?.pristine || confirmPasswordcontrol?.pristine) {
+      return null;
+    }
+
+    if (passwordcontrol?.value === confirmPasswordcontrol?.value) {
+      return null;
+    }
+    return { 'match': true };
+  }
 }

@@ -2,6 +2,7 @@
   width: 100vw;
   height: 100vh;
   display: flex;
+  justify-content: space-between;
 }
 
 body{
@@ -11,7 +12,7 @@ body{
 .authImg-div{
   display: flex;
   position: relative;
-  width: 60vw;
+  width: 45vw;
   height: 100vh;
   overflow: hidden;
 }
@@ -30,7 +31,7 @@ body{
 }
 
 .login-external-div{
-  width: 40vw;
+  width: 55vw;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -94,6 +95,14 @@ body{
   color: white;
 }
 
+.blue-btn:disabled {
+  filter: grayscale(75%);
+}
+
+.input-box.ng-invalid.ng-touched{
+  border: 1px solid #dc3545;
+}
+
 .white-btn{
   background-color: white;
   color: #0278DB;
@@ -136,6 +145,6 @@ body{
 
 @media screen and (max-width: 1600px){
   .login-title{
-    font-size: 3rem;
+    font-size: 4.5rem;
   }
 }
