@@ -1,0 +1,49 @@
+<div class="left-img">
+  <img src="assets/office_img.png">
+</div>
+<div class="right-container">
+  <div class="title">
+    <h1>Desk Booking</h1>
+  </div>
+  <div class="signup-form">
+  <form class="form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <input placeholder="Name" type="text" formControlName="name">
+    <div *ngIf="signupForm.controls['name'].invalid && (signupForm.controls['name'].dirty || signupForm.controls['name'].touched)" class="text-danger" >
+      <small *ngIf="signupForm.controls['name'].errors">
+        Name is invalid
+      </small>
+    </div>
+    <input placeholder="Lastname" type="text" formControlName="lastname">
+    <div *ngIf="signupForm.controls['lastname'].invalid && (signupForm.controls['lastname'].dirty || signupForm.controls['lastname'].touched)" class="text-danger" >
+      <small *ngIf="signupForm.controls['lastname'].errors">
+        Lastname is invalid
+      </small>
+    </div>
+    <input placeholder="E-mail" type="email" formControlName="email">
+    <div *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)" class="text-danger" >
+      <small *ngIf="signupForm.controls['email'].errors">
+        E-mail is invalid
+      </small>
+    </div>
+    <input placeholder="Phone" type="text" formControlName="phone">
+    <div *ngIf="signupForm.controls['phone'].invalid && (signupForm.controls['phone'].dirty || signupForm.controls['phone'].touched)" class="text-danger" >
+      <small *ngIf="signupForm.controls['phone'].errors">
+        Phone is invalid
+      </small>
+    </div>
+    <input placeholder="Password" type="password" formControlName="password">
+    <div *ngIf="signupForm.controls['password'].invalid && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)" class="text-danger" >
+      <small *ngIf="signupForm.controls['password'].errors">
+        Password is invalid
+      </small>
+    </div>
+    <input placeholder="Confirm Password" type="password" formControlName="confirmPassword">
+    <div *ngIf="signupForm.controls['confirmPassword'].invalid && (signupForm.controls['confirmPassword'].dirty || signupForm.controls['confirmPassword'].touched)" class="text-danger" >
+      <small *ngIf="signupForm.controls['confirmPassword'].errors">
+        Doesn't match previous password
+      </small>
+    </div>
+    <button type="submit" [disabled] = "signupForm.pristine || signupForm.invalid" class="btn btn-primary">Submit</button>
+  </form>
+  </div>
+</div>
