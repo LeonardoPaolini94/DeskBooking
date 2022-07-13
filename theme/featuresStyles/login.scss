@@ -11,10 +11,11 @@ body{
 .authImg-div{
   display: flex;
   position: relative;
-  width: 60vw;
+  width: 50vw;
   height: 100vh;
   overflow: hidden;
 }
+
 
 .authImg{
   width: 100%;
@@ -30,7 +31,7 @@ body{
 }
 
 .login-external-div{
-  width: 40vw;
+  width: 50vw;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -49,6 +50,7 @@ body{
   align-items: center;
   height: 30%;
 }
+
 
 .login-title{
   font-size: 5rem;
