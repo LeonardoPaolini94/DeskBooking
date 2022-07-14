@@ -51,6 +51,19 @@
         "id": 1,
         "name": "user"
       }
+    },
+    {
+      "id": 5,
+      "name": "leonardo",
+      "lastname": "paolini",
+      "phone": "3280250786",
+      "email": "aolini@outlook.it",
+      "password": "1234567",
+      "avatar": "src/assets/Sample_User_Icon.png",
+      "role": {
+        "id": 1,
+        "name": "user"
+      }
     }
   ]
 }

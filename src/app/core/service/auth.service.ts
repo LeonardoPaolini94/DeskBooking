@@ -29,7 +29,7 @@ export class AuthService {
 
   //--------------------------------------------------------------------
 
-  user : User | undefined
+  private user : User | undefined
 
   setUser(user: User | undefined){
     this.user = user
@@ -37,6 +37,10 @@ export class AuthService {
 
   getUser(){
     return this.user
+  }
+
+  removeUser(){
+    this.user = undefined
   }
 
 }

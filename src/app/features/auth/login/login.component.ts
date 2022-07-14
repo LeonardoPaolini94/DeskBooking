@@ -33,6 +33,9 @@ export class LoginComponent implements OnInit,OnDestroy {
   async submit() {
 
     if (this.loginForm.valid) {
+
+      this.getUserByEmail()
+
       let user: UserLogin = {
         email: this.loginForm.get('email')?.value,
         password: this.loginForm.get('password')?.value
@@ -40,33 +43,33 @@ export class LoginComponent implements OnInit,OnDestroy {
 
       await this.authService.login(user).then(user => {
         user.user?.getIdToken().then( token => {
-          sessionStorage.setItem('token', token);
-
-        //  --------------------------
-        //   this.getUserByEmailSubscription = this.userService.getUserByEmail(this.loginForm.get('email')?.value).subscribe(
-        //     observer => {this.authService.setUser(observer) },
-        //     error => {console.log(error)},
-        //     () => {console.log("Games found!")
-        //     })
-
-          this.getUserByEmailSubscription = this.userService.getAllUser().subscribe(
-            observer => {this.authService.setUser([...observer].find(user => user.email == this.loginForm.get('email')?.value)) },
-            error => {console.log(error)},
-            () => {console.log("User found!")
-            })
-
-        //  --------------------------
-
+          sessionStorage.setItem('token', token)});
+        }).catch(reason => {
+         console.log(reason);
         });
-        this.route.navigateByUrl('/home').then();
-      }).catch(reason => {
-        console.log(reason);
-      });
+
+      await this.route.navigateByUrl('/home').then();
     }
   }
 
 
-  ngOnDestroy(): void {
 
+  getUserByEmail(){
+    //   this.getUserByEmailSubscription = this.userService.getUserByEmail(this.loginForm.get('email')?.value).subscribe(
+    //     observer => {this.authService.setUser(observer) },
+    //     error => {console.log(error)},
+    //     () => {console.log("Games found!")
+    //     })
+    this.getUserByEmailSubscription = this.userService.getAllUser().subscribe(
+      observer => {this.authService.setUser([...observer].find(user => user.email == this.loginForm.get('email')?.value)) },
+      error => {console.log(error)},
+      () => {console.log("User found!")
+      })
+
+  }
+
+
+  ngOnDestroy(): void {
+    this.getUserByEmailSubscription?.unsubscribe()
   }
 }
