@@ -1,0 +1,64 @@
+.header-background{
+  background-color: #f0f0f0;
+  position: relative;
+  width: 100vw;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+}
+.header{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  background-color: #0278DB;
+  width: 90%;
+  height: 100%;
+  border-radius: 0rem 0rem 2rem 2rem;
+}
+
+.nav-items-div{
+  position: relative;
+  display: flex;
+  height: 100%;
+  width: 30rem;
+}
+
+.nav-links{
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-items{
+  color: white;
+  font-weight: bolder;
+  font-size: 1.5rem;
+}
+
+.profile-nav-div, .logout-nav-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.profile-nav-div{
+  width: 20rem;
+}
+
+.logout-nav-div{
+  width: 10rem;
+}
+
+.nav-profile{
+  color: white;
+}
+
+.logout-item{
+  cursor: pointer;
+}
+

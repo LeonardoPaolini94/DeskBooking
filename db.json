@@ -1,0 +1,69 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "leonardo",
+      "lastname": "paolini",
+      "phone": "3280250786",
+      "email": "leonardo.paolini@outlook.it",
+      "password": "1234567",
+      "avatar": "src/assets/Sample_User_Icon.png",
+      "role": {
+        "id": 1,
+        "name": "user"
+      }
+    },
+    {
+      "id": 2,
+      "name": "leonardo",
+      "lastname": "paolini",
+      "phone": "3280250786",
+      "email": "leoo.paolini@outlook.it",
+      "password": "1234567",
+      "avatar": "src/assets/Sample_User_Icon.png",
+      "role": {
+        "id": 1,
+        "name": "user"
+      }
+    },
+    {
+      "id": 3,
+      "name": "leonardo",
+      "lastname": "paolini",
+      "phone": "3280250786",
+      "email": "paolini@outlook.it",
+      "password": "1234567",
+      "avatar": "src/assets/Sample_User_Icon.png",
+      "role": {
+        "id": 1,
+        "name": "user"
+      }
+    },
+    {
+      "id": 4,
+      "name": "leonardo",
+      "lastname": "paolini",
+      "phone": "3280250786",
+      "email": "l.paolini@outlook.it",
+      "password": "1234567",
+      "avatar": "src/assets/Sample_User_Icon.png",
+      "role": {
+        "id": 1,
+        "name": "user"
+      }
+    },
+    {
+      "id": 5,
+      "name": "leonardo",
+      "lastname": "paolini",
+      "phone": "3280250786",
+      "email": "aolini@outlook.it",
+      "password": "1234567",
+      "avatar": "src/assets/Sample_User_Icon.png",
+      "role": {
+        "id": 1,
+        "name": "user"
+      }
+    }
+  ]
+}
