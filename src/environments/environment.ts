@@ -4,7 +4,14 @@
 
 export const environment = {
   production: false,
-  apiUrl: "http://localhost:8080"
+  firebaseConfig : {
+    apiKey: "AIzaSyBjJjpIMBdwGQ8SVPuh18ZpPHz0-xiq4u4",
+    authDomain: "deskbooking-f9b75.firebaseapp.com",
+    projectId: "deskbooking-f9b75",
+    storageBucket: "deskbooking-f9b75.appspot.com",
+    messagingSenderId: "929958206651",
+    appId: "1:929958206651:web:aedf718554d1501e745d9e"
+  }
 };
 
 /*
