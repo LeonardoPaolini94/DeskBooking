@@ -14,6 +14,8 @@ import {Subscription} from "rxjs";
 })
 export class LoginComponent implements OnInit,OnDestroy {
 
+  hide = true;
+
   loginForm: FormGroup
 
   getUserByEmailSubscription : Subscription

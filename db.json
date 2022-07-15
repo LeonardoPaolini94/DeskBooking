@@ -64,6 +64,32 @@
         "id": 1,
         "name": "user"
       }
+    },
+    {
+      "id": 6,
+      "name": "admin",
+      "lastname": "admin",
+      "phone": "1231231313",
+      "email": "admin@admin.com",
+      "password": "1234567",
+      "avatar": "src/assets/Sample_User_Icon.png",
+      "role": {
+        "id": 1,
+        "name": "user"
+      }
+    },
+    {
+      "id": 7,
+      "name": "tatiano",
+      "lastname": "tatiano",
+      "phone": "1241341343",
+      "email": "tatiano@tatiano.com",
+      "password": "1234567",
+      "avatar": "src/assets/Sample_User_Icon.png",
+      "role": {
+        "id": 1,
+        "name": "user"
+      }
     }
   ]
 }

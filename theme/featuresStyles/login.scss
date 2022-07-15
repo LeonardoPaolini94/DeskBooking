@@ -37,11 +37,11 @@ body{
   justify-content: center;
   align-items: center;
 }
-
 .login-internal-div{
   width: 70%;
   height: 70%;
   position: relative;
+  margin-top: auto;
 }
 
 .login-title-div{
@@ -135,5 +135,3 @@ body{
   outline: none;
   border-color: #0278DB;
 }
-
-
