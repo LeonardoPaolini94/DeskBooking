@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit,OnDestroy{
     //     })
     this.getUserByEmailSubscription = this.userService.getAllUser().subscribe(
       observer => {this.user = [...observer].find(user => user.email == email) },
-      error => {console.log("User not found!")},
+      () => {console.log("User not found!")},
       () => {console.log("User found!")
       })
 
@@ -48,9 +48,8 @@ export class HeaderComponent implements OnInit,OnDestroy{
   async logout() {
     this.authService.signout().then(()=>
       this.authService.removeUser());
-
-    this.route.navigateByUrl('/auth/login').then();
     this.closeDialog();
+    setTimeout(()=>{this.route.navigateByUrl('/auth/login').then()},10)
   }
 
 
