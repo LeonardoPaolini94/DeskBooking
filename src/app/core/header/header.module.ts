@@ -12,9 +12,9 @@ import {RouterModule} from "@angular/router";
   exports: [
     HeaderComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule
+    ]
 })
 export class HeaderModule { }

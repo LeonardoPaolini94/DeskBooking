@@ -1,10 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../core/service/auth.service";
 import {UserLogin} from "../../../core/models/UserLogin";
 import {Router} from "@angular/router";
-import {UserService} from "../../../core/service/user-service/user.service";
-import {Subscription} from "rxjs";
 
 
 @Component({
@@ -12,16 +10,13 @@ import {Subscription} from "rxjs";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit,OnDestroy {
+export class LoginComponent implements OnInit {
 
   loginForm: FormGroup
 
-  getUserByEmailSubscription : Subscription
-
 
   constructor(private authService : AuthService,
-              private route: Router,
-              private userService : UserService) { }
+              private route: Router) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -34,8 +29,6 @@ export class LoginComponent implements OnInit,OnDestroy {
 
     if (this.loginForm.valid) {
 
-      this.getUserByEmail()
-
       let user: UserLogin = {
         email: this.loginForm.get('email')?.value,
         password: this.loginForm.get('password')?.value
@@ -43,33 +36,17 @@ export class LoginComponent implements OnInit,OnDestroy {
 
       await this.authService.login(user).then(user => {
         user.user?.getIdToken().then( token => {
-          sessionStorage.setItem('token', token)});
+          sessionStorage.setItem('token', token)})
+          sessionStorage.setItem('email', this.loginForm.get('email')?.value )
         }).catch(reason => {
          console.log(reason);
         });
 
-      await this.route.navigateByUrl('/home').then();
+      this.route.navigateByUrl('/home').then();
     }
   }
 
 
 
-  getUserByEmail(){
-    //   this.getUserByEmailSubscription = this.userService.getUserByEmail(this.loginForm.get('email')?.value).subscribe(
-    //     observer => {this.authService.setUser(observer) },
-    //     error => {console.log(error)},
-    //     () => {console.log("Games found!")
-    //     })
-    this.getUserByEmailSubscription = this.userService.getAllUser().subscribe(
-      observer => {this.authService.setUser([...observer].find(user => user.email == this.loginForm.get('email')?.value)) },
-      error => {console.log(error)},
-      () => {console.log("User found!")
-      })
 
-  }
-
-
-  ngOnDestroy(): void {
-    this.getUserByEmailSubscription?.unsubscribe()
-  }
 }

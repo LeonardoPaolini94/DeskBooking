@@ -29,18 +29,14 @@ export class AuthService {
 
   //--------------------------------------------------------------------
 
-  private user : User | undefined
 
-  setUser(user: User | undefined){
-    this.user = user
-  }
 
   getUser(){
-    return this.user
+    sessionStorage.getItem('email')
   }
 
   removeUser(){
-    this.user = undefined
+    sessionStorage.clear()
   }
 
 }
