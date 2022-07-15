@@ -9,15 +9,19 @@
   <div class="profile-nav-div">
     <h4 class="nav-profile">Hi, {{user?.name}}!</h4>
     <div class="logout-nav-div">
-      <a  class="nav-links"><i (click)="logout()" class="bi bi-box-arrow-right nav-items logout-item"></i></a>
+      <a  class="nav-links"><i class="bi bi-box-arrow-right nav-items logout-item" (click)="openDialog(dialog)"></i></a>
     </div>
   </div>
 
-
-
-
-
-
 </div>
 
-
+<ng-template #dialog>
+  <h1 mat-dialog-title></h1>
+  <div mat-dialog-content>
+    <p class="text-center">Sei sicuro di voler uscire?</p>
+    <div>
+      <button class="signup-btn white-btn m-1" (click)="closeDialog()">Annulla</button>
+      <button type="submit" class="login-btn blue-btn m-1" (click)="logout()">Conferma</button>
+    </div>
+  </div>
+</ng-template>

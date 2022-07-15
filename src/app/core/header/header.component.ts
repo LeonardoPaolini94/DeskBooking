@@ -1,9 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {User} from "../models/User";
 import {AuthService} from "../service/auth.service";
 import {Router} from "@angular/router";
-import {UserService} from "../service/user-service/user.service";
-import {Subscription} from "rxjs";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-header',
@@ -16,6 +15,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   private getUserByEmailSubscription: Subscription;
 
   constructor(private authService : AuthService,
+              private route : Router, public dialog : MatDialog){ }
               private route : Router,
               private userService : UserService){ }
 
@@ -48,7 +48,16 @@ export class HeaderComponent implements OnInit, OnDestroy{
       this.authService.removeUser());
 
     this.route.navigateByUrl('/auth/login').then();
-    alert("Logged Out")
+    this.closeDialog();
+  }
+
+
+  openDialog(dialog : any) {
+    this.dialog.open(dialog)
+  }
+
+  closeDialog(){
+    this.dialog.closeAll()
   }
 
   ngOnDestroy(): void {
