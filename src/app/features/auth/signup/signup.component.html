@@ -15,26 +15,32 @@
       <div class="signup-form-div">
         <div class="input-div">
           <input type="text" placeholder="Name" class="input-box" formControlName="name" required minlength="2" maxlength="40"/>
+          <div *ngIf="signupForm.controls['name'].invalid && signupForm.controls['name'].touched" class="error-class">*required field</div>
         </div>
 
         <div class="input-div">
           <input type="text" placeholder="Lastname" class="input-box" formControlName="lastname" required minlength="2" maxlength="40"/>
+          <div *ngIf="signupForm.controls['lastname'].invalid && signupForm.controls['lastname'].touched" class="error-class">*required field</div>
         </div>
 
         <div class="email-input-div">
           <input type="email" placeholder="Email" class="input-box" formControlName="email" required/>
+          <div *ngIf="signupForm.controls['email'].invalid && signupForm.controls['email'].touched" class="error-class">*required field</div>
         </div>
 
         <div class="input-div">
           <input type="text" placeholder="Phone" class="input-box" formControlName="phone" required maxlength="10"/>
+          <div *ngIf="signupForm.controls['phone'].invalid && signupForm.controls['phone'].touched" class="error-class">*required field</div>
         </div>
 
         <div class="password-input-div">
           <input type="password" placeholder="Password" class="input-box" formControlName="password" required minlength="7"/>
+          <div *ngIf="signupForm.controls['password'].invalid && signupForm.controls['password'].touched" class="error-class">*required field</div>
         </div>
 
         <div class="password-input-div">
           <input type="password" placeholder="Confirm Password" class="input-box" formControlName="confirmPassword" required minlength="7"/>
+          <div *ngIf="signupForm.controls['confirmPassword'].invalid && signupForm.controls['confirmPassword'].touched" class="error-class">*required field</div>
         </div>
       </div>
       <div class="login-buttons-div">
