@@ -1,22 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {User} from "../models/User";
 import {AuthService} from "../service/auth.service";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
+import {Subscription} from "rxjs";
+import {UserService} from "../service/user-service/user.service";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy{
+export class HeaderComponent implements OnInit,OnDestroy{
 
   user : User | undefined
   private getUserByEmailSubscription: Subscription;
 
   constructor(private authService : AuthService,
-              private route : Router, public dialog : MatDialog){ }
               private route : Router,
+              private dialog : MatDialog,
               private userService : UserService){ }
 
 

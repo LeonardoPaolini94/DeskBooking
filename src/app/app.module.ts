@@ -8,6 +8,8 @@ import {environment} from "../environments/environment";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import firebase from "firebase/compat/app";
 import {UnauthorizedInterceptor} from "./core/service/interceptor/unauthorized.interceptor";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {HttpTokenInterceptor} from "./core/service/interceptor/http-token.interceptor";
 
 firebase.initializeApp(environment.firebaseConfig);
 
