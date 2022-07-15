@@ -31,8 +31,8 @@ body{
 }
 
 .login-external-div{
-  width: 55vw;
-  height: 90vh;
+  width: 50vw;
+  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -122,10 +122,11 @@ body{
   width: 100%;
   height: 38%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 }
 
 .input-box{
+  align-self: center;
   padding-left: 1rem;
   width: 70%;
   height:60%;
@@ -150,6 +151,13 @@ body{
   color: #a1a1a1;
   text-decoration: underline;
   cursor: pointer;
+}
+
+.error-class{
+  font-size: x-small;
+  color: red;
+  text-align: start;
+  margin-left: 7.5rem;
 }
 
 @media screen and (max-width: 1600px){
