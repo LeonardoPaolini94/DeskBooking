@@ -96,7 +96,8 @@ body{
 }
 
 .blue-btn:disabled {
-  filter: grayscale(75%);
+  background-color: rgba(2, 120, 219, 0.33);
+  border-color: rgba(2, 120, 219, 0.33);
 }
 
 .input-box.ng-invalid.ng-touched{
