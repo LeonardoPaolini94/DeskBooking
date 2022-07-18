@@ -1,15 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {BookingService} from "../../core/service/booking.service";
+import {Subscription} from "rxjs";
+import {Booking} from "../../core/models/Booking";
 
 @Component({
   selector: 'app-card-booking',
   templateUrl: './card-booking.component.html',
   styleUrls: ['./card-booking.component.scss']
 })
-export class CardBookingComponent implements OnInit {
+export class CardBookingComponent implements OnInit,OnDestroy {
 
-  constructor() { }
+  bookingsList : Booking[];
+  getAllBookingsSubscription : Subscription;
+
+  constructor(private bookingService : BookingService) { }
 
   ngOnInit(): void {
+    this.getAllBookings()
   }
+
+  getAllBookings(){
+    this.getAllBookingsSubscription = this.bookingService.getAllBookings().subscribe(
+      observer => {
+        this.bookingsList = [...observer]
+      },
+      error => console.log(error)
+    )
+  }
+
+  ngOnDestroy(): void {
+    this.getAllBookingsSubscription?.unsubscribe()
+  }
+
 
 }
