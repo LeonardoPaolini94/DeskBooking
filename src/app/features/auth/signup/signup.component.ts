@@ -26,10 +26,10 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
     this.signupForm = new FormGroup(
       {
-        name: new FormControl('', [Validators.required,Validators.pattern("^[a-z A-Z]*$"),Validators.minLength(2), Validators.maxLength(40)]),
-        lastname: new FormControl('', [Validators.required,Validators.pattern("^[a-z A-Z]*$"),Validators.minLength(2), Validators.maxLength(40)]),
+        firstName: new FormControl('', [Validators.required,Validators.pattern("^[a-z A-Z]*$"),Validators.minLength(2), Validators.maxLength(40)]),
+        lastName: new FormControl('', [Validators.required,Validators.pattern("^[a-z A-Z]*$"),Validators.minLength(2), Validators.maxLength(40)]),
         email: new FormControl('', Validators.compose([Validators.email, Validators.required])),
-        phone: new FormControl('',[Validators.required, Validators.pattern("[0-9]{10}")]),
+        phoneNumber: new FormControl('',[Validators.required, Validators.pattern("[0-9]{10}")]),
         password: new FormControl('',[Validators.required ,Validators.minLength(7)]),
         confirmPassword: new FormControl('',[Validators.required ,Validators.minLength(7)])
       },{validators: this.passwordMatcher}
@@ -40,15 +40,15 @@ export class SignupComponent implements OnInit {
   async onSubmit() {
   let newSignup : User = {
     id : this.userArray?.length+1,
-    name : this.signupForm.value.name.trim(),
-    lastname : this.signupForm.value.lastname.trim(),
-    phone : this.signupForm.value.phone,
+    firstName : this.signupForm.value.firstName.trim(),
+    lastName : this.signupForm.value.lastName.trim(),
+    phoneNumber : this.signupForm.value.phoneNumber,
     email : this.signupForm.value.email.trim(),
     password : this.signupForm.value.password.trim(),
     avatar : "src/assets/Sample_User_Icon.png",
     role :  {
       id : 1,
-      name : "user"
+      roleName : "user"
     }
   };
 
