@@ -14,13 +14,13 @@
 
       <div class="signup-form-div">
         <div class="input-div">
-          <input type="text" placeholder="Name" class="input-box" formControlName="name" required minlength="2" maxlength="40"/>
-          <div *ngIf="signupForm.controls['name'].invalid && signupForm.controls['name'].touched" class="error-class">*required field</div>
+          <input type="text" placeholder="FirstName" class="input-box" formControlName="firstName" required minlength="2" maxlength="40"/>
+          <div *ngIf="signupForm.controls['firstName'].invalid && signupForm.controls['firstName'].touched" class="error-class">*required field</div>
         </div>
 
         <div class="input-div">
-          <input type="text" placeholder="Lastname" class="input-box" formControlName="lastname" required minlength="2" maxlength="40"/>
-          <div *ngIf="signupForm.controls['lastname'].invalid && signupForm.controls['lastname'].touched" class="error-class">*required field</div>
+          <input type="text" placeholder="LastName" class="input-box" formControlName="lastName" required minlength="2" maxlength="40"/>
+          <div *ngIf="signupForm.controls['lastName'].invalid && signupForm.controls['lastName'].touched" class="error-class">*required field</div>
         </div>
 
         <div class="email-input-div">
@@ -29,8 +29,8 @@
         </div>
 
         <div class="input-div">
-          <input type="text" placeholder="Phone" class="input-box" formControlName="phone" required maxlength="10"/>
-          <div *ngIf="signupForm.controls['phone'].invalid && signupForm.controls['phone'].touched" class="error-class">*required field</div>
+          <input type="text" placeholder="Phone Number" class="input-box" formControlName="phoneNumber" required maxlength="10"/>
+          <div *ngIf="signupForm.controls['phoneNumber'].invalid && signupForm.controls['phoneNumber'].touched" class="error-class">*required field</div>
         </div>
 
         <div class="password-input-div">
