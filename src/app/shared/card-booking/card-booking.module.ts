@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardBookingComponent } from './card-booking.component';
 import {HeaderModule} from "../../core/header/header.module";
+import {RouterModule} from "@angular/router";
 
 
 
@@ -12,9 +13,10 @@ import {HeaderModule} from "../../core/header/header.module";
   exports: [
     CardBookingComponent
   ],
-  imports: [
-    CommonModule,
-    HeaderModule
-  ]
+    imports: [
+        CommonModule,
+        HeaderModule,
+        RouterModule
+    ]
 })
 export class CardBookingModule { }

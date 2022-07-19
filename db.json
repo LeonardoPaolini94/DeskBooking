@@ -184,6 +184,29 @@
           "roleName": "user"
         }
       }
+    },
+    {
+      "id": 3,
+      "bookDate": "2022/08/10",
+      "room" : {
+        "id": 4,
+        "maxCapacity": 8,
+        "isCompanyRoom": true,
+        "roomNumber": 506
+      },
+      "user": {
+        "id": 6,
+        "firstName": "admin",
+        "lastName": "admin",
+        "phoneNumber": "1231231313",
+        "email": "admin@admin.com",
+        "password": "1234567",
+        "avatar": "assets/img/user-svgrepo-com.svg",
+        "role": {
+          "id": 1,
+          "roleName": "user"
+        }
+      }
     }
   ],
   "roomstatus" : [
