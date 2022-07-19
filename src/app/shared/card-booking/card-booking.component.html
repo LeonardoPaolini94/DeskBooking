@@ -1,8 +1,8 @@
-<a id="container" routerLink="/prenotation-detail">
-  <div class="cardHome" *ngFor="let booking of bookingsList">
+<div id="container" *ngIf="exist else template">
+  <a routerLink="/prenotation-detail/{{booking.id}}" class="cardHome" *ngFor="let booking of bookingsList">
     <div class="date">
       <div class="h5-container">
-        <h5>Prenotazione {{booking.id}}</h5>
+        <h5># {{booking.id}}</h5>
       </div>
       <div class="cardTitle">
         <p>{{booking.bookDate}}</p>
@@ -12,7 +12,14 @@
       <img src="assets/img/key-svgrepo-com (1).svg">
       <p class="cardText">{{booking.room?.roomNumber}}</p>
     </div>
-  </div>
-</a>
+  </a>
+</div>
 
+<ng-template #template>
+  <div class="no-bookings">
+    <p>
+      Al momento non ci sono prenotazioni...
+    </p>
+  </div>
+</ng-template>
 

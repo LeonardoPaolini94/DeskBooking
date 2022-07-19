@@ -120,10 +120,12 @@
       "id": 1,
       "bookDate": "2022/07/18",
       "room" : {
-        "id": 3,
-        "maxCapacity": 12,
-        "isCompanyRoom": true,
-        "roomNumber": 520
+        "id" : 1,
+        "isCompanyRoom" : true,
+        "maxCapacity" : 6,
+        "roomNumber" : 504,
+        "capacity" : 6,
+        "nBooking" : 4
       },
       "user": {
         "id": 6,
@@ -137,16 +139,18 @@
           "id": 1,
           "roleName": "user"
         }
-        }
-      },
+      }
+    },
     {
       "id": 2,
       "bookDate": "2022/07/20",
       "room" : {
-        "id": 4,
-        "maxCapacity": 8,
-        "isCompanyRoom": true,
-        "roomNumber": 506
+        "id" : 1,
+        "isCompanyRoom" : true,
+        "maxCapacity" : 6,
+        "roomNumber" : 506,
+        "capacity" : 6,
+        "nBooking" : 6
       },
       "user": {
         "id": 6,
@@ -165,11 +169,13 @@
     {
       "id": 300,
       "bookDate": "2022/08/10",
-      "room" : {
-        "id": 4,
-        "maxCapacity": 8,
+      "room": {
+        "id": 1,
         "isCompanyRoom": true,
-        "roomNumber": 506
+        "maxCapacity": 6,
+        "roomNumber": 506,
+        "capacity": 6,
+        "nBooking": 6
       },
       "user": {
         "id": 6,
@@ -184,8 +190,7 @@
           "roleName": "user"
         }
       }
-    },
-    {
+    },{
       "id": 20,
       "bookDate": "2022/08/10",
       "room" : {
