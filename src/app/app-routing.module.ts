@@ -8,6 +8,7 @@ const routes: Routes = [
   {path:'home', loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule),canActivate:[AuthGuard]},
   {path:'prenotation-detail', loadChildren: () => import('./features/prenotation-detail/prenotation-detail.module').then(m => m.PrenotationDetailModule)},
   {path:'settings', loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule)},
+  {path:'bookingroom', loadChildren: () => import('./features/booking-room/booking-room.module').then(m => m.BookingRoomModule)},
   {path:"**", redirectTo:"home",pathMatch:"full"},
   {path:"", redirectTo:"home",pathMatch:"full"}
 ];

@@ -7,7 +7,7 @@
       "phoneNumber": "3280250786",
       "email": "leonardo.paolini@outlook.it",
       "password": "1234567",
-      "avatar": "src/assets/Sample_User_Icon.png",
+      "avatar": "assets/img/user-svgrepo-com.svg",
       "role": {
         "id": 1,
         "roleName": "user"
@@ -20,7 +20,7 @@
       "phoneNumber": "3280250786",
       "email": "leoo.paolini@outlook.it",
       "password": "1234567",
-      "avatar": "src/assets/Sample_User_Icon.png",
+      "avatar": "assets/img/user-svgrepo-com.svg",
       "role": {
         "id": 1,
         "roleName": "user"
@@ -33,7 +33,7 @@
       "phoneNumber": "3280250786",
       "email": "paolini@outlook.it",
       "password": "1234567",
-      "avatar": "src/assets/Sample_User_Icon.png",
+      "avatar": "assets/img/user-svgrepo-com.svg",
       "role": {
         "id": 1,
         "roleName": "user"
@@ -46,7 +46,7 @@
       "phoneNumber": "3280250786",
       "email": "l.paolini@outlook.it",
       "password": "1234567",
-      "avatar": "src/assets/Sample_User_Icon.png",
+      "avatar": "assets/img/user-svgrepo-com.svg",
       "role": {
         "id": 1,
         "roleName": "user"
@@ -59,7 +59,7 @@
       "phoneNumber": "3280250786",
       "email": "aolini@outlook.it",
       "password": "1234567",
-      "avatar": "src/assets/Sample_User_Icon.png",
+      "avatar": "assets/img/user-svgrepo-com.svg",
       "role": {
         "id": 1,
         "roleName": "user"
@@ -72,7 +72,7 @@
       "phoneNumber": "1231231313",
       "email": "admin@admin.com",
       "password": "1234567",
-      "avatar": "src/assets/Sample_User_Icon.png",
+      "avatar": "assets/img/user-svgrepo-com.svg",
       "role": {
         "id": 1,
         "roleName": "user"
@@ -85,11 +85,411 @@
       "phoneNumber": "1241341343",
       "email": "tatiano@tatiano.com",
       "password": "1234567",
-      "avatar": "src/assets/Sample_User_Icon.png",
+      "avatar": "assets/img/user-svgrepo-com.svg",
       "role": {
         "id": 1,
         "roleName": "user"
       }
     }
+  ],
+  "Rooms" : [
+    {
+      "id": 1,
+      "maxCapacity": 10,
+      "isCompanyRoom": true,
+      "roomNumber": 513
+    },{
+      "id": 2,
+      "maxCapacity": 8,
+      "isCompanyRoom": false,
+      "roomNumber": 516
+    },{
+      "id": 3,
+      "maxCapacity": 12,
+      "isCompanyRoom": true,
+      "roomNumber": 520
+    },{
+      "id": 4,
+      "maxCapacity": 8,
+      "isCompanyRoom": true,
+      "roomNumber": 506
+    }
+  ],
+  "Bookings": [
+    {
+      "id": 1,
+      "bookDate": "2022/07/18",
+      "room" : {
+        "id": 3,
+        "maxCapacity": 12,
+        "isCompanyRoom": true,
+        "roomNumber": 520
+      },
+      "user": {
+        "id": 6,
+        "firstName": "admin",
+        "lastName": "admin",
+        "phoneNumber": "1231231313",
+        "email": "admin@admin.com",
+        "password": "1234567",
+        "avatar": "assets/img/user-svgrepo-com.svg",
+        "role": {
+          "id": 1,
+          "roleName": "user"
+        }
+        }
+      },
+    {
+      "id": 2,
+      "bookDate": "2022/07/20",
+      "room" : {
+        "id": 4,
+        "maxCapacity": 8,
+        "isCompanyRoom": true,
+        "roomNumber": 506
+      },
+      "user": {
+        "id": 6,
+        "firstName": "admin",
+        "lastName": "admin",
+        "phoneNumber": "1231231313",
+        "email": "admin@admin.com",
+        "password": "1234567",
+        "avatar": "assets/img/user-svgrepo-com.svg",
+        "role": {
+          "id": 1,
+          "roleName": "user"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "bookDate": "2022/08/10",
+      "room" : {
+        "id": 4,
+        "maxCapacity": 8,
+        "isCompanyRoom": true,
+        "roomNumber": 506
+      },
+      "user": {
+        "id": 6,
+        "firstName": "admin",
+        "lastName": "admin",
+        "phoneNumber": "1231231313",
+        "email": "admin@admin.com",
+        "password": "1234567",
+        "avatar": "assets/img/user-svgrepo-com.svg",
+        "role": {
+          "id": 1,
+          "roleName": "user"
+        }
+      }
+    }
+  ],
+  "roomstatus" : [
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 501,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 502,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 503,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : true,
+      "maxCapacity" : 6,
+      "roomNumber" : 504,
+      "capacity" : 6,
+      "nBooking" : 4
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : true,
+      "maxCapacity" : 6,
+      "roomNumber" : 505,
+      "capacity" : 4,
+      "nBooking" : 3
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : true,
+      "maxCapacity" : 6,
+      "roomNumber" : 506,
+      "capacity" : 6,
+      "nBooking" : 6
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 507,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 508,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 509,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 510,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 511,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 512,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : true,
+      "maxCapacity" : 6,
+      "roomNumber" : 513,
+      "capacity" : 6,
+      "nBooking" : 1
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 514,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 515,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 516,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : true,
+      "maxCapacity" : 6,
+      "roomNumber" : 517,
+      "capacity" : 6,
+      "nBooking" : 4
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 518,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 519,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 520,
+      "capacity" : null,
+      "nBooking" : null
+    },    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 521,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 522,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 523,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 524,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 525,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 526,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 527,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 528,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 529,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 530,
+      "capacity" : null,
+      "nBooking" : null
+    },    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 531,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 532,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 533,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : true,
+      "maxCapacity" : 6,
+      "roomNumber" : 534,
+      "capacity" : 6,
+      "nBooking" : 6
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : true,
+      "maxCapacity" : 6,
+      "roomNumber" : 535,
+      "capacity" : 4,
+      "nBooking" : 4
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 536,
+      "capacity" : null,
+      "nBooking" : null
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : true,
+      "maxCapacity" : 6,
+      "roomNumber" : 537,
+      "capacity" : 6,
+      "nBooking" : 2
+    },
+    {
+      "id" : 1,
+      "isCompanyRoom" : false,
+      "maxCapacity" : 6,
+      "roomNumber" : 538,
+      "capacity" : null,
+      "nBooking" : null
+    }
   ]
 }
+
+

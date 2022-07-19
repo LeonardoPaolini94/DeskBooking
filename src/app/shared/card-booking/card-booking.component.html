@@ -1,11 +1,18 @@
-<div class="home-background">
-  <div class="cardHome text-center">
+<div id="container">
+  <div class="cardHome" *ngFor="let booking of bookingsList">
     <div class="date">
-      <div class="cardTitle"></div>
+      <div class="h5-container">
+        <h5>Prenotazione {{booking.id}}</h5>
+      </div>
+      <div class="cardTitle">
+        <p>{{booking.bookDate}}</p>
+      </div>
     </div>
     <div class="bodyCard">
-      <h5 class="cardBooking"></h5>
-      <p class="cardText"></p>
+      <img src="assets/img/key-svgrepo-com (1).svg">
+      <p class="cardText">{{booking.room?.roomNumber}}</p>
     </div>
   </div>
 </div>
+
+

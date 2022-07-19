@@ -1,31 +1,68 @@
-.home-background{
-  width: 100vw;
-  height: 100vh;
-  background-color: #f0f0f0;
+#container{
   display: flex;
   justify-content: space-evenly;
+  margin: 5.5rem;
+  .cardHome{
+    background-color: #f8f8f8;
+    border-radius: 0rem 0rem 0rem 2rem;
+    box-shadow:  0px 5px rgba(0, 0, 1, 0.1);
+    width: 24rem;
+    height: 12rem;
+  }
+  .date{
+    display: flex;
+    justify-content: flex-end;
+    .h5-container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 14rem;
+      h5{
+        font-weight: 400;
+        font-size: 23px;
+      }
+    }
+    .cardTitle{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 10rem;
+      height: 5rem;
+      background-color: #0278DB;
+      border-radius: 0rem 0rem 0rem 2rem;
+      box-shadow: 0px 5px rgba(0, 1, 2, 0.1);
+      p{
+        position: relative;
+        top: 0.5rem;
+        font-weight: 400;
+        font-size: 24px;
+        color: #f0f0f0;
+      }
+    }
+  }
+  .bodyCard{
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    img{
+      height: 3rem;
+      width: 3rem;
+      filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(23deg) brightness(95%) contrast(101%);
+    }
+    p{
+      position: relative;
+      top:0.3rem;
+      font-weight: 400;
+      font-size: 40px;
+    }
+    img,p{
+      position: relative;
+      left: 5rem;
+    }
+  }
+
 }
 
-.cardHome{
-  margin-top: 2rem;
-  background-color: white;
-  border-radius: 0rem 0rem 0rem 2rem;
-  box-shadow:  0px 5px rgba(0, 0, 1, 0.1);
-  width: 23vw;
-  height: 23vh;
-}
 
-.date{
-  display: flex;
-  justify-content: flex-end;
-}
-
-.cardTitle{
-  width: 10rem;
-  height: 5rem;
-  background-color: #0278DB;
-  border-radius: 0rem 0rem 0rem 2rem;
-  box-shadow: 0px  5px rgba(0, 1, 2, 0.1);
-}
 
 

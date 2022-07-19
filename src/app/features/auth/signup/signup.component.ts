@@ -45,7 +45,7 @@ export class SignupComponent implements OnInit {
     phoneNumber : this.signupForm.value.phoneNumber,
     email : this.signupForm.value.email.trim(),
     password : this.signupForm.value.password.trim(),
-    avatar : "src/assets/Sample_User_Icon.png",
+    avatar : "assets/img/user-svgrepo-com.svg",
     role :  {
       id : 1,
       roleName : "user"

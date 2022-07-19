@@ -41,7 +41,7 @@
 
 .profile-nav-div, .logout-nav-div{
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   height: 100%;
 }
@@ -51,7 +51,11 @@
 }
 
 .logout-nav-div{
-  width: 10rem;
+  width: 2rem;
+  img{
+    height: 3rem;
+    width: 3rem;
+  }
 }
 
 .nav-profile{
