@@ -2,12 +2,12 @@
 
   <div class="nav-items-div">
     <a routerLink="/home" class="nav-links"><span class="nav-items">Home</span></a>
-    <a routerLink="/bookingroom" class="nav-links"><span class="nav-items">Prenotazioni</span></a>
+    <a routerLink="/bookingroom" class="nav-links"><span class="nav-items">Nuova prenotazione</span></a>
   </div>
 
 
   <div class="profile-nav-div">
-    <h4 class="nav-profile">Hi , {{user?.firstName}}!</h4>
+    <h4 class="nav-profile">{{user?.firstName}} {{user?.lastName}}</h4>
     <div class="logout-nav-div">
       <img src="{{user?.avatar}}" mat-button [matMenuTriggerFor]="menu">
       <mat-menu #menu="matMenu" xPosition="before">
