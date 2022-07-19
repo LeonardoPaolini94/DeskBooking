@@ -1,0 +1,31 @@
+
+.home-background{
+  width: 100vw;
+  height: 100vh;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.cardHome{
+  margin-top: 2rem;
+  background-color: white;
+  border-radius: 0rem 0rem 0rem 4rem;
+  box-shadow:  0px 5px rgba(0, 0, 1, 0.1);
+  width: 23vw;
+  height: 23vh;
+}
+
+.date{
+  display: flex;
+  justify-content: end;
+}
+
+.cardTitle{
+  width: 12rem;
+  height: 6rem;
+  background-color: #0278DB;
+  border-radius: 0rem 0rem 0rem 2rem;
+  box-shadow: 0px  5px rgba(0, 1, 2, 0.1);
+}
+

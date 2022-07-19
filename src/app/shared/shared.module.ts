@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ModalComponent } from './modal/modal.component';
+import {MapComponent} from "./map/map.component";
 
 
 
 @NgModule({
   declarations: [
-    ModalComponent
+    MapComponent
   ],
   imports: [
     CommonModule
+  ], exports: [
+    MapComponent
   ]
 })
 export class SharedModule { }
