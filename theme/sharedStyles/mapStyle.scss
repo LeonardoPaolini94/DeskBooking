@@ -1,16 +1,10 @@
 .map-container{
-  width: 100%;
-  height: 55rem;
-  padding: 1rem;
-}
-
-.rooms{
-    height: 100%;
-    display: grid;
-    grid-template-columns: 2fr repeat(9, 1fr) 2fr;
-    grid-template-rows: 3fr repeat(5, 2.5fr) 3fr;
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  grid-column-gap: 0.7rem;
+  grid-row-gap: 0.7rem;
+  height: 43rem;
 }
 
 
