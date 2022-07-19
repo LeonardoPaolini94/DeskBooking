@@ -10,15 +10,40 @@
 <!--      <div class="corner-room"></div>-->
 <!--    </div>-->
   </div>
-  <div class="nounikey 530">{{rooms[29].roomNumber}}</div>
+  <div class="nounikey 530">
+    <p>{{rooms[29].roomNumber}}</p>
+    <p>LO</p>
+    </div>
   <div class="nounikey 531">{{rooms[30].roomNumber}}</div>
   <div class="nounikey 532">{{rooms[31].roomNumber}}</div>
-  <div class="nounikey 533">{{rooms[32].roomNumber}}</div>
-  <div class="unikey 534">{{rooms[33].roomNumber}}</div>
-  <div class="unikey 535">{{rooms[34].roomNumber}}</div>
-  <div class="nounikey 536">{{rooms[35].roomNumber}}</div>
-  <div [ngClass]="rooms[36].isCompanyRoom ? 'unikey' : 'nounikey'" class="537">{{rooms[36].roomNumber}}</div>
-  <div [ngClass]="rooms[36].isCompanyRoom ? 'unikey' : 'nounikey'" class="538">{{rooms[37].roomNumber}}</div>
+
+
+  <div [ngClass]="{'nounikey' : !rooms[32].isCompanyRoom, 'unikey' : rooms[32].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[32])}"
+       class="room-cell">
+    <p *ngIf="rooms[32].isCompanyRoom" [ngClass]="roomIsFull(rooms[32]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[32].roomNumber}}</p>
+    <p *ngIf="rooms[32].capacity != null" class="room-capacity">{{rooms[32].nBooking}} / {{rooms[32].capacity}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !rooms[33].isCompanyRoom, 'unikey' : rooms[33].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[33])}"
+    class="room-cell">
+    <p *ngIf="rooms[33].isCompanyRoom" [ngClass]="roomIsFull(rooms[33]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[33].roomNumber}}</p>
+    <p *ngIf="rooms[33].capacity != null" class="room-capacity">{{rooms[33].nBooking}} / {{rooms[33].capacity}}</p>
+  </div>
+
+
+
+  <div
+    [ngClass]="{'nounikey' : !rooms[34].isCompanyRoom, 'unikey' : rooms[34].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[34])}"
+    class="535">{{rooms[34].roomNumber}}</div>
+  <div
+    [ngClass]="{'nounikey' : !rooms[35].isCompanyRoom, 'unikey' : rooms[35].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[35])}"
+    class="536">{{rooms[35].roomNumber}}</div>
+  <div
+    [ngClass]="{'nounikey' : !rooms[36].isCompanyRoom, 'unikey' : rooms[36].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[36])}"
+    class="537">{{rooms[36].roomNumber}}</div>
+  <div [ngClass]="rooms[37].isCompanyRoom ? 'unikey' : 'nounikey'" class="538">{{rooms[37].roomNumber}}</div>
   <div class="corner">
 <!--    <div class="d-flex justify-content-between container-corner">-->
 <!--      <div class="nounikey 501 corner-room">{{rooms[0].roomNumber}}</div>-->

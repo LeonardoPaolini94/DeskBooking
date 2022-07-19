@@ -8,7 +8,6 @@
   width: 69rem;
 }
 
-
 .center-div{
   grid-area: 2 / 2 / 7 / 11;
 }
@@ -69,4 +68,27 @@
 
 .stairs img{
   width: 7rem;
+}
+
+.room-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.room-number {
+  font-family: 'Cabin', sans-serif;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.room-lock {
+  margin: 0.5rem 0 0 0;
+}
+
+.room-capacity {
+  margin: 0;
+  font-family: 'Cabin', sans-serif;
 }
