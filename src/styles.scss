@@ -1,4 +1,5 @@
 @import "bootstrap";
+@import "font-awesome";
 @import "theme/featuresStyles/login";
 @import "theme/featuresStyles/authstyle";
 @import "theme/coreStyles/header";
@@ -9,9 +10,11 @@
 @import "theme/sharedStyles/mapStyle";
 @import "theme/featuresStyles/bookingroomStyle";
 
+@import "theme/featuresStyles/profileSettings";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
-html, body { height: 100%;}
+
+html, body { height: 100%; }
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;

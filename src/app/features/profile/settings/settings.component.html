@@ -1,0 +1,87 @@
+<app-header class="header-background"></app-header>
+
+<main class="settings-main" *ngIf="!isEditingProfile && !isEditingPassword">
+  <div class="settings-container">
+    <div class="settings-container-picture">
+      <div class="container-picture-pencil">
+       <a><i class="bi-solid bi-pencil-fill fa-lg"></i></a> <!--aggiungere path modale -->
+      </div>
+      <div class="container-picture-img">
+        <img src="https://www.creaavatar.it/wp-content/uploads/2021/01/myAvatar-18.png">
+        <a><i class="bi bi-camera-fill"></i></a>
+      </div>
+      <div class="container-picture-pencil"></div>
+    </div>
+    <div class="settings-container-data">
+      <div class="container-data-fullName">
+        <h4>Marcella Palatucci</h4>
+      </div>
+      <div class="container-data-email">
+        <h4>marcella@marcella.com</h4>
+      </div>
+      <div class="container-data-phoneNumber">
+        <h4>01234567</h4>
+      </div>
+    </div>
+    <div class="settings-container-buttons">
+      <div class="container-buttons-editPassword">
+        <button type="button" class="editPassword-btn white-btn" (click)="editPassword()">CAMBIA PASSWORD</button>
+      </div>
+      <div class="container-buttons-editProfile">
+        <button type="button" class="editProfile-btn blue-btn" (click)="editProfile()">MODIFICA PROFILO</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<main class="settings-main" *ngIf="isEditingProfile">
+  <div class="settings-container">
+    <div class="container-editProfile">
+
+      <form [formGroup]="editProfileForm" (ngSubmit)="submitProfile()" class="editProfile-form" ngNativeValidate>
+
+        <div class="editProfile-title-div">
+          <h1 class="editProfile-title">MODIFICA PROFILO</h1>
+        </div>
+  <!-- value:  valori in input form  -->
+        <div class="editProfile-form-div">
+          <div class="firstName-input-div">
+            <label class="form-label" for="firstName"></label>
+            <input type="text" id="firstName" placeholder="firstName" class="input-box" formControlName="firstName" required/>
+          </div>
+          <div class="lastName-input-div">
+            <label class="form-label" for="lastName"></label>
+            <input type="text" id="lastName" placeholder="lastName" class="input-box" formControlName="lastName" required/>
+          </div>
+          <div class="email-input-div">
+            <label class="form-label" for="email"></label>
+            <input type="email" id="email" placeholder="email" class="input-box" formControlName="email" required/>
+          </div>
+          <div class="password-input-div">
+            <label class="form-label" for="password"></label>
+            <input type="password" id="password" placeholder="password" class="input-box" formControlName="password" minlength="7" required/>
+
+          </div>
+        </div>
+
+        <div class="login-buttons-div">
+
+          <button [disabled]="!editProfileForm.valid" type="submit" class="editProfile-btn blue-btn">CONFERMA</button>
+
+        </div>
+
+
+      </form>
+
+
+
+    </div>
+
+  </div>
+</main>
+
+<main class="settings-main" *ngIf="isEditingPassword">
+  <div class="settings-container">
+
+  </div>
+</main>
