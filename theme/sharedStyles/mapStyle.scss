@@ -1,0 +1,78 @@
+.map-container{
+  width: 100%;
+  height: 55rem;
+  padding: 1rem;
+}
+
+.rooms{
+    height: 100%;
+    display: grid;
+    grid-template-columns: 2fr repeat(9, 1fr) 2fr;
+    grid-template-rows: 3fr repeat(5, 2.5fr) 3fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+
+
+
+.center-div{
+  grid-area: 2 / 2 / 7 / 11;
+}
+
+.nounikey{
+  border: 5px solid grey;
+  border-radius: 0.5rem;
+}
+
+
+.unikey{
+  border: 5px solid limegreen;
+  border-radius: 0.5rem;
+}
+
+.segreteria{
+  border: 5px solid grey;
+  border-radius: 0.5rem;
+}
+
+.corner-room{
+  width: 7.9rem;
+}
+
+.container-corner{
+  height: 4rem;
+}
+
+.fullBooked{
+  border: 5px solid red;
+  border-radius: 0.5rem;
+}
+
+.small-center-div img{
+  width: 7rem;
+  margin-right: 4rem;
+}
+
+.center-div{
+  display: flex;
+  justify-content: space-between;
+  padding: 7rem;
+}
+
+.small-center-div {
+  width: 28rem;
+  border-radius: 0.5rem;
+  background-color: #d5d5d5;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.stairs{
+  display: flex;
+  justify-content: end;
+}
+
+.stairs img{
+  width: 7rem;
+}

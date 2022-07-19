@@ -1,0 +1,79 @@
+<div class="map-container">
+<div class="rooms">
+  <div class="corner">
+    <div class="d-flex justify-content-between container-corner">
+      <div class="nounikey 528 corner-room">{{rooms[27].roomNumber}}</div>
+      <div class="nounikey 529 corner-room">{{rooms[28].roomNumber}}</div>
+    </div>
+    <div class="d-flex justify-content-between container-corner mt-2">
+      <div class="nounikey 527 corner-room">{{rooms[26].roomNumber}}</div>
+      <div class="corner-room"></div>
+    </div>
+  </div>
+  <div class="nounikey 530">{{rooms[29].roomNumber}}</div>
+  <div class="nounikey 531">{{rooms[30].roomNumber}}</div>
+  <div class="nounikey 532">{{rooms[31].roomNumber}}</div>
+  <div class="nounikey 533">{{rooms[32].roomNumber}}</div>
+  <div class="unikey 534">{{rooms[33].roomNumber}}</div>
+  <div class="unikey 535">{{rooms[34].roomNumber}}</div>
+  <div class="nounikey 536">{{rooms[35].roomNumber}}</div>
+  <div [ngClass]="rooms[36].isCompanyRoom ? 'unikey' : 'nounikey'" class="537">{{rooms[36].roomNumber}}</div>
+  <div [ngClass]="rooms[36].isCompanyRoom ? 'unikey' : 'nounikey'" class="538">{{rooms[37].roomNumber}}</div>
+  <div class="corner">
+    <div class="d-flex justify-content-between container-corner">
+      <div class="nounikey 501 corner-room">{{rooms[0].roomNumber}}</div>
+      <div class="nounikey 502 corner-room">{{rooms[1].roomNumber}}</div>
+    </div>
+    <div class="d-flex justify-content-between container-corner mt-2">
+      <div class="corner-room"></div>
+      <div class="nounikey 503 corner-room">{{rooms[2].roomNumber}}</div>
+    </div>
+  </div>
+  <div class="nounikey 526">{{rooms[25].roomNumber}}</div>
+  <div class="unikey 504">{{rooms[3].roomNumber}}</div>
+  <div class="nounikey 525">{{rooms[24].roomNumber}}</div>
+  <div class="unikey 505">{{rooms[4].roomNumber}}</div>
+  <div class="segreteria 524">{{rooms[23].roomNumber}}</div>
+  <div [ngClass]="rooms[5].isCompanyRoom ? 'unikey' : 'nounikey'" class="506"
+       *ngIf="rooms[5].isCompanyRoom && rooms[5].nBooking == rooms[5].capacity" class="fullBooked">
+    {{rooms[5].roomNumber}}</div>
+  <div class="nounikey 523">{{rooms[22].roomNumber}}</div>
+  <div class="nounikey 507">{{rooms[6].roomNumber}}</div>
+  <div class="nounikey 522">{{rooms[21].roomNumber}}</div>
+  <div class="stairs">
+    <img src="assets/img/stairsSymbol.png">
+  </div>
+  <div class="corner">
+    <div class="d-flex justify-content-between container-corner">
+      <div class="nounikey 521 corner-room">{{rooms[20].roomNumber}}</div>
+      <div class="corner-room"></div>
+    </div>
+    <div class="d-flex justify-content-between container-corner mt-2">
+      <div class="nounikey 520 corner-room">{{rooms[19].roomNumber}}</div>
+      <div class="nounikey 519 corner-room">{{rooms[18].roomNumber}}</div>
+    </div>
+  </div>
+  <div class="nounikey 518">{{rooms[17].roomNumber}}</div>
+  <div class="unikey 517">{{rooms[16].roomNumber}}</div>
+  <div class="nounikey 516">{{rooms[15].roomNumber}}</div>
+  <div class="nounikey 515">{{rooms[14].roomNumber}}</div>
+  <div class="nounikey 514">{{rooms[13].roomNumber}}</div>
+  <div class="unikey 513">{{rooms[12].roomNumber}}</div>
+  <div class="nounikey 512">{{rooms[11].roomNumber}}</div>
+  <div class="nounikey 511">{{rooms[10].roomNumber}}</div>
+  <div class="nounikey 510">{{rooms[9].roomNumber}}</div>
+  <div class="corner">
+    <div class="d-flex justify-content-between container-corner h-100">
+      <div class="nounikey 509 corner-room">{{rooms[8].roomNumber}}</div>
+      <div class="nounikey 508 corner-room">{{rooms[7].roomNumber}}</div>
+    </div>
+  </div>
+
+  <div class="center-div">
+    <div class="small-center-div">
+      <img src="assets/img/elevatorSymbol.png">
+    </div>
+    <div class="small-center-div"></div>
+  </div>
+</div>
+</div>
