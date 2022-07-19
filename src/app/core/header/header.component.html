@@ -10,10 +10,12 @@
   <div class="profile-nav-div">
     <h4 class="nav-profile">Hi , {{user?.firstName}}!</h4>
     <div class="logout-nav-div">
-      <a  class="nav-links"><i class="bi bi-box-arrow-right nav-items logout-item" (click)="openDialog(dialog)"></i></a>
+      <img src="{{user?.avatar}}" mat-button [matMenuTriggerFor]="menu">
+      <mat-menu #menu="matMenu" xPosition="before">
+        <button mat-menu-item routerLink="/settings">Profilo</button>
+        <button mat-menu-item (click)="openDialog(dialog)">Logout</button>
+      </mat-menu>
     </div>
-  </div>
-
 </div>
 
 <ng-template #dialog>
@@ -26,3 +28,4 @@
     </div>
   </div>
 </ng-template>
+</div>

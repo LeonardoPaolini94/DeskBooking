@@ -2,93 +2,187 @@
   "users": [
     {
       "id": 1,
-      "name": "leonardo",
-      "lastname": "paolini",
-      "phone": "3280250786",
+      "firstName": "leonardo",
+      "lastName": "paolini",
+      "phoneNumber": "3280250786",
       "email": "leonardo.paolini@outlook.it",
       "password": "1234567",
-      "avatar": "src/assets/Sample_User_Icon.png",
+      "avatar": "assets/img/user-svgrepo-com.svg",
       "role": {
         "id": 1,
-        "name": "user"
+        "roleName": "user"
       }
     },
     {
       "id": 2,
-      "name": "leonardo",
-      "lastname": "paolini",
-      "phone": "3280250786",
+      "firstName": "leonardo",
+      "lastName": "paolini",
+      "phoneNumber": "3280250786",
       "email": "leoo.paolini@outlook.it",
       "password": "1234567",
-      "avatar": "src/assets/Sample_User_Icon.png",
+      "avatar": "assets/img/user-svgrepo-com.svg",
       "role": {
         "id": 1,
-        "name": "user"
+        "roleName": "user"
       }
     },
     {
       "id": 3,
-      "name": "leonardo",
-      "lastname": "paolini",
-      "phone": "3280250786",
+      "firstName": "leonardo",
+      "lastName": "paolini",
+      "phoneNumber": "3280250786",
       "email": "paolini@outlook.it",
       "password": "1234567",
-      "avatar": "src/assets/Sample_User_Icon.png",
+      "avatar": "assets/img/user-svgrepo-com.svg",
       "role": {
         "id": 1,
-        "name": "user"
+        "roleName": "user"
       }
     },
     {
       "id": 4,
-      "name": "leonardo",
-      "lastname": "paolini",
-      "phone": "3280250786",
+      "firstName": "leonardo",
+      "lastName": "paolini",
+      "phoneNumber": "3280250786",
       "email": "l.paolini@outlook.it",
       "password": "1234567",
-      "avatar": "src/assets/Sample_User_Icon.png",
+      "avatar": "assets/img/user-svgrepo-com.svg",
       "role": {
         "id": 1,
-        "name": "user"
+        "roleName": "user"
       }
     },
     {
       "id": 5,
-      "name": "leonardo",
-      "lastname": "paolini",
-      "phone": "3280250786",
+      "firstName": "leonardo",
+      "lastName": "paolini",
+      "phoneNumber": "3280250786",
       "email": "aolini@outlook.it",
       "password": "1234567",
-      "avatar": "src/assets/Sample_User_Icon.png",
+      "avatar": "assets/img/user-svgrepo-com.svg",
       "role": {
         "id": 1,
-        "name": "user"
+        "roleName": "user"
       }
     },
     {
       "id": 6,
-      "name": "admin",
-      "lastname": "admin",
-      "phone": "1231231313",
+      "firstName": "admin",
+      "lastName": "admin",
+      "phoneNumber": "1231231313",
       "email": "admin@admin.com",
       "password": "1234567",
-      "avatar": "src/assets/Sample_User_Icon.png",
+      "avatar": "assets/img/user-svgrepo-com.svg",
       "role": {
         "id": 1,
-        "name": "user"
+        "roleName": "user"
       }
     },
     {
       "id": 7,
-      "name": "tatiano",
-      "lastname": "tatiano",
-      "phone": "1241341343",
+      "firstName": "tatiano",
+      "lastName": "tatiano",
+      "phoneNumber": "1241341343",
       "email": "tatiano@tatiano.com",
       "password": "1234567",
-      "avatar": "src/assets/Sample_User_Icon.png",
+      "avatar": "assets/img/user-svgrepo-com.svg",
       "role": {
         "id": 1,
-        "name": "user"
+        "roleName": "user"
+      }
+    }
+  ],
+  "Rooms" : [
+    {
+      "id": 1,
+      "maxCapacity": 10,
+      "isCompanyRoom": true,
+      "roomNumber": 513
+    },{
+      "id": 2,
+      "maxCapacity": 8,
+      "isCompanyRoom": false,
+      "roomNumber": 516
+    },{
+      "id": 3,
+      "maxCapacity": 12,
+      "isCompanyRoom": true,
+      "roomNumber": 520
+    },{
+      "id": 4,
+      "maxCapacity": 8,
+      "isCompanyRoom": true,
+      "roomNumber": 506
+    }
+  ],
+  "Bookings": [
+    {
+      "id": 1,
+      "bookDate": "2022/07/18",
+      "room" : {
+        "id": 3,
+        "maxCapacity": 12,
+        "isCompanyRoom": true,
+        "roomNumber": 520
+      },
+      "user": {
+        "id": 6,
+        "firstName": "admin",
+        "lastName": "admin",
+        "phoneNumber": "1231231313",
+        "email": "admin@admin.com",
+        "password": "1234567",
+        "avatar": "assets/img/user-svgrepo-com.svg",
+        "role": {
+          "id": 1,
+          "roleName": "user"
+        }
+        }
+      },
+    {
+      "id": 2,
+      "bookDate": "2022/07/20",
+      "room" : {
+        "id": 4,
+        "maxCapacity": 8,
+        "isCompanyRoom": true,
+        "roomNumber": 506
+      },
+      "user": {
+        "id": 6,
+        "firstName": "admin",
+        "lastName": "admin",
+        "phoneNumber": "1231231313",
+        "email": "admin@admin.com",
+        "password": "1234567",
+        "avatar": "assets/img/user-svgrepo-com.svg",
+        "role": {
+          "id": 1,
+          "roleName": "user"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "bookDate": "2022/08/10",
+      "room" : {
+        "id": 4,
+        "maxCapacity": 8,
+        "isCompanyRoom": true,
+        "roomNumber": 506
+      },
+      "user": {
+        "id": 6,
+        "firstName": "admin",
+        "lastName": "admin",
+        "phoneNumber": "1231231313",
+        "email": "admin@admin.com",
+        "password": "1234567",
+        "avatar": "assets/img/user-svgrepo-com.svg",
+        "role": {
+          "id": 1,
+          "roleName": "user"
+        }
       }
     }
   ],
