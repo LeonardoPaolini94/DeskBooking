@@ -4,7 +4,7 @@
   background-color: #0278DB;
   padding: 0 4rem;
   margin: 0 5.5rem;
-  height: 6rem;
+  height: 4rem;
   border-radius: 0rem 0rem 2rem 2rem;
 }
 
@@ -24,7 +24,7 @@
 .nav-items{
   color: white;
   font-weight: bolder;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .profile-nav-div{
@@ -36,14 +36,15 @@
   .nav-profile{
     color: white;
     font-weight: bolder;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     text-transform: uppercase;
     margin-right: 3rem;
   }
   .logout-nav-div{
   img{
-    height: 4rem;
-    width: 4rem;
+    height: 3rem;
+    width: 3rem;
+    cursor: pointer;
   }
 }
 }
