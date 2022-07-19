@@ -10,13 +10,27 @@
 <!--      <div class="corner-room"></div>-->
 <!--    </div>-->
   </div>
-  <div class="nounikey 530">
-    <p>{{rooms[29].roomNumber}}</p>
-    <p>LO</p>
-    </div>
-  <div class="nounikey 531">{{rooms[30].roomNumber}}</div>
-  <div class="nounikey 532">{{rooms[31].roomNumber}}</div>
 
+  <div [ngClass]="{'nounikey' : !rooms[29].isCompanyRoom, 'unikey' : rooms[29].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[29])}"
+       class="room-cell">
+    <p *ngIf="rooms[29].isCompanyRoom" [ngClass]="roomIsFull(rooms[29]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[32].roomNumber}}</p>
+    <p *ngIf="rooms[29].capacity != null" class="room-capacity">{{rooms[29].nBooking}} / {{rooms[29].capacity}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !rooms[30].isCompanyRoom, 'unikey' : rooms[30].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[30])}"
+       class="room-cell">
+    <p *ngIf="rooms[30].isCompanyRoom" [ngClass]="roomIsFull(rooms[30]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[30].roomNumber}}</p>
+    <p *ngIf="rooms[30].capacity != null" class="room-capacity">{{rooms[30].nBooking}} / {{rooms[30].capacity}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !rooms[31].isCompanyRoom, 'unikey' : rooms[31].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[31])}"
+       class="room-cell">
+    <p *ngIf="rooms[31].isCompanyRoom" [ngClass]="roomIsFull(rooms[31]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[31].roomNumber}}</p>
+    <p *ngIf="rooms[31].capacity != null" class="room-capacity">{{rooms[31].nBooking}} / {{rooms[31].capacity}}</p>
+  </div>
 
   <div [ngClass]="{'nounikey' : !rooms[32].isCompanyRoom, 'unikey' : rooms[32].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[32])}"
        class="room-cell">
@@ -32,18 +46,34 @@
     <p *ngIf="rooms[33].capacity != null" class="room-capacity">{{rooms[33].nBooking}} / {{rooms[33].capacity}}</p>
   </div>
 
+  <div [ngClass]="{'nounikey' : !rooms[34].isCompanyRoom, 'unikey' : rooms[34].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[34])}"
+       class="room-cell">
+    <p *ngIf="rooms[34].isCompanyRoom" [ngClass]="roomIsFull(rooms[34]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[34].roomNumber}}</p>
+    <p *ngIf="rooms[34].capacity != null" class="room-capacity">{{rooms[34].nBooking}} / {{rooms[34].capacity}}</p>
+  </div>
 
+  <div [ngClass]="{'nounikey' : !rooms[35].isCompanyRoom, 'unikey' : rooms[35].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[35])}"
+       class="room-cell">
+    <p *ngIf="rooms[35].isCompanyRoom" [ngClass]="roomIsFull(rooms[35]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[35].roomNumber}}</p>
+    <p *ngIf="rooms[35].capacity != null" class="room-capacity">{{rooms[35].nBooking}} / {{rooms[35].capacity}}</p>
+  </div>
 
-  <div
-    [ngClass]="{'nounikey' : !rooms[34].isCompanyRoom, 'unikey' : rooms[34].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[34])}"
-    class="535">{{rooms[34].roomNumber}}</div>
-  <div
-    [ngClass]="{'nounikey' : !rooms[35].isCompanyRoom, 'unikey' : rooms[35].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[35])}"
-    class="536">{{rooms[35].roomNumber}}</div>
-  <div
-    [ngClass]="{'nounikey' : !rooms[36].isCompanyRoom, 'unikey' : rooms[36].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[36])}"
-    class="537">{{rooms[36].roomNumber}}</div>
-  <div [ngClass]="rooms[37].isCompanyRoom ? 'unikey' : 'nounikey'" class="538">{{rooms[37].roomNumber}}</div>
+  <div [ngClass]="{'nounikey' : !rooms[36].isCompanyRoom, 'unikey' : rooms[36].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[36])}"
+       class="room-cell">
+    <p *ngIf="rooms[36].isCompanyRoom" [ngClass]="roomIsFull(rooms[36]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[36].roomNumber}}</p>
+    <p *ngIf="rooms[36].capacity != null" class="room-capacity">{{rooms[36].nBooking}} / {{rooms[36].capacity}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !rooms[37].isCompanyRoom, 'unikey' : rooms[37].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[37])}"
+       class="room-cell">
+    <p *ngIf="rooms[37].isCompanyRoom" [ngClass]="roomIsFull(rooms[37]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[37].roomNumber}}</p>
+    <p *ngIf="rooms[37].capacity != null" class="room-capacity">{{rooms[37].nBooking}} / {{rooms[37].capacity}}</p>
+  </div>
+
   <div class="corner">
 <!--    <div class="d-flex justify-content-between container-corner">-->
 <!--      <div class="nounikey 501 corner-room">{{rooms[0].roomNumber}}</div>-->
@@ -54,39 +84,146 @@
 <!--      <div class="nounikey 503 corner-room">{{rooms[2].roomNumber}}</div>-->
 <!--    </div>-->
   </div>
-  <div class="nounikey 526">{{rooms[25].roomNumber}}</div>
-  <div class="unikey 504">{{rooms[3].roomNumber}}</div>
-  <div class="nounikey 525">{{rooms[24].roomNumber}}</div>
-  <div class="unikey 505">{{rooms[4].roomNumber}}</div>
-  <div class="segreteria 524">{{rooms[23].roomNumber}}</div>
-  <div [ngClass]="rooms[5].isCompanyRoom ? 'unikey' : 'nounikey'" class="506"
-       *ngIf="rooms[5].isCompanyRoom && rooms[5].nBooking == rooms[5].capacity" class="fullBooked">
-    {{rooms[5].roomNumber}}</div>
-  <div class="nounikey 523">{{rooms[22].roomNumber}}</div>
-  <div class="nounikey 507">{{rooms[6].roomNumber}}</div>
-  <div class="nounikey 522">{{rooms[21].roomNumber}}</div>
+
+  <div [ngClass]="{'nounikey' : !rooms[25].isCompanyRoom, 'unikey' : rooms[25].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[25])}"
+       class="room-cell">
+    <p *ngIf="rooms[25].isCompanyRoom" [ngClass]="roomIsFull(rooms[25]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[25].roomNumber}}</p>
+    <p *ngIf="rooms[25].capacity != null" class="room-capacity">{{rooms[25].nBooking}} / {{rooms[25].capacity}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !rooms[3].isCompanyRoom, 'unikey' : rooms[3].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[3])}"
+       class="room-cell">
+    <p *ngIf="rooms[3].isCompanyRoom" [ngClass]="roomIsFull(rooms[3]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[3].roomNumber}}</p>
+    <p *ngIf="rooms[3].capacity != null" class="room-capacity">{{rooms[3].nBooking}} / {{rooms[3].capacity}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !rooms[24].isCompanyRoom, 'unikey' : rooms[24].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[24])}"
+       class="room-cell">
+    <p *ngIf="rooms[24].isCompanyRoom" [ngClass]="roomIsFull(rooms[24]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[24].roomNumber}}</p>
+    <p *ngIf="rooms[24].capacity != null" class="room-capacity">{{rooms[24].nBooking}} / {{rooms[24].capacity}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !rooms[4].isCompanyRoom, 'unikey' : rooms[4].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[4])}"
+       class="room-cell">
+    <p *ngIf="rooms[4].isCompanyRoom" [ngClass]="roomIsFull(rooms[4]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[4].roomNumber}}</p>
+    <p *ngIf="rooms[4].capacity != null" class="room-capacity">{{rooms[4].nBooking}} / {{rooms[4].capacity}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !rooms[23].isCompanyRoom, 'unikey' : rooms[23].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[23])}"
+       class="room-cell">
+    <p *ngIf="rooms[23].isCompanyRoom" [ngClass]="roomIsFull(rooms[23]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[23].roomNumber}}</p>
+    <p *ngIf="rooms[23].capacity != null" class="room-capacity">{{rooms[23].nBooking}} / {{rooms[23].capacity}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !rooms[5].isCompanyRoom, 'unikey' : rooms[5].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[5])}"
+       class="room-cell">
+    <p *ngIf="rooms[5].isCompanyRoom" [ngClass]="roomIsFull(rooms[5]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[5].roomNumber}}</p>
+    <p *ngIf="rooms[5].capacity != null" class="room-capacity">{{rooms[5].nBooking}} / {{rooms[5].capacity}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !rooms[22].isCompanyRoom, 'unikey' : rooms[22].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[22])}"
+       class="room-cell">
+    <p *ngIf="rooms[22].isCompanyRoom" [ngClass]="roomIsFull(rooms[22]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[22].roomNumber}}</p>
+    <p *ngIf="rooms[22].capacity != null" class="room-capacity">{{rooms[22].nBooking}} / {{rooms[22].capacity}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !rooms[6].isCompanyRoom, 'unikey' : rooms[6].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[6])}"
+       class="room-cell">
+    <p *ngIf="rooms[6].isCompanyRoom" [ngClass]="roomIsFull(rooms[6]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[6].roomNumber}}</p>
+    <p *ngIf="rooms[6].capacity != null" class="room-capacity">{{rooms[6].nBooking}} / {{rooms[6].capacity}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !rooms[21].isCompanyRoom, 'unikey' : rooms[21].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[21])}"
+       class="room-cell">
+    <p *ngIf="rooms[21].isCompanyRoom" [ngClass]="roomIsFull(rooms[21]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[21].roomNumber}}</p>
+    <p *ngIf="rooms[21].capacity != null" class="room-capacity">{{rooms[21].nBooking}} / {{rooms[21].capacity}}</p>
+  </div>
+
   <div class="stairs">
-<!--    <img src="assets/img/stairsSymbol.png">-->
+    <!--    <img src="assets/img/stairsSymbol.png">-->
   </div>
   <div class="corner">
-<!--    <div class="d-flex justify-content-between container-corner">-->
-<!--      <div class="nounikey 521 corner-room">{{rooms[20].roomNumber}}</div>-->
-<!--      <div class="corner-room"></div>-->
-<!--    </div>-->
-<!--    <div class="d-flex justify-content-between container-corner mt-2">-->
-<!--      <div class="nounikey 520 corner-room">{{rooms[19].roomNumber}}</div>-->
-<!--      <div class="nounikey 519 corner-room">{{rooms[18].roomNumber}}</div>-->
-<!--    </div>-->
+    <!--    <div class="d-flex justify-content-between container-corner">-->
+    <!--      <div class="nounikey 521 corner-room">{{rooms[20].roomNumber}}</div>-->
+    <!--      <div class="corner-room"></div>-->
+    <!--    </div>-->
+    <!--    <div class="d-flex justify-content-between container-corner mt-2">-->
+    <!--      <div class="nounikey 520 corner-room">{{rooms[19].roomNumber}}</div>-->
+    <!--      <div class="nounikey 519 corner-room">{{rooms[18].roomNumber}}</div>-->
+    <!--    </div>-->
   </div>
-  <div class="nounikey 518">{{rooms[17].roomNumber}}</div>
-  <div class="unikey 517">{{rooms[16].roomNumber}}</div>
-  <div class="nounikey 516">{{rooms[15].roomNumber}}</div>
-  <div class="nounikey 515">{{rooms[14].roomNumber}}</div>
-  <div class="nounikey 514">{{rooms[13].roomNumber}}</div>
-  <div class="unikey 513">{{rooms[12].roomNumber}}</div>
-  <div class="nounikey 512">{{rooms[11].roomNumber}}</div>
-  <div class="nounikey 511">{{rooms[10].roomNumber}}</div>
-  <div class="nounikey 510">{{rooms[9].roomNumber}}</div>
+  <div [ngClass]="{'nounikey' : !rooms[17].isCompanyRoom, 'unikey' : rooms[17].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[17])}"
+       class="room-cell">
+    <p *ngIf="rooms[17].isCompanyRoom" [ngClass]="roomIsFull(rooms[17]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[17].roomNumber}}</p>
+    <p *ngIf="rooms[17].capacity != null" class="room-capacity">{{rooms[17].nBooking}} / {{rooms[17].capacity}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !rooms[16].isCompanyRoom, 'unikey' : rooms[16].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[16])}"
+       class="room-cell">
+    <p *ngIf="rooms[16].isCompanyRoom" [ngClass]="roomIsFull(rooms[16]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[16].roomNumber}}</p>
+    <p *ngIf="rooms[16].capacity != null" class="room-capacity">{{rooms[16].nBooking}} / {{rooms[16].capacity}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !rooms[15].isCompanyRoom, 'unikey' : rooms[15].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[15])}"
+       class="room-cell">
+    <p *ngIf="rooms[15].isCompanyRoom" [ngClass]="roomIsFull(rooms[15]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[15].roomNumber}}</p>
+    <p *ngIf="rooms[15].capacity != null" class="room-capacity">{{rooms[15].nBooking}} / {{rooms[15].capacity}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !rooms[14].isCompanyRoom, 'unikey' : rooms[14].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[14])}"
+       class="room-cell">
+    <p *ngIf="rooms[14].isCompanyRoom" [ngClass]="roomIsFull(rooms[14]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[14].roomNumber}}</p>
+    <p *ngIf="rooms[14].capacity != null" class="room-capacity">{{rooms[14].nBooking}} / {{rooms[14].capacity}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !rooms[13].isCompanyRoom, 'unikey' : rooms[13].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[13])}"
+       class="room-cell">
+    <p *ngIf="rooms[13].isCompanyRoom" [ngClass]="roomIsFull(rooms[13]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[13].roomNumber}}</p>
+    <p *ngIf="rooms[13].capacity != null" class="room-capacity">{{rooms[13].nBooking}} / {{rooms[13].capacity}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !rooms[12].isCompanyRoom, 'unikey' : rooms[12].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[12])}"
+       class="room-cell">
+    <p *ngIf="rooms[12].isCompanyRoom" [ngClass]="roomIsFull(rooms[12]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[12].roomNumber}}</p>
+    <p *ngIf="rooms[12].capacity != null" class="room-capacity">{{rooms[12].nBooking}} / {{rooms[12].capacity}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !rooms[11].isCompanyRoom, 'unikey' : rooms[11].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[11])}"
+       class="room-cell">
+    <p *ngIf="rooms[11].isCompanyRoom" [ngClass]="roomIsFull(rooms[11]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[11].roomNumber}}</p>
+    <p *ngIf="rooms[11].capacity != null" class="room-capacity">{{rooms[11].nBooking}} / {{rooms[11].capacity}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !rooms[10].isCompanyRoom, 'unikey' : rooms[10].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[10])}"
+       class="room-cell">
+    <p *ngIf="rooms[10].isCompanyRoom" [ngClass]="roomIsFull(rooms[10]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[10].roomNumber}}</p>
+    <p *ngIf="rooms[10].capacity != null" class="room-capacity">{{rooms[10].nBooking}} / {{rooms[10].capacity}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !rooms[9].isCompanyRoom, 'unikey' : rooms[9].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[9])}"
+       class="room-cell">
+    <p *ngIf="rooms[9].isCompanyRoom" [ngClass]="roomIsFull(rooms[9]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <p class="room-number">{{rooms[9].roomNumber}}</p>
+    <p *ngIf="rooms[9].capacity != null" class="room-capacity">{{rooms[9].nBooking}} / {{rooms[9].capacity}}</p>
+  </div>
+
   <div class="corner">
 <!--    <div class="d-flex justify-content-between container-corner h-100">-->
 <!--      <div class="nounikey 509 corner-room">{{rooms[8].roomNumber}}</div>-->
