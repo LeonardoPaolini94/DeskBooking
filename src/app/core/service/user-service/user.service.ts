@@ -14,6 +14,10 @@ export class UserService {
     return this.http.post<User>("http://localhost:3000/users", user)
   }
 
+  patchUser(user: User, idUser: number): Observable<User>{
+    return this.http.patch<User>("http://localhost:3000/users" + "/" + idUser, user)
+  }
+
   // Funziona soltanto se è presente nel back una custom query specifica
 
   // getUserByEmail(email: string | null) : Observable<User> {

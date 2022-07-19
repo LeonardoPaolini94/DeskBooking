@@ -31,17 +31,11 @@ export class HeaderComponent implements OnInit,OnDestroy{
   }
 
   getUserByEmail(email : string){
-    //   this.getUserByEmailSubscription = this.userService.getUserByEmail(this.loginForm.get('email')?.value).subscribe(
-    //     observer => {this.authService.setUser(observer) },
-    //     error => {console.log(error)},
-    //     () => {console.log("Games found!")
-    //     })
     this.getUserByEmailSubscription = this.userService.getAllUser().subscribe(
       observer => {this.user = [...observer].find(user => user.email == email) },
       () => {console.log("User not found!")},
       () => {console.log("User found!")
       })
-
   }
 
 
