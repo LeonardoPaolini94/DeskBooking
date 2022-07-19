@@ -3,14 +3,13 @@
 <main class="settings-main" *ngIf="!isEditingProfile && !isEditingPassword">
   <div class="settings-container">
     <div class="settings-container-picture">
-      <div class="container-picture-pencil">
-       <a><i class="bi-solid bi-pencil-fill fa-lg"></i></a> <!--aggiungere path modale -->
+      <div class="container-picture-camera">
+        <a><i class="bi bi-camera-fill fa-lg"></i></a> <!--aggiungere path modale -->
       </div>
       <div class="container-picture-img">
         <img src="https://www.creaavatar.it/wp-content/uploads/2021/01/myAvatar-18.png">
-        <a><i class="bi bi-camera-fill"></i></a>
       </div>
-      <div class="container-picture-pencil"></div>
+      <div class="container-picture-camera"></div>
     </div>
     <div class="settings-container-data">
       <div class="container-data-fullName">
@@ -47,11 +46,11 @@
         <div class="editProfile-form-div">
           <div class="firstName-input-div">
             <label class="form-label" for="firstName"></label>
-            <input type="text" id="firstName" placeholder="firstName" class="input-box" formControlName="firstName" required/>
+            <input type="text" id="firstName" placeholder="Nome" class="input-box" formControlName="firstName" required/>
           </div>
           <div class="lastName-input-div">
             <label class="form-label" for="lastName"></label>
-            <input type="text" id="lastName" placeholder="lastName" class="input-box" formControlName="lastName" required/>
+            <input type="text" id="lastName" placeholder="Cognome" class="input-box" formControlName="lastName" required/>
           </div>
           <div class="email-input-div">
             <label class="form-label" for="email"></label>

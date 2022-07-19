@@ -13,7 +13,7 @@
     <form [formGroup]="loginForm" (ngSubmit)="submit()" class="login-internal-div" ngNativeValidate>
 
       <div class="login-title-div">
-        <h1 class="login-title">Desk Booking</h1>
+        <h1 class="login-title">Prenotazioni Spaces</h1>
       </div>
 
         <div class="login-form-div">
@@ -32,8 +32,8 @@
 
       <div class="login-buttons-div">
 
-        <button class="signup-btn white-btn" routerLink="/auth/signup">Signup</button>
-        <button [disabled]="!loginForm.valid" type="submit" class="login-btn blue-btn">Login</button>
+        <button class="signup-btn white-btn" routerLink="/auth/signup">Registrati</button>
+        <button [disabled]="!loginForm.valid" type="submit" class="login-btn blue-btn">Accedi</button>
 
       </div>
 

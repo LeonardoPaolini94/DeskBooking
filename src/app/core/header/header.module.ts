@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header.component';
 import {RouterModule} from "@angular/router";
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialog, MatDialogModule} from "@angular/material/dialog";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 
@@ -16,7 +17,8 @@ import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialog, MatDialogModule} from "@angular/m
   imports: [
     CommonModule,
     RouterModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule
   ],
   providers : [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}]
 })
