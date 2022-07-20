@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
 import {RoomStatusService} from "../../core/service/room-status-service/room-status.service";
 import {RoomStatus} from "../../core/models/RoomStatus";
 import {Subscription} from "rxjs";
@@ -8,7 +8,9 @@ import {Subscription} from "rxjs";
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit, OnDestroy {
+export class MapComponent implements OnInit,OnChanges, OnDestroy {
+
+  @Input() date : Date
 
   rooms : RoomStatus[]
 
@@ -18,6 +20,10 @@ export class MapComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getAllRoomStatus()
+  }
+
+  ngOnChanges() {
+
   }
 
   roomIsFull(roomStatus : RoomStatus) {
@@ -33,6 +39,27 @@ export class MapComponent implements OnInit, OnDestroy {
       error => {console.log("Rooms list not found")},
       () => {console.log("Rooms list found")}
     )
+    console.log(this.date)
+  }
+
+  myFormatDate (date : Date) {
+    let year = date.getFullYear().toString()
+    let mm = date.getMonth() + 1
+    let month
+    if(mm < 10) {
+      month = "0" + mm.toString()
+    }else {
+      month = mm.toString()
+    }
+    let dd = date.getDate()
+    let day
+    if(dd < 10) {
+      day = "0" + dd.toString()
+    }else {
+      day = dd.toString()
+    }
+    let fullDate = year + "-" + month + "-" + day
+    return fullDate
   }
 
   ngOnDestroy(): void {
