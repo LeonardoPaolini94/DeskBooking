@@ -6,6 +6,7 @@ import {UserService} from "../../../core/service/user-service/user.service";
 import {Subscription} from "rxjs";
 import {firebaseApp$} from "@angular/fire/app";
 import {getAuth} from "@angular/fire/auth";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-settings',
@@ -19,10 +20,14 @@ export class SettingsComponent implements OnInit, OnDestroy {
   isEditingProfile: boolean= false;
   isEditingPassword: boolean=false;
   editProfileForm: FormGroup;
+  avatarForm: FormGroup;
   user: User | undefined;
   auth= getAuth();
 
-  constructor(private authService: AuthService, private userService: UserService) { }
+  loading: boolean = false; // Flag variable
+  file: File | null = null;  //avatar upload
+
+  constructor(private authService: AuthService, private userService: UserService, private dialog : MatDialog) { }
 
   ngOnInit(): void {
     let email = sessionStorage.getItem('email')
@@ -35,6 +40,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
       email: new FormControl('',[Validators.email, Validators.required]),
       phoneNumber: new FormControl('', [Validators.required, Validators.pattern("[0-9]{10}")])
     });
+
+    this.avatarForm = new FormGroup({
+      avatar: new FormControl('',[Validators.required])
+    })
   }
 
   getUserByEmail(email : string){
@@ -76,11 +85,46 @@ export class SettingsComponent implements OnInit, OnDestroy {
       () => {console.log("User patched!")
       })
   }
+  openDialog(dialog : any) {
+    this.dialog.open(dialog)
+  }
+
+  closeDialog(){
+    this.dialog.closeAll()
+  }
 
   updateFirebaseEmail(){
 
   }
 
+  // on file select event
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.avatarForm.patchValue({
+        fileSource: file
+      });
+    }
+  }
+
+  uploadAvatar() {
+    const formData = new FormData();
+    formData.append('file', this.avatarForm.get('avatar')?.value);
+
+
+    this.file = this.avatarForm.value as File
+    this.loading = !this.loading;
+    console.log(this.file);
+    if(this.user?.id && this.file){
+      this.userService.patchAvatar(this.user?.id, this.file).subscribe(
+        (event: any) => {
+          if (typeof (event) === 'object') {
+            this.loading = false; // Flag variable
+          }
+        }
+      );
+    }
+  }
   ngOnDestroy(): void {
     this.getUserByEmailSubscription.unsubscribe();
   }

@@ -120,6 +120,31 @@
   ],
   "Bookings": [
     {
+      "id": 1,
+      "bookDate": "2022/07/18",
+      "room": {
+        "id": 1,
+        "isCompanyRoom": true,
+        "maxCapacity": 6,
+        "roomNumber": 504,
+        "capacity": 6,
+        "nBooking": 4
+      },
+      "user": {
+        "id": 6,
+        "firstName": "admin",
+        "lastName": "admin",
+        "phoneNumber": "1231231313",
+        "email": "admin@admin.com",
+        "password": "1234567",
+        "avatar": "assets/img/user-svgrepo-com.svg",
+        "role": {
+          "id": 1,
+          "roleName": "user"
+        }
+      }
+    },
+    {
       "id": 2,
       "bookDate": "2022/07/20",
       "room": {
