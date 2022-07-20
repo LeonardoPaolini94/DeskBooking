@@ -33,7 +33,7 @@ export class CardBookingComponent implements OnInit,OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.getAllBookingsSubscription?.unsubscribe()
+    this.getAllBookingsSubscription?.unsubscribe();
   }
 
 

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PrenotationDetailComponent } from './prenotation-detail.component';
+import { PrenotationDetailComponent } from './booking-detail.component';
 import {RouterModule, Routes} from "@angular/router";
 import {HeaderModule} from "../../core/header/header.module";
 
@@ -18,4 +18,4 @@ const routes: Routes = [
     HeaderModule
   ]
 })
-export class PrenotationDetailModule { }
+export class BookingDetailModule { }

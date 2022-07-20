@@ -1,5 +1,5 @@
 <div id="container" *ngIf="exist else template">
-  <a routerLink="/prenotation-detail/{{booking.id}}" class="cardHome" *ngFor="let booking of bookingsList">
+  <a routerLink="/booking-detail/{{booking.id}}" class="cardHome" *ngFor="let booking of bookingsList">
     <div class="date">
       <div class="h5-container">
         <h5># {{booking.id}}</h5>

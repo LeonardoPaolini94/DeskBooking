@@ -2,13 +2,18 @@
 <div class="prenotation-detail-background">
   <div class="prenotation-detail-div">
     <div class="prenotation-top-div">
-
+     <p>
+       # {{booking.id}}
+     </p>
+      <a routerLink="/home">
+        <i class="fa fa-times"></i>
+      </a>
     </div>
     <div class="prenotation-body-div">
       <div class="left-prenotation-div">
         <div class="circle-external-div">
           <div class="circle-internal-div">
-              <div class="circle-desk" *ngFor="let i of counter(booking.room?.maxCapacity)"></div>
+              <div class="circle-desk" *ngFor="let i of counter(booking.room?.maxCapacity); let index = index" [ngStyle]="{'background-color': (index < booking.room!.nBooking) ? '#0278DB' : 'lightgray'}"></div>
           </div>
         </div>
       </div>
@@ -19,26 +24,22 @@
               {{booking.room?.roomNumber}}
             </p>
           </i>
-          <i class="bi bi-calendar3 detail-icons">
-            <p>
-            {{booking.bookDate}}
-            </p>
-          </i>
-          <i class="bi bi-building detail-icons">
-            <p>
-            5
-            </p>
+          <i class="bi bi-building detail-icons second-row">
+            <p>5</p>
           </i>
         </div>
         <div class="right-right-prenotation-div">
           <i class="bi bi-geo-alt-fill detail-icons">
-            <p>Spaces Viale dell’Arte 19</p>
+            <p>Spaces, Viale dell’Arte 19</p>
+          </i>
+          <i class="bi bi-calendar3 detail-icons second-row">
+            <p>{{booking.bookDate}}</p>
           </i>
         </div>
       </div>
     </div>
     <div class="bot-prenotation-div">
-      <button class="signup-btn black-white-btn">Annulla Prenotazione</button>
+      <button class="signup-btn black-white-btn" (click)="deleteBookingById(booking.id)" routerLink="/home">Annulla Prenotazione</button>
       <button class="login-btn modify-btn">Modifica</button>
     </div>
   </div>
