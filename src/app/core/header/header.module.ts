@@ -14,12 +14,12 @@ import {MatMenuModule} from "@angular/material/menu";
   exports: [
     HeaderComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        MatDialogModule,
-        MatMenuModule
-    ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatDialogModule,
+    MatMenuModule
+  ],
   providers : [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}]
 })
 export class HeaderModule { }

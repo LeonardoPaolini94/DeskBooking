@@ -6,6 +6,10 @@
   width: 100vw;
 }
   .settings-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     border: solid 1px black;
     border-radius: 1.5rem;
     height: 75%;
@@ -57,7 +61,7 @@
       height: 100%;
       width: 50%;
       margin-left: 1rem;
-}
+    }
     .settings-container-buttons button{
       height: 2rem;
       width: 60%;
@@ -65,21 +69,22 @@
       font-size: 0.8rem;
       margin-top: 2rem;
     }
-    .container-picture-pencil{
+    .container-picture-camera{
       display: flex;
       justify-content: flex-end;
       align-items: center;
       height: 100%;
       width: 33%;
+      margin-top: 2rem;
     }
-    .container-picture-pencil a{
+    .container-picture-camera a{
       display: flex;
       justify-content: flex-end;
       align-items: center;
       height: 3rem;
       width: 3rem;
     }
-    .container-picture-pencil i{
+    .container-picture-camera i{
       display: flex;
       justify-content: flex-end;
       align-items: center;
@@ -104,6 +109,97 @@
       position: absolute;
       bottom: 18rem;
       right: 35rem;
+    }
+
+
+    .editProfile-title{
+      font-weight: bolder;
+      color: #022A8E;
+      font-family: sans-serif;
+    }
+    .editProfile-form{
+      height: 100%;
+      width: 60%;
+    }
+    .firstName-input-div{
+      width: 100%;
+      height: 25%;
+      display: flex;
+      justify-content: center;
+    }
+    .firstName-input-div::placeholder{
+      color: black;
+    }
+    .lastName-input-div{
+      width: 100%;
+      height: 25%;
+      display: flex;
+      justify-content: center;
+    }
+    .lastName-input-div::placeholder{
+      color: black;
+    }
+    .email-input-div{
+      width: 100%;
+      height: 25%;
+      display: flex;
+      justify-content: center;
+    }
+    .email-input-div::placeholder{
+      color: black;
+    }
+    .phoneNumber-input-div{
+      width: 100%;
+      height: 25%;
+      display: flex;
+      justify-content: center;
+    }
+    .phoneNumber-input-div::placeholder{
+      color: black;
+    }
+    .container-editProfile{
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .container-editProfile form{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+    }
+    .editProfile-title-div{
+      height: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .editProfile-form-div{
+      width: 100%;
+      height: 60%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
+    }
+    .editProfile-buttons-div{
+      height: 16%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .editProfile-buttons-div button{
+      width: 25%;
+    }
+    .editProfile-form-div input{
+      width: 47%;
     }
 
 
