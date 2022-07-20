@@ -59,7 +59,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.isEditingProfile= false;
   }
 
-  confirmEditProfile() {
+  async confirmEditProfile() {
     this.user!.firstName = this.editProfileForm.controls['firstName'].value;
     this.user!.lastName = this.editProfileForm.controls['lastName'].value;
     this.user!.email = this.editProfileForm.controls['email'].value;
@@ -71,7 +71,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   patchUser(user : User, idUser: number){
     this.patchUserSubscription = this.userService.patchUser(user, idUser).subscribe(
-      observer => { this.user= {...observer} },
+      observer => { this.user = {...observer} },
       () => {console.log("User not found!")},
       () => {console.log("User patched!")
       })

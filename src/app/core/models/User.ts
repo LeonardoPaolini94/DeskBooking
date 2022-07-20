@@ -1,4 +1,4 @@
-import {Role} from "./Role";
+import {RoleResponseDTO} from "./RoleResponseDTO";
 
 export interface User{
   id ?: number
@@ -8,5 +8,5 @@ export interface User{
   password : string,
   phoneNumber : string,
   avatar : string,
-  role : Role;
+  roleResponseDTO : RoleResponseDTO;
 }
