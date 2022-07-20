@@ -1,14 +1,13 @@
 .prenotation-detail-background{
-  width: 100vw;
   height: 100vh;
   background-color: #f0f0f0;
   display: flex;
   justify-content: center;
-  padding-top: 5rem;
+  padding: 5.5em;
 }
 
 .prenotation-detail-div{
-  width: 80%;
+  width: 100%;
   height: 75%;
   border-radius: 0rem 0rem 0rem 4rem;
   background-color: white;
@@ -88,18 +87,17 @@
 }
 
 .circle-external-div{
-  height: 70%;
-  width: 100%;
+  height: 90%;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .circle-internal-div{
-  width: 60%;
-  height: 70%;
+  width: 20rem;
+  height: 10rem;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
 }
 
@@ -125,6 +123,7 @@
 }
 
 .circle-desk{
+  margin: 1rem;
   width: 4rem;
   height: 4rem;
   background-color: lightgray;

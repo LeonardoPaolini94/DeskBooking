@@ -8,30 +8,32 @@
       <div class="left-prenotation-div">
         <div class="circle-external-div">
           <div class="circle-internal-div">
-            <div class="circle-up-internal-div">
-              <div class="circle-desk"></div>
-              <div class="circle-desk"></div>
-              <div class="circle-desk"></div>
-            </div>
-            <div class="circle-down-internal-div">
-              <div class="circle-desk"></div>
-              <div class="circle-desk"></div>
-              <div class="circle-desk"></div>
-            </div>
+              <div class="circle-desk" *ngFor="let i of counter(booking.room?.maxCapacity)"></div>
           </div>
-        </div>
-        <div class="desk-position-div">
-          <p>ciao</p>
         </div>
       </div>
       <div class="right-prenotation-div">
         <div class="left-right-prenotation-div">
-          <i class="bi bi-door-closed-fill detail-icons"></i>
-          <i class="bi bi-calendar3 detail-icons"></i>
-          <i class="bi bi-building detail-icons"></i>
+          <i class="bi bi-door-closed-fill detail-icons">
+            <p>
+              {{booking.room?.roomNumber}}
+            </p>
+          </i>
+          <i class="bi bi-calendar3 detail-icons">
+            <p>
+            {{booking.bookDate}}
+            </p>
+          </i>
+          <i class="bi bi-building detail-icons">
+            <p>
+            5
+            </p>
+          </i>
         </div>
         <div class="right-right-prenotation-div">
-          <i class="bi bi-geo-alt-fill detail-icons"></i>
+          <i class="bi bi-geo-alt-fill detail-icons">
+            <p>Spaces Viale dell’Arte 19</p>
+          </i>
         </div>
       </div>
     </div>

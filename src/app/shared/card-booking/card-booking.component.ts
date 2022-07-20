@@ -11,6 +11,7 @@ import {Booking} from "../../core/models/Booking";
 export class CardBookingComponent implements OnInit,OnDestroy {
 
   bookingsList : Booking[];
+  exist : Boolean = false;
   getAllBookingsSubscription : Subscription;
 
   constructor(private bookingService : BookingService) { }
@@ -23,6 +24,9 @@ export class CardBookingComponent implements OnInit,OnDestroy {
     this.getAllBookingsSubscription = this.bookingService.getAllBookings().subscribe(
       observer => {
         this.bookingsList = [...observer]
+        if (this.bookingsList.length > 0){
+          this.exist = true
+        }
       },
       error => console.log(error)
     )
