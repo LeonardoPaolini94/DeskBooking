@@ -1,20 +1,30 @@
 <div class="map-container">
 
   <div class="corner">
-<!--    <div class="d-flex justify-content-between container-corner">-->
-<!--      <div class="nounikey 528 corner-room">{{rooms[27].roomNumber}}</div>-->
-<!--      <div class="nounikey 529 corner-room">{{rooms[28].roomNumber}}</div>-->
-<!--    </div>-->
-<!--    <div class="d-flex justify-content-between container-corner mt-2">-->
-<!--      <div class="nounikey 527 corner-room">{{rooms[26].roomNumber}}</div>-->
-<!--      <div class="corner-room"></div>-->
-<!--    </div>-->
+
+    <div [ngClass]="{'nounikey' : !rooms[27].isCompanyRoom, 'unikey' : rooms[27].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[27])}"
+         class="room-cell">
+      <p class="room-number-corner">{{rooms[27].roomNumber}}</p>
+    </div>
+
+    <div [ngClass]="{'nounikey' : !rooms[28].isCompanyRoom, 'unikey' : rooms[28].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[28])}"
+         class="room-cell">
+      <p class="room-number-corner">{{rooms[28].roomNumber}}</p>
+    </div>
+
+    <div [ngClass]="{'nounikey' : !rooms[26].isCompanyRoom, 'unikey' : rooms[26].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[26])}"
+         class="room-cell">
+      <p class="room-number-corner">{{rooms[26].roomNumber}}</p>
+    </div>
+
+    <div></div>
+
   </div>
 
   <div [ngClass]="{'nounikey' : !rooms[29].isCompanyRoom, 'unikey' : rooms[29].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[29])}"
        class="room-cell">
     <p *ngIf="rooms[29].isCompanyRoom" [ngClass]="roomIsFull(rooms[29]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
-    <p class="room-number">{{rooms[32].roomNumber}}</p>
+    <p class="room-number">{{rooms[29].roomNumber}}</p>
     <p *ngIf="rooms[29].capacity != null" class="room-capacity">{{rooms[29].nBooking}} / {{rooms[29].capacity}}</p>
   </div>
 
@@ -75,14 +85,24 @@
   </div>
 
   <div class="corner">
-<!--    <div class="d-flex justify-content-between container-corner">-->
-<!--      <div class="nounikey 501 corner-room">{{rooms[0].roomNumber}}</div>-->
-<!--      <div class="nounikey 502 corner-room">{{rooms[1].roomNumber}}</div>-->
-<!--    </div>-->
-<!--    <div class="d-flex justify-content-between container-corner mt-2">-->
-<!--      <div class="corner-room"></div>-->
-<!--      <div class="nounikey 503 corner-room">{{rooms[2].roomNumber}}</div>-->
-<!--    </div>-->
+
+    <div [ngClass]="{'nounikey' : !rooms[0].isCompanyRoom, 'unikey' : rooms[0].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[0])}"
+         class="room-cell">
+      <p class="room-number-corner">{{rooms[0].roomNumber}}</p>
+    </div>
+
+    <div [ngClass]="{'nounikey' : !rooms[1].isCompanyRoom, 'unikey' : rooms[1].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[1])}"
+         class="room-cell">
+      <p class="room-number-corner">{{rooms[1].roomNumber}}</p>
+    </div>
+
+    <div></div>
+
+    <div [ngClass]="{'nounikey' : !rooms[2].isCompanyRoom, 'unikey' : rooms[2].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[2])}"
+         class="room-cell">
+      <p class="room-number-corner">{{rooms[2].roomNumber}}</p>
+    </div>
+
   </div>
 
   <div [ngClass]="{'nounikey' : !rooms[25].isCompanyRoom, 'unikey' : rooms[25].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[25])}"
@@ -149,17 +169,27 @@
   </div>
 
   <div class="stairs">
-    <!--    <img src="assets/img/stairsSymbol.png">-->
+        <img src="assets/img/stairsSymbol.png">
   </div>
   <div class="corner">
-    <!--    <div class="d-flex justify-content-between container-corner">-->
-    <!--      <div class="nounikey 521 corner-room">{{rooms[20].roomNumber}}</div>-->
-    <!--      <div class="corner-room"></div>-->
-    <!--    </div>-->
-    <!--    <div class="d-flex justify-content-between container-corner mt-2">-->
-    <!--      <div class="nounikey 520 corner-room">{{rooms[19].roomNumber}}</div>-->
-    <!--      <div class="nounikey 519 corner-room">{{rooms[18].roomNumber}}</div>-->
-    <!--    </div>-->
+
+    <div [ngClass]="{'nounikey' : !rooms[20].isCompanyRoom, 'unikey' : rooms[20].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[20])}"
+         class="room-cell">
+      <p class="room-number-corner">{{rooms[20].roomNumber}}</p>
+    </div>
+
+    <div></div>
+
+    <div [ngClass]="{'nounikey' : !rooms[19].isCompanyRoom, 'unikey' : rooms[19].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[19])}"
+         class="room-cell">
+      <p class="room-number-corner">{{rooms[19].roomNumber}}</p>
+    </div>
+
+    <div [ngClass]="{'nounikey' : !rooms[18].isCompanyRoom, 'unikey' : rooms[18].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[18])}"
+         class="room-cell">
+      <p class="room-number-corner">{{rooms[18].roomNumber}}</p>
+    </div>
+
   </div>
   <div [ngClass]="{'nounikey' : !rooms[17].isCompanyRoom, 'unikey' : rooms[17].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[17])}"
        class="room-cell">
@@ -225,10 +255,17 @@
   </div>
 
   <div class="corner">
-<!--    <div class="d-flex justify-content-between container-corner h-100">-->
-<!--      <div class="nounikey 509 corner-room">{{rooms[8].roomNumber}}</div>-->
-<!--      <div class="nounikey 508 corner-room">{{rooms[7].roomNumber}}</div>-->
-<!--    </div>-->
+
+    <div [ngClass]="{'nounikey' : !rooms[8].isCompanyRoom, 'unikey' : rooms[8].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[8])}"
+         class="room-cell left-room-one">
+      <p class="room-number-corner">{{rooms[8].roomNumber}}</p>
+    </div>
+
+    <div [ngClass]="{'nounikey' : !rooms[7].isCompanyRoom, 'unikey' : rooms[7].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[7])}"
+         class="room-cell left-room-two">
+      <p class="room-number-corner">{{rooms[7].roomNumber}}</p>
+    </div>
+
   </div>
 
   <div class="center-div">
