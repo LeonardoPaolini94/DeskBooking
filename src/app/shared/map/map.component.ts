@@ -20,6 +20,13 @@ export class MapComponent implements OnInit, OnDestroy {
     this.getAllRoomStatus()
   }
 
+  roomIsFull(roomStatus : RoomStatus) {
+    if(roomStatus.isCompanyRoom && roomStatus.nBooking == roomStatus.capacity) {
+      return true;
+    }
+    else return false
+  }
+
   getAllRoomStatus() {
     this.getAllRoomStatusSubscription = this.roomStatusService.getAllRoomStatus().subscribe(
       observer => {this.rooms = [...observer]},
