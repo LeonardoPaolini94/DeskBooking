@@ -1,4 +1,15 @@
 <app-header></app-header>
-<div class="main-container d-flex justify-content-center">
-<app-map></app-map>
+
+<div class="main-container d-flex justify-content-center flex-md-wrap">
+  <div class="room-booking-head">
+    <div></div>
+    <p>PRENOTAZIONE STANZE</p>
+    <mat-form-field appearance="outline" color="primary">
+      <mat-label>Scegli la data</mat-label>
+      <input matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <app-map></app-map>
 </div>

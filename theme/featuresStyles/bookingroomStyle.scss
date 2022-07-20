@@ -1,4 +1,18 @@
 .main-container{
   background-color: #f0f0f0;
-  padding: 5.5rem;
+  padding: 4rem 5.5rem;
 }
+
+.room-booking-head {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+}
+
+mat-label {
+  color: black;
+  font-family: 'Cabin', sans-serif;
+}
+
