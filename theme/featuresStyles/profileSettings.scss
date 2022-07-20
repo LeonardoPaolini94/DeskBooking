@@ -203,6 +203,87 @@
     }
 
 
+.container-editPassword{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.container-editPassword form{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+.editPassword-title-div{
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.editPassword-form-div{
+  width: 100%;
+  height: 60%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+.editPassword-buttons-div{
+  height: 16%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.editPassword-buttons-div button{
+  width: 25%;
+}
+.editPassword-form-div input{
+  width: 47%;
+}
+
+.editPassword-title{
+  font-weight: bolder;
+  color: #022A8E;
+  font-family: sans-serif;
+}
+.editPassword-form{
+  height: 100%;
+  width: 60%;
+}
+.password-input-div{
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+}
+.confirmPassword-input-div{
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+}
+.oldPassword-input-div{
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+}
+.editPassword-buttons-div{
+  height: 16%;
+  width: 100%;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 
 

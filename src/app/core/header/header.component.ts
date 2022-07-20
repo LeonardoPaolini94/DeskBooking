@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {User} from "../models/User";
 import {AuthService} from "../service/auth.service";
 import {Router} from "@angular/router";
@@ -13,6 +13,7 @@ import {UserService} from "../service/user-service/user.service";
 })
 export class HeaderComponent implements OnInit,OnDestroy{
 
+  @Input() userByUpdate: User | undefined;
   user : User | undefined
   private getUserByEmailSubscription: Subscription;
 
@@ -28,6 +29,10 @@ export class HeaderComponent implements OnInit,OnDestroy{
     if(email){
       this.getUserByEmail(email)
     }
+  }
+
+  ngOnChanges(): void {
+    this.user = this.userByUpdate;
   }
 
   getUserByEmail(email : string){
