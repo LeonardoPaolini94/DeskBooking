@@ -81,11 +81,14 @@
   <h1 mat-dialog-title></h1>
   <div mat-dialog-content>
     <div class="modale-img">
-      <form [formGroup]="avatarForm" (ngSubmit)="uploadAvatar()" ngNativeValidate>
-        <input formControlName="avatar" type="file" class="form-control" accept="image/png, image/jpeg" (change)="onFileChange($event)">
-        <button class="login-btn blue-btn m-1" type="submit" (click)="closeDialog()">Carica</button>
+       <div class="form-group">
+        <label for="file">Scegli Immagine</label>
+        <input type="file" id="file" class="file-input" accept=".png, .jpg, .jpeg" (change)="onFileSelected($event)"  />
+      </div>
+      <div class="col-sm-4">
+        <button (click)="onSaveFile()" class="login-btn blue-btn m-1">Carica</button>
         <button class="signup-btn white-btn m-1" (click)="closeDialog()">Annulla</button>
-      </form>
+      </div>
     </div>
   </div>
 </ng-template>

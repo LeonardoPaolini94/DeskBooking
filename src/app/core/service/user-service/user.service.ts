@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../../models/User";
 
@@ -28,8 +28,9 @@ export class UserService {
     return this.http.get<User[]>("http://localhost:3000/users")
   }
 
-  patchAvatar(idUser: number, file: File): Observable<any>{
-    return this.http.patch("http://localhost:8080/users" + "/" + idUser + "/avatar", file)
+  patchAvatar(idUser: number, formData: FormData): Observable<any>{
+
+    return this.http.patch("http://localhost:8080/api/v1/user/" + idUser + "/avatar", formData)
 
   }
 }

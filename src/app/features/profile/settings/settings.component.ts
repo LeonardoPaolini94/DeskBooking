@@ -7,6 +7,7 @@ import {Subscription} from "rxjs";
 import {firebaseApp$} from "@angular/fire/app";
 import {getAuth} from "@angular/fire/auth";
 import {MatDialog} from "@angular/material/dialog";
+import {HttpEventType, HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-settings',
@@ -24,8 +25,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
   user: User | undefined;
   auth= getAuth();
 
-  loading: boolean = false; // Flag variable
-  file: File | null = null;  //avatar upload
+  fileToUpload: File | null = null;
+  formData: FormData
 
   constructor(private authService: AuthService, private userService: UserService, private dialog : MatDialog) { }
 
@@ -97,34 +98,24 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   }
 
-  // on file select event
-  onFileChange(event) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.avatarForm.patchValue({
-        fileSource: file
-      });
+
+  onFileSelected(event: any) {
+    this.fileToUpload  = event.target.files[0];
+  }
+
+   onSaveFile() {
+    this.formData = new FormData();
+    this.formData.append('avatar', this.fileToUpload as File);
+
+    if(this.user?.id){
+      this.closeDialog()
+      return this.userService.patchAvatar(this.user?.id , this.formData).subscribe()
+    }
+    else {
+      return this.closeDialog()
     }
   }
 
-  uploadAvatar() {
-    /*const formData = new FormData();
-    formData.append('file', this.avatarForm.get('avatar')?.value);
-    console.log(this.avatarForm.get('avatar')?.value);*/
-
-    this.file = this.avatarForm.value as File
-    this.loading = !this.loading;
-    console.log(this.file);
-    if(this.user?.id && this.file){
-      this.userService.patchAvatar(this.user?.id, this.file).subscribe(
-        (event: any) => {
-          if (typeof (event) === 'object') {
-            this.loading = false; // Flag variable
-          }
-        }
-      );
-    }
-  }
   ngOnDestroy(): void {
     this.getUserByEmailSubscription.unsubscribe();
   }
