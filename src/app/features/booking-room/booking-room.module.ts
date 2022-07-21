@@ -11,13 +11,16 @@ const routes : Routes = [{
 }]
 
 @NgModule({
-  declarations: [BookingRoomComponent],
-  imports: [
-    CommonModule,
-    HeaderModule,
-    SharedModule,
-    MaterialModule,
-    RouterModule.forChild(routes)
-  ]
+    declarations: [BookingRoomComponent],
+    exports: [
+        BookingRoomComponent
+    ],
+    imports: [
+        CommonModule,
+        HeaderModule,
+        SharedModule,
+        MaterialModule,
+        RouterModule.forChild(routes)
+    ]
 })
 export class BookingRoomModule { }
