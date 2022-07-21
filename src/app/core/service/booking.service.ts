@@ -11,10 +11,14 @@ export class BookingService {
   constructor(private httpClient : HttpClient) { }
 
   getAllBookings() : Observable<Booking[]>{
-    return this.httpClient.get<Booking[]>("http://localhost:3000/Bookings");
+    return this.httpClient.get<Booking[]>("http://localhost:8080/api/v1/booking");
   }
 
   getBookingById(id : number) : Observable<Booking>{
-    return this.httpClient.get<Booking>("http://localhost:3000/Bookings/" + id);
+    return this.httpClient.get<Booking>("http://localhost:8080/api/v1/booking/" + id);
+  }
+
+    getBookingsByUser(id: string | null) : Observable<Booking>{
+    return this.httpClient.get<Booking>("http://localhost:8080/api/v1/booking/user/" + id);
   }
 }

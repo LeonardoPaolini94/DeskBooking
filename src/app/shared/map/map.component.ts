@@ -18,6 +18,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getAllRoomStatus()
+    console.log(this.rooms)
   }
 
   roomIsFull(roomStatus : RoomStatus) {
@@ -30,13 +31,13 @@ export class MapComponent implements OnInit, OnDestroy {
   getAllRoomStatus() {
     this.getAllRoomStatusSubscription = this.roomStatusService.getAllRoomStatus().subscribe(
       observer => {this.rooms = [...observer]},
-      error => {console.log("Rooms list not found")},
+      error => {console.log(error)},
       () => {console.log("Rooms list found")}
     )
   }
 
   ngOnDestroy(): void {
-    this.getAllRoomStatusSubscription.unsubscribe()
+    this.getAllRoomStatusSubscription?.unsubscribe()
   }
 
 

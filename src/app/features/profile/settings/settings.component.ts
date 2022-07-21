@@ -4,7 +4,6 @@ import {User} from "../../../core/models/User";
 import {AuthService} from "../../../core/service/auth.service";
 import {UserService} from "../../../core/service/user-service/user.service";
 import {Subscription} from "rxjs";
-import {firebaseApp$} from "@angular/fire/app";
 import {getAuth} from "@angular/fire/auth";
 
 @Component({
@@ -38,8 +37,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   getUserByEmail(email : string){
-    this.getUserByEmailSubscription = this.userService.getAllUser().subscribe(
-      observer => {this.user = [...observer].find(user => user.email == email) },
+    this.getUserByEmailSubscription = this.userService.getUserByEmail(email).subscribe(
+      observer => {this.user = {...observer} },
       () => {console.log("User not found!")},
       () => {console.log("User found!")
       })
@@ -59,7 +58,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.isEditingProfile= false;
   }
 
-  async confirmEditProfile() {
+  confirmEditProfile() {
     this.user!.firstName = this.editProfileForm.controls['firstName'].value;
     this.user!.lastName = this.editProfileForm.controls['lastName'].value;
     this.user!.email = this.editProfileForm.controls['email'].value;
@@ -67,7 +66,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.patchUser(this.user!, this.user!.id!);
     sessionStorage.removeItem('email');
     sessionStorage.setItem('email', this.user!.email);
+    setTimeout(()=> {this.ngOnInit()},10)
   }
+
+
+
 
   patchUser(user : User, idUser: number){
     this.patchUserSubscription = this.userService.patchUser(user, idUser).subscribe(
@@ -82,7 +85,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.getUserByEmailSubscription.unsubscribe();
+    this.getUserByEmailSubscription?.unsubscribe();
+    this.patchUserSubscription?.unsubscribe()
   }
 
 

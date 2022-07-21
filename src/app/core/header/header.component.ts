@@ -31,8 +31,8 @@ export class HeaderComponent implements OnInit,OnDestroy{
   }
 
   getUserByEmail(email : string){
-    this.getUserByEmailSubscription = this.userService.getAllUser().subscribe(
-      observer => {this.user = [...observer].find(user => user.email == email) },
+    this.getUserByEmailSubscription = this.userService.getUserByEmail(email).subscribe(
+      observer => {this.user = {...observer} },
       () => {console.log("User not found!")},
       () => {console.log("User found!")
       })
