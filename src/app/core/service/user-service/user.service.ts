@@ -26,4 +26,9 @@ export class UserService {
   getAllUser() : Observable<User[]> {
     return this.http.get<User[]>("http://localhost:8080/api/v1/user")
   }
+
+  patchAvatar(idUser: number, file: File): Observable<any>{
+    return this.http.patch("http://localhost:8080/users" + "/" + idUser + "/avatar", file)
+
+  }
 }

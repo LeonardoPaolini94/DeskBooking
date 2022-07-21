@@ -5,19 +5,18 @@ import {Subscription} from "rxjs";
 import {Booking} from "../../core/models/Booking";
 
 @Component({
-  selector: 'app-prenotation-detail',
-  templateUrl: './prenotation-detail.component.html',
-  styleUrls: ['./prenotation-detail.component.scss']
+  selector: 'app-booking-detail',
+  templateUrl: './booking-detail.component.html',
+  styleUrls: ['./booking-detail.component.scss']
 })
 export class PrenotationDetailComponent implements OnInit,OnDestroy {
 
   id : number;
   getBookingByIdSubscription : Subscription;
   getBookingIdSubscription : Subscription;
+  deleteBookingByIdSubscription : Subscription;
   booking : Booking;
-  isValid : Boolean;
-  array : Array<number>;
-  counteronone : number = 0;
+  mapShown : Boolean = false;
 
   constructor(private bookingService : BookingService, private route : ActivatedRoute) { }
 
@@ -34,20 +33,7 @@ export class PrenotationDetailComponent implements OnInit,OnDestroy {
   }
 
   counter(i: number | undefined) {
-    this.array =[...new Array(i)]
-    this.count(this.array);
-    return this.array;
-  }
-
-  count(j : Array<number>){
-    j = [...this.array]
-    if (this.counteronone < j.length){
-      this.counteronone ++;
-      return this.isValid = true;
-    }
-    else{
-      return this.isValid = false;
-    }
+    return new Array(i);
   }
 
   getBookingById(id : number){
@@ -59,9 +45,26 @@ export class PrenotationDetailComponent implements OnInit,OnDestroy {
     )
   }
 
+  deleteBookingById(id : number | undefined){
+    this.deleteBookingByIdSubscription = this.bookingService.deleteBookingById(id).subscribe(
+      observer => {},
+      error => console.log(error)
+    )
+  }
+
+  showMap(){
+    if (this.mapShown == false){
+      this.mapShown = true;
+    }
+    else {
+      this.mapShown = false;
+    }
+  }
+
   ngOnDestroy(): void {
     this.getBookingIdSubscription.unsubscribe();
     this.getBookingByIdSubscription.unsubscribe();
+    this.deleteBookingByIdSubscription?.unsubscribe();
   }
 
 }

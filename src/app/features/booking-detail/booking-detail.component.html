@@ -1,0 +1,48 @@
+<app-header class="header-background"></app-header>
+<div class="prenotation-detail-background" *ngIf="!mapShown">
+  <div class="prenotation-detail-div">
+    <div class="prenotation-top-div">
+     <p>
+       # {{booking?.id}}
+     </p>
+      <a routerLink="/home">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+    <div class="prenotation-body-div">
+      <div class="left-prenotation-div">
+        <div class="circle-external-div">
+          <div class="circle-internal-div">
+              <div class="circle-desk" *ngFor="let i of counter(booking?.room?.maxCapacity); let index = index" [ngStyle]="{'background-color': (index < booking?.room!.nBooking) ? '#0278DB' : 'lightgray'}"></div>
+          </div>
+        </div>
+      </div>
+      <div class="right-prenotation-div">
+        <div class="left-right-prenotation-div">
+          <i class="bi bi-door-closed-fill detail-icons">
+              {{booking?.room?.roomNumber}}
+          </i>
+          <i class="bi bi-building detail-icons second-row">
+            5
+          </i>
+        </div>
+        <div class="right-right-prenotation-div">
+          <i class="bi bi-geo-alt-fill detail-icons">
+            Spaces, Viale dell’Arte 19
+          </i>
+          <i class="bi bi-calendar3 detail-icons second-row">
+            {{booking?.bookDate}}
+          </i>
+        </div>
+      </div>
+    </div>
+    <div class="bot-prenotation-div">
+      <button class="signup-btn black-white-btn" (click)="deleteBookingById(booking.id)" routerLink="/home">Annulla Prenotazione</button>
+      <button class="login-btn modify-btn" (click)="showMap()">Modifica</button>
+    </div>
+  </div>
+</div>
+<div id="map-container" *ngIf="mapShown">
+  <app-map></app-map>
+</div>
+

@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PrenotationDetailComponent } from './prenotation-detail.component';
+import { PrenotationDetailComponent } from './booking-detail.component';
 import {RouterModule, Routes} from "@angular/router";
 import {HeaderModule} from "../../core/header/header.module";
+import {SharedModule} from "../../shared/shared.module";
 
 const routes: Routes = [
   { path: '', component: PrenotationDetailComponent }
@@ -12,10 +13,11 @@ const routes: Routes = [
   declarations: [
     PrenotationDetailComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    HeaderModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        HeaderModule,
+        SharedModule
+    ]
 })
-export class PrenotationDetailModule { }
+export class BookingDetailModule { }

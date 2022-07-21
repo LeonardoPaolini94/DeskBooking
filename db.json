@@ -199,9 +199,10 @@
       "bookDate": "2022/08/10",
       "room": {
         "id": 4,
-        "maxCapacity": 8,
+        "maxCapacity": 4,
         "isCompanyRoom": true,
-        "roomNumber": 506
+        "roomNumber": 506,
+        "nBooking": 3
       },
       "user": {
         "id": 6,
@@ -525,3 +526,5 @@
     }
   ]
 }
+
+

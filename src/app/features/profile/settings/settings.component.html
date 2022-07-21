@@ -4,7 +4,7 @@
   <div class="settings-container">
     <div class="settings-container-picture">
       <div class="container-picture-camera">
-        <a><i class="bi bi-camera-fill fa-lg"></i></a> <!--aggiungere path modale -->
+        <a><i class="bi bi-camera-fill fa-lg btn" mat-menu-item (click)="openDialog(dialog)"></i></a>
       </div>
       <div class="container-picture-img">
         <img src="{{user?.avatar}}">
@@ -75,3 +75,17 @@
 
   </div>
 </main>
+
+
+<ng-template #dialog>
+  <h1 mat-dialog-title></h1>
+  <div mat-dialog-content>
+    <div class="modale-img">
+      <form [formGroup]="avatarForm" (ngSubmit)="uploadAvatar()" ngNativeValidate>
+        <input formControlName="avatar" type="file" class="form-control" accept="image/png, image/jpeg" (change)="onFileChange($event)">
+        <button class="login-btn blue-btn m-1" type="submit" (click)="closeDialog()">Carica</button>
+        <button class="signup-btn white-btn m-1" (click)="closeDialog()">Annulla</button>
+      </form>
+    </div>
+  </div>
+</ng-template>
