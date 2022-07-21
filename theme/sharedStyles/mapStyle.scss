@@ -73,10 +73,18 @@
 }
 
 .room-cell {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.room-cell a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 .room-number {
