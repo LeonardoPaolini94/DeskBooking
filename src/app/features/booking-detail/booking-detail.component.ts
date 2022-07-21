@@ -16,6 +16,7 @@ export class PrenotationDetailComponent implements OnInit,OnDestroy {
   getBookingIdSubscription : Subscription;
   deleteBookingByIdSubscription : Subscription;
   booking : Booking;
+  mapShown : Boolean = false;
 
   constructor(private bookingService : BookingService, private route : ActivatedRoute) { }
 
@@ -49,6 +50,15 @@ export class PrenotationDetailComponent implements OnInit,OnDestroy {
       observer => {},
       error => console.log(error)
     )
+  }
+
+  showMap(){
+    if (this.mapShown == false){
+      this.mapShown = true;
+    }
+    else {
+      this.mapShown = false;
+    }
   }
 
   ngOnDestroy(): void {

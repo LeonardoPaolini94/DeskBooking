@@ -108,9 +108,9 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   uploadAvatar() {
-    const formData = new FormData();
+    /*const formData = new FormData();
     formData.append('file', this.avatarForm.get('avatar')?.value);
-
+    console.log(this.avatarForm.get('avatar')?.value);*/
 
     this.file = this.avatarForm.value as File
     this.loading = !this.loading;
