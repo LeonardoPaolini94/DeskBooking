@@ -9,6 +9,7 @@ const routes: Routes = [
   {path:'booking-detail/:id', loadChildren: () => import('./features/booking-detail/booking-detail.module').then(m => m.BookingDetailModule)},
   {path:'settings', loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule)},
   {path:'bookingroom', loadChildren: () => import('./features/booking-room/booking-room.module').then(m => m.BookingRoomModule)},
+  {path:'bookingadmin', loadChildren: () => import('./features/home-admin/home-admin.module').then(m => m.HomeAdminModule)},
   {path:"**", redirectTo:"home",pathMatch:"full"},
   {path:"", redirectTo:"home",pathMatch:"full"}
 ];

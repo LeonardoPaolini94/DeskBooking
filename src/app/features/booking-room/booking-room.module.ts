@@ -24,6 +24,17 @@ export const MY_DATE_FORMAT = {
 };
 
 @NgModule({
+    declarations: [BookingRoomComponent],
+    exports: [
+        BookingRoomComponent
+    ],
+    imports: [
+        CommonModule,
+        HeaderModule,
+        SharedModule,
+        MaterialModule,
+        RouterModule.forChild(routes)
+    ]
   declarations: [BookingRoomComponent],
   imports: [
     CommonModule,

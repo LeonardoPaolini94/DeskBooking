@@ -23,7 +23,7 @@
           <div *ngIf="signupForm.controls['lastName'].invalid && signupForm.controls['lastName'].touched" class="error-class">*campo obbligatorio</div>
         </div>
 
-        <div class="email-input-div">
+        <div class="email-input">
           <input type="email" placeholder="Email" class="input-box" formControlName="email" required/>
           <div *ngIf="signupForm.controls['email'].invalid && signupForm.controls['email'].touched" class="error-class">*campo obbligatorio</div>
         </div>
@@ -33,12 +33,12 @@
           <div *ngIf="signupForm.controls['phoneNumber'].invalid && signupForm.controls['phoneNumber'].touched" class="error-class">*campo obbligatorio</div>
         </div>
 
-        <div class="password-input-div">
+        <div class="password-input">
           <input type="password" placeholder="Password" class="input-box" formControlName="password" required minlength="7"/>
           <div *ngIf="signupForm.controls['password'].invalid && signupForm.controls['password'].touched" class="error-class">*campo obbligatorio</div>
         </div>
 
-        <div class="password-input-div">
+        <div class="password-input">
           <input type="password" placeholder="Conferma password" class="input-box" formControlName="confirmPassword" required minlength="7"/>
           <div *ngIf="signupForm.controls['confirmPassword'].invalid && signupForm.controls['confirmPassword'].touched" class="error-class">*campo obbligatorio</div>
         </div>
