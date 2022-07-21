@@ -10,7 +10,7 @@ export class RoomStatusService {
 
   constructor(private http : HttpClient) { }
 
-  getAllRoomStatus() : Observable<RoomStatus[]> {
+  getAllRoomStatus(date : String) : Observable<RoomStatus[]> {
     return this.http.get<RoomStatus[]>("http://localhost:8080/api/v1/room/status")
   }
 

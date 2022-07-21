@@ -1,7 +1,9 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {RoomStatusService} from "../../core/service/room-status-service/room-status.service";
 import {RoomStatus} from "../../core/models/RoomStatus";
 import {Subscription} from "rxjs";
+import {MatDialog} from "@angular/material/dialog";
+import {User} from "../../core/models/User";
 
 @Component({
   selector: 'app-map',
@@ -14,17 +16,24 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
 
   rooms : RoomStatus[]
 
+  room : RoomStatus
+
+  user : User
+
   getAllRoomStatusSubscription : Subscription
 
-  constructor(private roomStatusService : RoomStatusService) { }
+  constructor(private roomStatusService : RoomStatusService,
+              private dialog : MatDialog) { }
 
   ngOnInit(): void {
-    this.getAllRoomStatus()
-    console.log(this.rooms)
+    this.getAllRoomStatus(this.date)
+    let email =  sessionStorage.getItem('email')
   }
 
-  ngOnChanges() {
-
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['date'].currentValue != changes['date'].previousValue) {
+      this.getAllRoomStatus(this.date)
+    }
   }
 
   roomIsFull(roomStatus : RoomStatus) {
@@ -34,13 +43,22 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
     else return false
   }
 
-  getAllRoomStatus() {
-    this.getAllRoomStatusSubscription = this.roomStatusService.getAllRoomStatus().subscribe(
+  getAllRoomStatus(date : Date) {
+    this.getAllRoomStatusSubscription = this.roomStatusService.getAllRoomStatus(this.myFormatDate(date)).subscribe(
       observer => {this.rooms = [...observer]},
       error => {console.log(error)},
       () => {console.log("Rooms list found")}
     )
     console.log(this.date)
+  }
+
+  openDialog(dialog : any, room : RoomStatus) {
+    this.dialog.open(dialog)
+    this.room = room
+  }
+
+  closeDialog(){
+    this.dialog.closeAll()
   }
 
   myFormatDate (date : Date) {
@@ -66,7 +84,4 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
   ngOnDestroy(): void {
     this.getAllRoomStatusSubscription?.unsubscribe()
   }
-
-
-
 }
