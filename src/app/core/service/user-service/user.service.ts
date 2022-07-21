@@ -20,9 +20,9 @@ export class UserService {
 
   // Funziona soltanto se è presente nel back una custom query specifica
 
-  // getUserByEmail(email: string | null) : Observable<User> {
-  //   return this.http.get<User>("http://localhost:3000/users/" + email)
-  // }
+  getUserByEmail(email: string) : Observable<User> {
+    return this.http.get<User>("http://localhost:3000/users/" + email)
+  }
 
   getAllUser() : Observable<User[]> {
     return this.http.get<User[]>("http://localhost:3000/users")

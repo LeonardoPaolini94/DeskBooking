@@ -17,4 +17,8 @@ export class BookingService {
   getBookingById(id : number) : Observable<Booking>{
     return this.httpClient.get<Booking>("http://localhost:3000/Bookings/" + id);
   }
+
+  postBooking(booking : Booking) : Observable<Booking> {
+    return this.httpClient.post<Booking>("http://localhost:3000/Bookings", booking)
+  }
 }
