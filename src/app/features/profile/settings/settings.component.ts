@@ -4,7 +4,6 @@ import {User} from "../../../core/models/User";
 import {AuthService} from "../../../core/service/auth.service";
 import {UserService} from "../../../core/service/user-service/user.service";
 import {Subscription} from "rxjs";
-import {getAuth} from "@angular/fire/auth";
 import {MatDialog} from "@angular/material/dialog";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 
@@ -27,8 +26,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
   oldPassword: string | undefined;
 
 
-  loading: boolean = false; // Flag variable
-  file: File | null = null;  //avatar upload
+  fileToUpload: File | null = null;
+  formData: FormData
 
   constructor(private authService: AuthService, private userService: UserService, private afAuth: AngularFireAuth, private dialog : MatDialog) { }
 
@@ -56,8 +55,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   getUserByEmail(email : string){
-    this.getUserByEmailSubscription = this.userService.getUserByEmail(email).subscribe(
-      observer => {this.user = {...observer} },
+    this.getUserByEmailSubscription = this.userService.getAllUser().subscribe(
+      observer => {this.user = [...observer].find(user => user.email == email) },
       () => {console.log("User not found!")},
       () => {console.log("User found!")
       })
@@ -158,34 +157,24 @@ export class SettingsComponent implements OnInit, OnDestroy {
     return { 'match': true };
   }
 
-  // on file select event
-  onFileChange(event) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.avatarForm.patchValue({
-        fileSource: file
-      });
+
+  onFileSelected(event: any) {
+    this.fileToUpload  = event.target.files[0];
+  }
+
+   onSaveFile() {
+    this.formData = new FormData();
+    this.formData.append('avatar', this.fileToUpload as File);
+
+    if(this.user?.id){
+      this.closeDialog()
+      return this.userService.patchAvatar(this.user?.id , this.formData).subscribe()
+    }
+    else {
+      return this.closeDialog()
     }
   }
 
-  uploadAvatar() {
-    /*const formData = new FormData();
-    formData.append('file', this.avatarForm.get('avatar')?.value);
-    console.log(this.avatarForm.get('avatar')?.value);*/
-
-    this.file = this.avatarForm.value as File
-    this.loading = !this.loading;
-    console.log(this.file);
-    if(this.user?.id && this.file){
-      this.userService.patchAvatar(this.user?.id, this.file).subscribe(
-        (event: any) => {
-          if (typeof (event) === 'object') {
-            this.loading = false; // Flag variable
-          }
-        }
-      );
-    }
-  }
   ngOnDestroy(): void {
     this.getUserByEmailSubscription?.unsubscribe();
     this.patchUserSubscription?.unsubscribe()
