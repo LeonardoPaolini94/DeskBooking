@@ -4,6 +4,7 @@ import {RoomStatus} from "../../core/models/RoomStatus";
 import {Subscription} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {User} from "../../core/models/User";
+import {RoomService} from "../../core/service/room.service";
 
 @Component({
   selector: 'app-map',
@@ -16,16 +17,21 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
 
   rooms : RoomStatus[]
 
+  roomList : RoomStatus[]
+
   room : RoomStatus
 
   user : User
 
   getAllRoomStatusSubscription : Subscription
+  getAllRoomsSubscription : Subscription
 
   constructor(private roomStatusService : RoomStatusService,
-              private dialog : MatDialog) { }
+              private dialog : MatDialog,
+              private roomService : RoomService) { }
 
   ngOnInit(): void {
+    this.getAllRooms()
     this.getAllRoomStatus(this.date)
     let email =  sessionStorage.getItem('email')
   }
@@ -37,19 +43,31 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
   }
 
   roomIsFull(roomStatus : RoomStatus) {
-    if(roomStatus.isCompanyRoom && roomStatus.nBooking == roomStatus.capacity) {
-      return true;
-    }
-    else return false
+    return roomStatus.isCompanyRoom && roomStatus.nBooking == roomStatus.capacity && roomStatus.capacity != null;
   }
 
   getAllRoomStatus(date : Date) {
     this.getAllRoomStatusSubscription = this.roomStatusService.getAllRoomStatus(this.myFormatDate(date)).subscribe(
-      observer => {this.rooms = [...observer]},
+      observer => {this.roomList = [...observer];
+        for (let i = 0; i < this.roomList.length; i++) {
+          for (let j = 0; j < this.rooms.length; j++) {
+            if(this.roomList[i].roomNumber == this.rooms[j].roomNumber){
+              this.rooms[j] = this.roomList[i]
+            }
+          }
+        }},
       error => {console.log(error)},
-      () => {console.log("Rooms list found")}
+      () => {console.log(this.rooms)}
     )
     console.log(this.date)
+  }
+
+  getAllRooms(){
+    this.getAllRoomsSubscription = this.roomService.getAllRooms().subscribe(
+      observer => {this.rooms = [...observer]},
+      error => {console.log(error)},
+      () => {console.log(this.rooms)}
+    )
   }
 
   openDialog(dialog : any, room : RoomStatus) {
