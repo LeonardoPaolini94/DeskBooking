@@ -17,6 +17,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   emailCheckExist: boolean;
   phoneCheckExist: boolean;
   oldPasswordCheck: boolean;
+  confirmPasswordCheck: boolean;
 
   private getUserByEmailSubscription: Subscription;
   private patchUserSubscription: Subscription;
@@ -156,6 +157,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
 
 
+
   async submitPassword(){
     this.oldPassword = this.user?.password;
     this.confirmEditPassword();
@@ -205,7 +207,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   passwordMatcher(c: AbstractControl): { [key: string]: boolean } | null {
-    const oldPasswordControl = c.get('oldPassword');
     const newPasswordControl = c.get('newPassword');
     const confirmPasswordControl = c.get('confirmPassword');
 
@@ -214,12 +215,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
     }
 
     if (newPasswordControl?.value === confirmPasswordControl?.value) {
-      return null;
-    }
-    if (oldPasswordControl?.pristine || this.user?.password){
-      return null;
-    }
-    if (oldPasswordControl?.value === this.user?.password) {
       return null;
     }
 

@@ -94,6 +94,7 @@
             <div class="confirmPassword-input-div">
               <label for="confirmPassword"></label>
               <input type="password" id="confirmPassword" class="input-box" placeholder="ripeti nuova password" formControlName="confirmPassword" required/>
+              <div *ngIf="!editPasswordForm.valid && editPasswordForm.touched" class="error-class">*Le due password devono corrispondere</div>
             </div>
             <div class="editPassword-buttons-div">
               <button [disabled]="!editPasswordForm.valid" type="submit" class="editPassword-btn blue-btn">CONFERMA</button>
