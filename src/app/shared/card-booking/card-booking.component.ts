@@ -34,7 +34,6 @@ export class CardBookingComponent implements OnInit,OnDestroy {
 
   ngOnDestroy(): void {
     this.getAllBookingsSubscription?.unsubscribe()
-    console.log(this.bookingsList)
   }
 
 

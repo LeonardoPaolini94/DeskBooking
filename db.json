@@ -141,6 +141,52 @@
         "roomNumber": 535
       },
       "id": 1
+    },
+    {
+      "bookDate": "2022-07-21T15:59:02.965Z",
+      "user": {
+        "id": 6,
+        "firstName": "admin",
+        "lastName": "admin",
+        "phoneNumber": "1231231313",
+        "email": "admin@admin.com",
+        "password": "1234567",
+        "avatar": "assets/img/user-svgrepo-com.svg",
+        "role": {
+          "id": 1,
+          "roleName": "user"
+        }
+      },
+      "room": {
+        "id": 535,
+        "maxCapacity": 10,
+        "isCompanyRoom": true,
+        "roomNumber": 535
+      },
+      "id": 2
+    },
+    {
+      "bookDate": "2022-07-22T07:05:06.868Z",
+      "user": {
+        "id": 6,
+        "firstName": "admin",
+        "lastName": "admin",
+        "phoneNumber": "1231231313",
+        "email": "admin@admin.com",
+        "password": "1234567",
+        "avatar": "assets/img/user-svgrepo-com.svg",
+        "role": {
+          "id": 1,
+          "roleName": "user"
+        }
+      },
+      "room": {
+        "id": 535,
+        "maxCapacity": 10,
+        "isCompanyRoom": true,
+        "roomNumber": 535
+      },
+      "id": 3
     }
   ],
   "roomstatus": [
