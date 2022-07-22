@@ -4,7 +4,11 @@ import {RoomStatus} from "../../core/models/RoomStatus";
 import {Subscription} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {User} from "../../core/models/User";
-import {RoomService} from "../../core/service/room.service";
+import {UserService} from "../../core/service/user-service/user.service";
+import {BookingService} from "../../core/service/booking.service";
+import {Booking} from "../../core/models/Booking";
+import {Room} from "../../core/models/Room";
+import {RoomService} from "../../core/service/room-service/room.service";
 
 @Component({
   selector: 'app-map',
@@ -17,23 +21,47 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
 
   rooms : RoomStatus[]
 
+  data : Date = new Date(Date.now())
+
+  roomStatus : RoomStatus
   roomList : RoomStatus[]
 
   room : RoomStatus
 
-  user : User
+  room : Room
+
+  user : User | undefined
+
+  booking : Booking = {}
+
+  // booking : Booking = {bookDate: this.data,room : {maxCapacity: 4, roomNumber: 1, isCompanyRoom: true}
+  //   ,user: {firstName: "", lastName: "", avatar: "", email: "", password: "", role :{roleName: ""}, phoneNumber:""}}
+
+  bookingList : Booking[]
 
   getAllRoomStatusSubscription : Subscription
   getAllRoomsSubscription : Subscription
+  getUserByEmailSubscription :Subscription
+  getAllBookingsSubscription :Subscription
+  getRoomByRoomNumberSubscription : Subscription
+  postBookingSubscription : Subscription
 
   constructor(private roomStatusService : RoomStatusService,
               private dialog : MatDialog,
               private roomService : RoomService) { }
+              private userService : UserService,
+              private bookingService : BookingService,
+              private roomService : RoomService,
+              private dialog : MatDialog) { }
 
   ngOnInit(): void {
     this.getAllRooms()
     this.getAllRoomStatus(this.date)
+    this.getAllBookings()
     let email =  sessionStorage.getItem('email')
+    if(email) {
+      this.getUserByEmail(email)
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -43,7 +71,10 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
   }
 
   roomIsFull(roomStatus : RoomStatus) {
-    return roomStatus.isCompanyRoom && roomStatus.nBooking == roomStatus.capacity && roomStatus.capacity != null;
+    if(roomStatus.isCompanyRoom && roomStatus.nBooking == roomStatus.capacity && roomStatus.capacity != null) {
+      return true;
+    }
+    else return false
   }
 
   getAllRoomStatus(date : Date) {
@@ -59,7 +90,26 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
       error => {console.log(error)},
       () => {console.log(this.rooms)}
     )
-    console.log(this.date)
+  }
+
+  getRoomByRoomNumber(roomNumber : number) {
+    this.getRoomByRoomNumberSubscription = this.roomService.getRoomByRoomNumber(roomNumber).subscribe(
+      observer => {this.room = {...observer}},
+      () => {console.log("Room not found!")},
+      () => {console.log("Room found!")}
+      )
+  }
+
+  postBooking() {
+    this.booking.bookDate = this.date
+    this.booking.user = this.user
+    this.booking.room = this.room
+    this.postBookingSubscription = this.bookingService.postBooking(this.booking).subscribe(
+      observer => {console.log(this.booking)},
+      () => {console.log("Room not found!")},
+      () => {console.log("Room found!")}
+    )
+    this.closeDialog()
   }
 
   getAllRooms(){
@@ -72,7 +122,8 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
 
   openDialog(dialog : any, room : RoomStatus) {
     this.dialog.open(dialog)
-    this.room = room
+    this.roomStatus = room
+    this.getRoomByRoomNumber(this.roomStatus.roomNumber)
   }
 
   closeDialog(){
@@ -99,7 +150,17 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
     return fullDate
   }
 
+
   ngOnDestroy(): void {
     this.getAllRoomStatusSubscription?.unsubscribe()
+    this.getUserByEmailSubscription?.unsubscribe()
+    this.getAllBookingsSubscription?.unsubscribe()
+    this.getRoomByRoomNumberSubscription?.unsubscribe()
+    this.postBookingSubscription?.unsubscribe()
   }
+
+
+
+
+
 }

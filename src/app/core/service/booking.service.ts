@@ -25,4 +25,8 @@ export class BookingService {
   deleteBookingById(id : number | undefined) : Observable<Booking>{
     return this.httpClient.delete<Booking>("http://localhost:8080/booking/" + id);
   }
+
+  postBooking(booking : Booking) : Observable<Booking> {
+    return this.httpClient.post<Booking>("http://localhost:3000/Bookings", booking)
+  }
 }

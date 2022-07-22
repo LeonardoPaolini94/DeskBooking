@@ -1,4 +1,4 @@
-<div class="map-container">
+<div *ngIf="rooms" class="map-container">
 
   <div class="corner">
 
@@ -279,13 +279,29 @@
 </div>
 
 <ng-template #dialog>
-  <h1 mat-dialog-title>Porcoddio</h1>
-  <div mat-dialog-content>
-    <p class="text-center">Sei sicuro di voler uscire?</p>
-    <p>{{room.roomNumber}}</p>
-    <div>
-      <button class="signup-btn white-btn m-1" (click)="closeDialog()">Annulla</button>
-      <button type="submit" class="login-btn blue-btn m-1" >Conferma</button>
+  <div mat-dialog-content class="my-dialog">
+    <div class="dialog-head">
+      <p class="dialog-booking-number"># {{bookingList.length + 1 | bookingNumber}}</p>
+    </div>
+    <div class="dialog-body">
+
+    <div class="d-flex align-items-center">
+      <img class="user-avatar" src="{{user?.avatar}}">
+      <p class="user-name">{{user?.firstName}} {{user?.lastName}}</p>
+    </div>
+    <div class="dialog-booking-info">
+      <p class="bi bi-calendar3">&nbsp;&nbsp;&nbsp;{{date | myDateView}}</p>
+      <p class="bi bi-geo-alt-fill">&nbsp;&nbsp;&nbsp;Spaces, Viale dell'Arte 19</p>
+      <p class="bi bi-building">&nbsp;&nbsp;&nbsp;5° piano</p>
+    </div>
+    <div class="d-flex">
+      <img class="dialog-room-key" src="assets/img/key-svgrepo-com (1).svg">
+      <p class="dialog-room-number">{{roomStatus.roomNumber}}</p>
+    </div>
+    <div class="w-100 d-flex justify-content-evenly mb-3">
+      <button class="white-btn" (click)="closeDialog()">Annulla</button>
+      <button type="submit" class="blue-btn" (click)="postBooking()" routerLink="/home">Conferma</button>
+    </div>
     </div>
   </div>
 </ng-template>
