@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit,OnDestroy{
 
   user : User | undefined
   private getUserByEmailSubscription: Subscription;
+   imageToShow: any = null;
 
   constructor(private authService : AuthService,
               private route : Router,
@@ -24,13 +25,20 @@ export class HeaderComponent implements OnInit,OnDestroy{
 
 
   ngOnInit(): void {
+
+    console.log("oninit")
     let email = sessionStorage.getItem('email')
     if(email){
-      this.getUserByEmail(email)
+       this.getUserByEmail(email)
+      console.log(this.user)
+      if(this.user && this.user.id){
+        console.log(this.user)
+        this.getAvatarImage(this.user.id)
+      }
     }
   }
 
-  getUserByEmail(email : string){
+   getUserByEmail(email : string){
     this.getUserByEmailSubscription = this.userService.getAllUser().subscribe(
       observer => {this.user = [...observer].find(user => user.email == email) },
       () => {console.log("User not found!")},
@@ -55,8 +63,32 @@ export class HeaderComponent implements OnInit,OnDestroy{
     this.dialog.closeAll()
   }
 
+
+
+   getAvatarImage(userId : number){
+    this.userService.getAvatar(userId).subscribe(image => this.createImage(image),
+      err => this.handleImageRetrievalError(err));
+  }
+
+  private createImage(image: Blob) {
+    console.log(image)
+    if (image && image.size > 0) {
+      let reader = new FileReader();
+
+      reader.addEventListener("load", () => {
+        this.imageToShow = reader.result;
+      }, false);
+
+      reader.readAsDataURL(this.imageToShow);
+      console.log(this.imageToShow)
+    }
+  }
+
+  private handleImageRetrievalError(err: any) {
+    console.error(err);
+  }
+
   ngOnDestroy(): void {
     this.getUserByEmailSubscription.unsubscribe()
   }
-
 }

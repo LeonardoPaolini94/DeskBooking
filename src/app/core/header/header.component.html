@@ -9,7 +9,7 @@
   <div class="profile-nav-div">
     <h4 class="nav-profile">{{user?.firstName}} {{user?.lastName}}</h4>
     <div class="logout-nav-div">
-      <img src="{{user?.avatar}}" mat-button [matMenuTriggerFor]="menu">
+      <img [attr.src]="imageToShow" mat-button [matMenuTriggerFor]="menu">
       <mat-menu #menu="matMenu" xPosition="before">
         <button mat-menu-item routerLink="/settings">Profilo</button>
         <button mat-menu-item (click)="openDialog(dialog)">Logout</button>
