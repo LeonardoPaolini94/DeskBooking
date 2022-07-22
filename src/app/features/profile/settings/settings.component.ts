@@ -87,15 +87,18 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   emailNotExist(){
     this.emailCheckExist = false
-    this.confirmEditProfile();
+    this.user!.phoneNumber = this.editProfileForm.controls['phoneNumber'].value;
+    this.verifyPhoneNumber(this.user!.phoneNumber)
   }
 
   phoneNumberExist(){
-
+    console.log('number exist')
+    this.phoneCheckExist = true
   }
 
   phoneNumberNotExist(){
-
+    this.phoneCheckExist = false
+    this.confirmEditProfile();
   }
 
   async submitProfile() {
@@ -132,12 +135,18 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   verifyPhoneNumber(phoneNumber : string){
-    this.verifyPhoneNumberSubscription = this.userService.getUserByEmail(phoneNumber).subscribe(
+    this.verifyPhoneNumberSubscription = this.userService.getUserByPhoneNumber(phoneNumber).subscribe(
       observer => {
-
+        console.log(sessionStorage.getItem('phoneNumber'))
+        console.log(observer.phoneNumber)
+        if(observer.phoneNumber == sessionStorage.getItem('phoneNumber')){
+          this.phoneNumberNotExist()
+        }else{
+          this.phoneNumberExist()
+        }
       },
-      () => {console.log("User not found!")},
-      () => {console.log("User found!")
+      () => {this.phoneNumberNotExist()},
+      () => {console.log("Phone Number found!")
       })
   }
 

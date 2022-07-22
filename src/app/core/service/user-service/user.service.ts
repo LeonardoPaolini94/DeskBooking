@@ -23,7 +23,7 @@ export class UserService {
     return this.http.get<User>("http://localhost:8080/api/v1/user/email/" + email)
   }
 
-  getUserPhoneNumber(phoneNumber : string | null) : Observable<User> {
+  getUserByPhoneNumber(phoneNumber : string | null) : Observable<User> {
     return this.http.get<User>("http://localhost:8080/api/v1/user/phoneNumber/" + phoneNumber)
   }
 
