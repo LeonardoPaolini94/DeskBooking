@@ -1,9 +1,9 @@
 import {User} from "./User";
-import {Room} from "./Room";
+import {RoomStatus} from "./RoomStatus";
 
 export interface Booking {
   id ?: number,
   bookDate ?: Date,
-  room ?: Room,
+  room ?: RoomStatus,
   user ? : User
 }

@@ -21,10 +21,10 @@ export class PrenotationDetailComponent implements OnInit,OnDestroy {
   booking : Booking;
   mapShown : Boolean = false;
 
-  constructor(private bookingService : BookingService, private route : ActivatedRoute,private authService : AuthService,
+  constructor(private bookingService : BookingService, private route : ActivatedRoute,
+              private authService : AuthService,
               private router : Router,
-              private dialog : MatDialog,
-              private userService : UserService) { }
+              private dialog : MatDialog,) { }
 
   ngOnInit(): void {
     this.getBookingIdSubscription = this.route.paramMap.subscribe(
