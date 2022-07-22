@@ -120,7 +120,7 @@
   ],
   "Bookings": [
     {
-      "bookDate": "2022-07-21T15:13:49.207Z",
+      "bookDate": "2022-07-22T07:46:41.513Z",
       "user": {
         "id": 6,
         "firstName": "admin",
@@ -143,7 +143,7 @@
       "id": 1
     },
     {
-      "bookDate": "2022-07-21T15:59:02.965Z",
+      "bookDate": "2022-07-22T07:46:55.912Z",
       "user": {
         "id": 6,
         "firstName": "admin",
@@ -156,17 +156,62 @@
           "id": 1,
           "roleName": "user"
         }
-      },
-      "room": {
-        "id": 535,
-        "maxCapacity": 10,
-        "isCompanyRoom": true,
-        "roomNumber": 535
       },
       "id": 2
     },
     {
-      "bookDate": "2022-07-22T07:05:06.868Z",
+      "bookDate": "2022-07-22T07:47:24.343Z",
+      "user": {
+        "id": 6,
+        "firstName": "admin",
+        "lastName": "admin",
+        "phoneNumber": "1231231313",
+        "email": "admin@admin.com",
+        "password": "1234567",
+        "avatar": "assets/img/user-svgrepo-com.svg",
+        "role": {
+          "id": 1,
+          "roleName": "user"
+        }
+      },
+      "id": 3
+    },
+    {
+      "bookDate": "2022-07-22T07:47:30.640Z",
+      "user": {
+        "id": 6,
+        "firstName": "admin",
+        "lastName": "admin",
+        "phoneNumber": "1231231313",
+        "email": "admin@admin.com",
+        "password": "1234567",
+        "avatar": "assets/img/user-svgrepo-com.svg",
+        "role": {
+          "id": 1,
+          "roleName": "user"
+        }
+      },
+      "id": 4
+    },
+    {
+      "bookDate": "2022-07-22T07:47:35.278Z",
+      "user": {
+        "id": 6,
+        "firstName": "admin",
+        "lastName": "admin",
+        "phoneNumber": "1231231313",
+        "email": "admin@admin.com",
+        "password": "1234567",
+        "avatar": "assets/img/user-svgrepo-com.svg",
+        "role": {
+          "id": 1,
+          "roleName": "user"
+        }
+      },
+      "id": 5
+    },
+    {
+      "bookDate": "2022-07-22T07:47:39.500Z",
       "user": {
         "id": 6,
         "firstName": "admin",
@@ -186,7 +231,7 @@
         "isCompanyRoom": true,
         "roomNumber": 535
       },
-      "id": 3
+      "id": 6
     }
   ],
   "roomstatus": [

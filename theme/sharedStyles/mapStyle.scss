@@ -48,17 +48,48 @@
 
 .center-div{
   display: flex;
-  justify-content: space-between;
-  padding: 7rem;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem 6rem 0 6rem;
 }
 
-.small-center-div {
-  width: 28rem;
-  border-radius: 0.5rem;
-  background-color: #d5d5d5;
+.center-div img {
+  transform: scale(40%);
+}
+
+.map-legend {
+  border: .2rem solid #3f3f3f;
+  border-radius: .5rem;
+  height: 4rem;
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
+  padding: 0 3rem;
+}
+
+.legend-color-green {
+  background-color: limegreen;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: .3rem;
+  margin-right: .5rem;
+}
+
+.legend-color-red {
+  background-color: red;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: .3rem;
+  margin-right: .5rem;
+}
+
+.legend-color-grey {
+  background-color: gray;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: .3rem;
+  margin-right: .5rem;
 }
 
 .stairs{
