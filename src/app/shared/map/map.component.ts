@@ -8,7 +8,7 @@ import {UserService} from "../../core/service/user-service/user.service";
 import {BookingService} from "../../core/service/booking.service";
 import {Booking} from "../../core/models/Booking";
 import {Room} from "../../core/models/Room";
-import {RoomService} from "../../core/service/room-service/room.service";
+import {RoomService} from "../../core/service/room.service";
 
 @Component({
   selector: 'app-map',
@@ -24,9 +24,8 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
   data : Date = new Date(Date.now())
 
   roomStatus : RoomStatus
-  roomList : RoomStatus[]
 
-  room : RoomStatus
+  roomList : RoomStatus[]
 
   room : Room
 
@@ -47,8 +46,6 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
   postBookingSubscription : Subscription
 
   constructor(private roomStatusService : RoomStatusService,
-              private dialog : MatDialog,
-              private roomService : RoomService) { }
               private userService : UserService,
               private bookingService : BookingService,
               private roomService : RoomService,
@@ -75,6 +72,21 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
       return true;
     }
     else return false
+  }
+  getUserByEmail(email : string){
+    this.getUserByEmailSubscription = this.userService.getAllUser().subscribe(
+      observer => {this.user = [...observer].find(user => user.email == email) },
+      () => {console.log("User not found!")},
+      () => {console.log("User found!")
+      })
+  }
+
+  getAllBookings(){
+    this.getAllBookingsSubscription = this.bookingService.getAllBookings().subscribe(
+      observer => {
+        this.bookingList = [...observer]},
+      error => console.log(error)
+    )
   }
 
   getAllRoomStatus(date : Date) {
@@ -158,9 +170,4 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
     this.getRoomByRoomNumberSubscription?.unsubscribe()
     this.postBookingSubscription?.unsubscribe()
   }
-
-
-
-
-
 }
