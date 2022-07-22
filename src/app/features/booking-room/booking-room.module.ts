@@ -37,15 +37,6 @@ export const MY_DATE_FORMAT = {
         RouterModule.forChild(routes),
         PipesModule
     ],
-  declarations: [BookingRoomComponent],
-    imports: [
-        CommonModule,
-        HeaderModule,
-        SharedModule,
-        MaterialModule,
-        RouterModule.forChild(routes),
-        PipesModule
-    ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: MY_DATE_FORMAT},
   ]
