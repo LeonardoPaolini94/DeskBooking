@@ -55,10 +55,12 @@
             <div class="email-input-div">
               <label for="email"></label>
               <input type="email" id="email" class="input-box" formControlName="email" required/>
+              <div *ngIf="emailCheckExist" class="error-class">*Email già esistente</div>
             </div>
             <div class="phoneNumber-input-div">
               <label for="phoneNumber"></label>
               <input type="text" id="phoneNumber" class="input-box" formControlName="phoneNumber" required/>
+              <div *ngIf="phoneCheckExist" class="error-class">*Telefono già esistente</div>
             </div>
         </div>
 

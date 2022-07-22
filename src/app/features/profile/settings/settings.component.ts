@@ -14,8 +14,13 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 })
 export class SettingsComponent implements OnInit, OnDestroy {
 
+  emailCheckExist: boolean;
+  phoneCheckExist: boolean;
+
   private getUserByEmailSubscription: Subscription;
   private patchUserSubscription: Subscription;
+  private verifyEmailSubscription: Subscription;
+  private verifyPhoneNumberSubscription: Subscription;
   isEditingProfile: boolean= false;
   isEditingPassword: boolean=false;
   editProfileForm: FormGroup;
@@ -28,6 +33,9 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   fileToUpload: File | null = null;
   formData: FormData
+
+
+
 
   constructor(private authService: AuthService, private userService: UserService, private afAuth: AngularFireAuth, private dialog : MatDialog) { }
 
@@ -55,8 +63,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   getUserByEmail(email : string){
-    this.getUserByEmailSubscription = this.userService.getAllUser().subscribe(
-      observer => {this.user = [...observer].find(user => user.email == email) },
+    this.getUserByEmailSubscription = this.userService.getUserByEmail(email).subscribe(
+      observer => {this.user = {...observer}},
       () => {console.log("User not found!")},
       () => {console.log("User found!")
       })
@@ -72,18 +80,31 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.editProfileForm.patchValue({firstName: this.user?.firstName, lastName: this.user?.lastName, email: this.user?.email, phoneNumber: this.user?.phoneNumber,})
   }
 
-  async submitProfile() {
-    this.confirmEditProfile();
-    this.isEditingProfile= false;
+  //---------------------------------------------------------------------------------------
+  emailExist(){
+    this.emailCheckExist = true
   }
 
-  async submitPassword(){
-    this.confirmEditPassword();
-    this.isEditingPassword=false;
+  emailNotExist(){
+    this.emailCheckExist = false
+    this.confirmEditProfile();
+  }
+
+  phoneNumberExist(){
+
+  }
+
+  phoneNumberNotExist(){
+
+  }
+
+  async submitProfile() {
+    this.oldEmail=this.user?.email;
+    this.user!.email = this.editProfileForm.controls['email'].value;
+    this.verifyEmail(this.user!.email)
   }
 
   confirmEditProfile() {
-    this.oldEmail=this.user?.email;
     this.user!.firstName = this.editProfileForm.controls['firstName'].value;
     this.user!.lastName = this.editProfileForm.controls['lastName'].value;
     this.user!.email = this.editProfileForm.controls['email'].value;
@@ -92,7 +113,41 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.updateFirebaseEmail(this.user?.email!);
     sessionStorage.removeItem('email');
     sessionStorage.setItem('email', this.user!.email);
-    setTimeout(()=> {this.ngOnInit()},10)
+    this.isEditingProfile= false;
+    setTimeout(()=> {this.ngOnInit()},20)
+  }
+
+  verifyEmail(email : string){
+    this.verifyEmailSubscription = this.userService.getUserByEmail(email).subscribe(
+      observer => {
+        if(observer.email == sessionStorage.getItem('email')){
+          this.emailNotExist()
+        }else{
+          this.emailExist()
+        }
+      },
+      () => {this.emailNotExist()},
+      () => {console.log("User found!")
+      })
+  }
+
+  verifyPhoneNumber(phoneNumber : string){
+    this.verifyPhoneNumberSubscription = this.userService.getUserByEmail(phoneNumber).subscribe(
+      observer => {
+
+      },
+      () => {console.log("User not found!")},
+      () => {console.log("User found!")
+      })
+  }
+
+
+//---------------------------------------------------------------------------------------
+
+
+  async submitPassword(){
+    this.confirmEditPassword();
+    this.isEditingPassword=false;
   }
 
   confirmEditPassword() {
@@ -178,6 +233,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.getUserByEmailSubscription?.unsubscribe();
     this.patchUserSubscription?.unsubscribe()
+    this.verifyEmailSubscription?.unsubscribe()
+    this.verifyPhoneNumberSubscription?.unsubscribe()
   }
 
 

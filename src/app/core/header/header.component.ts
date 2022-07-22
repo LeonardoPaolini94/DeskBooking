@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit,OnDestroy{
 
   getUserByEmail(email : string){
     this.getUserByEmailSubscription = this.userService.getUserByEmail(email).subscribe(
-      observer => {this.user = {...observer} },
+      observer => {this.user = {...observer} , sessionStorage.setItem('phoneNumber',{...observer}.phoneNumber) },
       () => {console.log("User not found!")},
       () => {console.log("User found!")
       })
