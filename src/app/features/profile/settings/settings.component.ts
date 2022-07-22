@@ -246,5 +246,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.verifyPhoneNumberSubscription?.unsubscribe()
   }
 
-
+  goToProfile() {
+    this.isEditingPassword = false
+  }
 }
