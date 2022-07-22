@@ -5,6 +5,7 @@ import {UserLogin} from "../../../core/models/UserLogin";
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {UserService} from "../../../core/service/user-service/user.service";
+import {AngularFireAuth} from "@angular/fire/compat/auth";
 
 
 @Component({
@@ -19,11 +20,13 @@ export class LoginComponent implements OnInit,OnDestroy {
   loginForm: FormGroup
   checkEmail: boolean;
   private verifyEmailSubscription: Subscription;
+  passwordNotExist: boolean;
 
 
   constructor(private authService : AuthService,
               private route: Router,
-              private userService : UserService) { }
+              private userService : UserService,
+              private afAuth: AngularFireAuth) { }
 
 
   ngOnInit(): void {
@@ -65,12 +68,19 @@ export class LoginComponent implements OnInit,OnDestroy {
     this.checkEmail = true
   }
 
+  async verifyFirebasePassword(){
+    this.afAuth.signInWithEmailAndPassword(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value)
+      .then((userCredential)=>{
+        this.login()
+        this.passwordNotExist = false
+      }).catch(()=>{this.passwordNotExist = true})
+  }
 
 
 
   verifyEmail(email : string){
     this.verifyEmailSubscription = this.userService.getUserByEmail(email).subscribe(
-      observer => {this.login()},
+      observer => {this.verifyFirebasePassword()},
       () => {this.emailNotExist()},
       () => {console.log("User found!")
       })

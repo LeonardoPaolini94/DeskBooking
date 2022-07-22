@@ -17,7 +17,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
   emailCheckExist: boolean;
   phoneCheckExist: boolean;
   oldPasswordCheck: boolean;
-  confirmPasswordCheck: boolean;
 
   private getUserByEmailSubscription: Subscription;
   private patchUserSubscription: Subscription;

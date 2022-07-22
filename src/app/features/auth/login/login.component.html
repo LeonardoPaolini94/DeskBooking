@@ -27,7 +27,7 @@
           <div class="password-input">
             <label class="form-label" for="password"></label>
             <input type="password" id="password" placeholder="password" class="input-box" formControlName="password" minlength="7" required/>
-
+            <div *ngIf="passwordNotExist" class="error-class">*Password errata</div>
           </div>
         </div>
 
