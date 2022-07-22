@@ -51,12 +51,6 @@ export class PrenotationDetailComponent implements OnInit,OnDestroy {
     )
   }
 
-  deleteBookingById(id : number | undefined){
-    this.deleteBookingByIdSubscription = this.bookingService.deleteBookingById(id).subscribe(
-      observer => {},
-      error => console.log(error)
-    )
-  }
 
   showMap(){
     if (this.mapShown == false){

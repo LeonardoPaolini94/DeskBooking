@@ -37,12 +37,23 @@
       </div>
     </div>
     <div class="bot-prenotation-div">
-      <button class="signup-btn black-white-btn" (click)="deleteBookingById(booking.id)" routerLink="/home">Annulla Prenotazione</button>
+      <button class="signup-btn black-white-btn" (click)="deleteBookingById(booking.id)" (click)="openDialog(dialog)">Annulla Prenotazione</button>
       <button class="login-btn modify-btn" (click)="showMap()">Modifica</button>
     </div>
+    <ng-template #dialog>
+      <h1 mat-dialog-title></h1>
+      <div mat-dialog-content>
+        <p class="text-center">Sei sicuro di voler annullare la prenotazione?</p>
+        <div>
+          <button class="signup-btn white-btn m-1" routerLink="/prenotation-detail/:id">Indietro</button>
+          <button type="submit" class="login-btn blue-btn m-1" (click)="deleteBookingById(booking.id)" routerLink="/home">Conferma</button>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </div>
 <div id="map-container" *ngIf="mapShown">
   <app-map></app-map>
+
 </div>
 
