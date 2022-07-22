@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {User} from "../models/User";
 import {AuthService} from "../service/auth.service";
 import {Router} from "@angular/router";
@@ -13,6 +13,7 @@ import {UserService} from "../service/user-service/user.service";
 })
 export class HeaderComponent implements OnInit,OnDestroy{
 
+  @Input() userByUpdate: User | undefined;
   user : User | undefined
   private getUserByEmailSubscription: Subscription;
 
@@ -30,9 +31,13 @@ export class HeaderComponent implements OnInit,OnDestroy{
     }
   }
 
+  ngOnChanges(): void {
+    this.user = this.userByUpdate;
+  }
+
   getUserByEmail(email : string){
-    this.getUserByEmailSubscription = this.userService.getAllUser().subscribe(
-      observer => {this.user = [...observer].find(user => user.email == email) },
+    this.getUserByEmailSubscription = this.userService.getUserByEmail(email).subscribe(
+      observer => {this.user = {...observer} },
       () => {console.log("User not found!")},
       () => {console.log("User found!")
       })
@@ -56,7 +61,7 @@ export class HeaderComponent implements OnInit,OnDestroy{
   }
 
   ngOnDestroy(): void {
-    this.getUserByEmailSubscription.unsubscribe()
+    this.getUserByEmailSubscription?.unsubscribe()
   }
 
 }

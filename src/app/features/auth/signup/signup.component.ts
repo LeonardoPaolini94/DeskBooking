@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../../core/models/User";
 import {AuthService} from "../../../core/service/auth.service";
@@ -11,17 +11,18 @@ import {Subscription} from "rxjs";
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit,OnDestroy {
 
   signupForm : FormGroup;
   postUserSubscription : Subscription
 
-  userArray : User[]
 
 
   constructor(private authService : AuthService,
               private route : Router,
               private userService : UserService) { }
+
+
 
   ngOnInit(): void {
     this.signupForm = new FormGroup(
@@ -38,25 +39,33 @@ export class SignupComponent implements OnInit {
 
 
   async onSubmit() {
-  let newSignup : User = {
-    id : this.userArray?.length+1,
-    firstName : this.signupForm.value.firstName.trim(),
-    lastName : this.signupForm.value.lastName.trim(),
-    phoneNumber : this.signupForm.value.phoneNumber,
-    email : this.signupForm.value.email.trim(),
-    password : this.signupForm.value.password.trim(),
-    avatar : "assets/img/user-svgrepo-com.svg",
-    role :  {
-      id : 1,
-      roleName : "user"
-    }
-  };
 
-  this.userArray?.push(newSignup)
-
-  let authSignUp
+    let newSignup
+    let authSignUp
 
     if (this.signupForm.valid) {
+
+
+      newSignup = {
+        firstName : this.signupForm.value.firstName.trim(),
+        lastName : this.signupForm.value.lastName.trim(),
+        phoneNumber : this.signupForm.value.phoneNumber,
+        email : this.signupForm.value.email.trim(),
+        password : this.signupForm.value.password.trim(),
+        avatar : "assets/img/user-svgrepo-com.svg",
+        roleResponseDTO :  {
+          id : 1,
+          roleName : "user"
+        }
+      };
+
+      this.postUserSubscription = this.userService.postUser(newSignup).subscribe(
+        observer => {},
+        error => {console.log("Something went wrong :(")},
+        () => {console.log("User inserted!")}
+      )
+
+
       authSignUp = {
         email: newSignup.email,
         password: newSignup.password
@@ -64,15 +73,11 @@ export class SignupComponent implements OnInit {
 
       await this.authService.signup(authSignUp).then(() => {
         this.route.navigateByUrl('/auth/login').then();
-        this.postUserSubscription = this.userService.postUser(newSignup).subscribe(
-          observer => {},
-          error => {console.log("Something went wrong :(")},
-          () => {console.log("User inserted!")}
-        )
       }).catch((error) => {
         console.log(error);
       });
     }
+
   }
 
    passwordMatcher(c: AbstractControl): { [key: string]: boolean } | null {
@@ -87,6 +92,10 @@ export class SignupComponent implements OnInit {
       return null;
     }
     return { 'match': true };
+  }
+
+  ngOnDestroy(): void {
+    this.postUserSubscription?.unsubscribe()
   }
 
 

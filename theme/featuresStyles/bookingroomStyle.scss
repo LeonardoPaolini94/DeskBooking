@@ -7,8 +7,15 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  font-size: 1.2rem;
   margin-bottom: 3rem;
+}
+
+.room-booking-head p {
+  font-size: 1.5rem;
+}
+
+.room-booking-head mat-form-field {
+  font-size: 1.1rem;
 }
 
 mat-label {

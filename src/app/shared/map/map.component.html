@@ -58,6 +58,7 @@
 
   <div [ngClass]="{'nounikey' : !rooms[34].isCompanyRoom, 'unikey' : rooms[34].isCompanyRoom, 'fullBooked' : roomIsFull(rooms[34])}"
        class="room-cell">
+    <a (click)="openDialog(dialog, rooms[34])" ></a>
     <p *ngIf="rooms[34].isCompanyRoom" [ngClass]="roomIsFull(rooms[34]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{rooms[34].roomNumber}}</p>
     <p *ngIf="rooms[34].capacity != null" class="room-capacity">{{rooms[34].nBooking}} / {{rooms[34].capacity}}</p>
@@ -276,3 +277,15 @@
   </div>
 
 </div>
+
+<ng-template #dialog>
+  <h1 mat-dialog-title>Porcoddio</h1>
+  <div mat-dialog-content>
+    <p class="text-center">Sei sicuro di voler uscire?</p>
+    <p>{{room.roomNumber}}</p>
+    <div>
+      <button class="signup-btn white-btn m-1" (click)="closeDialog()">Annulla</button>
+      <button type="submit" class="login-btn blue-btn m-1" >Conferma</button>
+    </div>
+  </div>
+</ng-template>
