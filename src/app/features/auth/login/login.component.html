@@ -20,6 +20,7 @@
           <div class="email-input">
             <label class="form-label" for="email"></label>
             <input type="email" id="email" placeholder="email" class="input-box" formControlName="email" required/>
+            <div *ngIf="checkEmail" class="error-class">*Email inesistente</div>
           </div>
 
 

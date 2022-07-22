@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../core/service/auth.service";
 import {UserLogin} from "../../../core/models/UserLogin";
 import {Router} from "@angular/router";
+import {Subscription} from "rxjs";
+import {UserService} from "../../../core/service/user-service/user.service";
 
 
 @Component({
@@ -10,15 +12,19 @@ import {Router} from "@angular/router";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit,OnDestroy {
 
   hide = true;
 
   loginForm: FormGroup
+  checkEmail: boolean;
+  private verifyEmailSubscription: Subscription;
 
 
   constructor(private authService : AuthService,
-              private route: Router) { }
+              private route: Router,
+              private userService : UserService) { }
+
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -27,7 +33,13 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  async submit() {
+  submit(){
+    this.verifyEmail(this.loginForm.get('email')?.value)
+  }
+
+  async login() {
+
+    this.checkEmail = false
 
     if (this.loginForm.valid) {
 
@@ -48,7 +60,26 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  emailNotExist(){
+    console.log('email Not exists')
+    this.checkEmail = true
+  }
 
+
+
+
+  verifyEmail(email : string){
+    this.verifyEmailSubscription = this.userService.getUserByEmail(email).subscribe(
+      observer => {this.login()},
+      () => {this.emailNotExist()},
+      () => {console.log("User found!")
+      })
+  }
+
+
+  ngOnDestroy(): void {
+    this.verifyEmailSubscription?.unsubscribe()
+  }
 
 
 }
