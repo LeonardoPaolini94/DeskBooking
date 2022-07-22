@@ -16,6 +16,7 @@ export class CardBookingComponent implements OnInit,OnDestroy {
 
   bookingsList : Booking[]
   exist : Boolean = false;
+  getAllBookingsSubscription : Subscription;
   private getBookingsByUserSubscription : Subscription;
   private getUserByEmailSubscription: Subscription;
 
@@ -23,6 +24,7 @@ export class CardBookingComponent implements OnInit,OnDestroy {
               private userService : UserService) { }
 
   ngOnInit(): void {
+    this.getAllBookings()
     let email = sessionStorage.getItem('email')
     if(email){
       this.getUserByEmail(email)
@@ -30,6 +32,18 @@ export class CardBookingComponent implements OnInit,OnDestroy {
     this.getBookingsByUser()
   }
 
+  getAllBookings(){
+    this.getAllBookingsSubscription = this.bookingService.getAllBookings().subscribe(
+      observer => {
+        this.bookingsList = [...observer]
+        if (this.bookingsList.length > 0){
+          this.exist = true
+        }
+      },
+      error => {console.log(error)},
+      () => {console.log("Bookings found!")}
+    )
+  }
   getBookingsByUser(){
     this.getBookingsByUserSubscription = this.bookingService.getBookingsByUser(sessionStorage.getItem('id')).subscribe(
       observer => {
@@ -57,6 +71,7 @@ export class CardBookingComponent implements OnInit,OnDestroy {
   ngOnDestroy(): void {
     this.getBookingsByUserSubscription?.unsubscribe()
     this.getUserByEmailSubscription?.unsubscribe()
+    this.getAllBookingsSubscription?.unsubscribe()
   }
 
 
