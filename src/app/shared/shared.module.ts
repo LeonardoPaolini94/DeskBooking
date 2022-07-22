@@ -14,7 +14,8 @@ import {RouterModule} from "@angular/router";
     CommonModule,
     PipesModule,
     RouterModule
-  ], exports: [
+  ],
+  exports: [
     MapComponent
   ]
 })

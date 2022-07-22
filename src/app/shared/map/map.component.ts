@@ -19,13 +19,17 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
 
   @Input() date : Date
 
-  rooms : RoomStatus[]
-
   data : Date = new Date(Date.now())
 
   roomStatus : RoomStatus
 
+  firstRoomStatusList : RoomStatus[]
+
+  roomStatusList : RoomStatus[] = []
+
   room : Room
+
+  roomList : Room[]
 
   user : User | undefined
 
@@ -33,6 +37,7 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
 
   bookingList : Booking[]
 
+  getAllRoomsSubscription : Subscription
   getAllRoomStatusSubscription : Subscription
   getUserByEmailSubscription :Subscription
   getAllBookingsSubscription :Subscription
@@ -46,7 +51,7 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
               private dialog : MatDialog) { }
 
   ngOnInit(): void {
-    this.getAllRoomStatus(this.date)
+    this.getAllRooms()
     this.getAllBookings()
     let email =  sessionStorage.getItem('email')
     if(email) {
@@ -56,12 +61,12 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['date'].currentValue != changes['date'].previousValue) {
-      this.getAllRoomStatus(this.date)
+      this.getAllRooms()
     }
   }
 
   roomIsFull(roomStatus : RoomStatus) {
-    if(roomStatus.isCompanyRoom && roomStatus.nBooking == roomStatus.capacity && roomStatus.capacity != null) {
+    if(roomStatus.isCompanyRoom && roomStatus.nbooking == roomStatus.capacity ) {
       return true;
     }
     else return false
@@ -69,9 +74,17 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
 
   getAllRoomStatus(date : Date) {
     this.getAllRoomStatusSubscription = this.roomStatusService.getAllRoomStatus(this.myFormatDate(date)).subscribe(
-      observer => {this.rooms = [...observer]},
+      observer => {this.firstRoomStatusList = [...observer]},
+      error => {console.log("Rooms status list not found")},
+      () => {this.addStatusToRoom(this.roomList)}
+    )
+  }
+
+  getAllRooms() {
+    this.getAllRoomsSubscription = this.roomService.getAllRooms().subscribe(
+      observer => {this.roomList = [...observer]},
       error => {console.log("Rooms list not found")},
-      () => {console.log("Rooms found")}
+      () => {this.getAllRoomStatus(this.date)}
     )
   }
 
@@ -103,12 +116,13 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
     this.booking.bookDate = this.date
     this.booking.user = this.user
     this.booking.room = this.room
+    console.log(this.booking)
     this.postBookingSubscription = this.bookingService.postBooking(this.booking).subscribe(
-      observer => {console.log(this.booking)},
-      () => {console.log("Room not found!")},
-      () => {console.log("Room found!")}
+      observer => {},
+      error => {console.log("PostBooking: error!")},
+      () => {console.log("PostBooking: Done!")
+        this.closeDialog()}
     )
-    this.closeDialog()
   }
 
   openDialog(dialog : any, room : RoomStatus) {
@@ -141,7 +155,29 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
     return fullDate
   }
 
+   addStatusToRoom(rooms : Room[]){
+      this.roomList.forEach(room => {
+        let newRoomStatus : RoomStatus = {
+          id : room.id as number,
+          roomNumber : room.roomNumber,
+          isCompanyRoom : room.isCompanyRoom,
+          maxCapacity : room.maxCapacity,
+          capacity : 0,
+          nbooking : 0
+        }
+        this.roomStatusList.push(newRoomStatus)
+      })
+      for (let i = 0; i < this.roomStatusList.length; i++) {
+        for (let j = 0; j < this.firstRoomStatusList.length; j++) {
+          if(this.roomStatusList[i].roomNumber == this.firstRoomStatusList[j].roomNumber){
+            this.roomStatusList[i] = {...this.firstRoomStatusList[j]};
+          }
+        }
+      }
+  }
+
   ngOnDestroy(): void {
+    this.getAllRoomsSubscription?.unsubscribe()
     this.getAllRoomStatusSubscription?.unsubscribe()
     this.getUserByEmailSubscription?.unsubscribe()
     this.getAllBookingsSubscription?.unsubscribe()

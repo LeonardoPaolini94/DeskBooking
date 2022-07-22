@@ -5,5 +5,5 @@ export interface RoomStatus {
   maxCapacity : number
   roomNumber : number
   capacity : number
-  nBooking : number
+  nbooking : number
 }

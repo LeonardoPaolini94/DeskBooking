@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDatepickerInputEvent} from "@angular/material/datepicker";
+import {RoomService} from "../../core/service/room-service/room.service";
 
 
 @Component({
@@ -8,7 +9,6 @@ import {MatDatepickerInputEvent} from "@angular/material/datepicker";
   styleUrls: ['./booking-room.component.scss']
 })
 export class BookingRoomComponent implements OnInit {
-
 
 
   todayDate : Date = new Date(Date.now());
@@ -20,8 +20,6 @@ export class BookingRoomComponent implements OnInit {
   ngOnInit(): void {
     this.date = this.todayDate
   }
-
-
 
   addEvent(type: string, event: MatDatepickerInputEvent<unknown | Date>) {
     if(event.value != null) {
