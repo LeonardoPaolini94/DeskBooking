@@ -48,17 +48,48 @@
 
 .center-div{
   display: flex;
-  justify-content: space-between;
-  padding: 7rem;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem 6rem 0 6rem;
 }
 
-.small-center-div {
-  width: 28rem;
-  border-radius: 0.5rem;
-  background-color: #d5d5d5;
+.center-div img {
+  transform: scale(40%);
+}
+
+.map-legend {
+  border: .2rem solid #3f3f3f;
+  border-radius: .5rem;
+  height: 4rem;
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
+  padding: 0 3rem;
+}
+
+.legend-color-green {
+  background-color: limegreen;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: .3rem;
+  margin-right: .5rem;
+}
+
+.legend-color-red {
+  background-color: red;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: .3rem;
+  margin-right: .5rem;
+}
+
+.legend-color-grey {
+  background-color: gray;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: .3rem;
+  margin-right: .5rem;
 }
 
 .stairs{
@@ -73,10 +104,18 @@
 }
 
 .room-cell {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.room-cell a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 .room-number {
@@ -110,5 +149,69 @@
   font-family: 'Cabin', sans-serif;
   font-weight: bold;
   font-size: 0.9rem;
+  margin: 0;
+}
+
+.my-dialog {
+  height: 28rem;
+  width: 30rem;
+}
+
+.dialog-head {
+  background-color: #0278DB;
+  height: 2.5rem;
+  margin: -1.5rem -1.5rem 0 -1.5rem;
+  display: flex;
+  align-items: center;
+  padding-left: 1.5rem;
+}
+
+.user-avatar {
+  width:4rem;
+  height: 4rem;
+  margin-right: 2rem;
+}
+
+.user-name {
+  font-family: 'Cabin', sans-serif;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.dialog-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 85%;
+  margin-top: 2rem;
+}
+
+.dialog-booking-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 1.3rem;
+  font-family: 'Cabin', sans-serif;
+  margin-bottom: -2rem;
+}
+
+.dialog-room-number {
+  font-size: 2rem;
+  margin-bottom: -2rem;
+}
+
+.dialog-room-key {
+  width: 1.8rem;
+  height: 1.8rem;
+  margin-top: .7rem;
+  margin-right: .5rem;
+}
+
+.dialog-booking-number {
+  font-size: 1.2rem;
+  color: white;
+  font-weight: bold;
   margin: 0;
 }

@@ -1,13 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../../core/models/User";
 import {AuthService} from "../../../core/service/auth.service";
 import {UserService} from "../../../core/service/user-service/user.service";
 import {Subscription} from "rxjs";
-import {firebaseApp$} from "@angular/fire/app";
-import {getAuth} from "@angular/fire/auth";
 import {MatDialog} from "@angular/material/dialog";
-import {HttpEventType, HttpResponse} from "@angular/common/http";
+import {AngularFireAuth} from "@angular/fire/compat/auth";
 
 @Component({
   selector: 'app-settings',
@@ -22,13 +20,16 @@ export class SettingsComponent implements OnInit, OnDestroy {
   isEditingPassword: boolean=false;
   editProfileForm: FormGroup;
   avatarForm: FormGroup;
+  editPasswordForm: FormGroup;
   user: User | undefined;
-  auth= getAuth();
+  oldEmail: string | undefined;
+  oldPassword: string | undefined;
+
 
   fileToUpload: File | null = null;
   formData: FormData
 
-  constructor(private authService: AuthService, private userService: UserService, private dialog : MatDialog) { }
+  constructor(private authService: AuthService, private userService: UserService, private afAuth: AngularFireAuth, private dialog : MatDialog) { }
 
   ngOnInit(): void {
     let email = sessionStorage.getItem('email')
@@ -41,6 +42,12 @@ export class SettingsComponent implements OnInit, OnDestroy {
       email: new FormControl('',[Validators.email, Validators.required]),
       phoneNumber: new FormControl('', [Validators.required, Validators.pattern("[0-9]{10}")])
     });
+    this.editPasswordForm = new FormGroup({
+      oldPassword: new FormControl('',[Validators.required, Validators.minLength(7)]),
+      newPassword: new FormControl('', [Validators.required, Validators.minLength(7)]),
+      confirmPassword: new FormControl('', [Validators.required, Validators.minLength(7)])
+    },{validators: this.passwordMatcher}
+    )
 
     this.avatarForm = new FormGroup({
       avatar: new FormControl('',[Validators.required])
@@ -57,6 +64,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   editPassword() {
     this.isEditingPassword=true;
+    this.editPasswordForm.patchValue({password: this.user?.password})
   }
 
   editProfile() {
@@ -69,19 +77,36 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.isEditingProfile= false;
   }
 
+  async submitPassword(){
+    this.confirmEditPassword();
+    this.isEditingPassword=false;
+  }
+
   confirmEditProfile() {
+    this.oldEmail=this.user?.email;
     this.user!.firstName = this.editProfileForm.controls['firstName'].value;
     this.user!.lastName = this.editProfileForm.controls['lastName'].value;
     this.user!.email = this.editProfileForm.controls['email'].value;
     this.user!.phoneNumber = this.editProfileForm.controls['phoneNumber'].value;
     this.patchUser(this.user!, this.user!.id!);
+    this.updateFirebaseEmail(this.user?.email!);
     sessionStorage.removeItem('email');
     sessionStorage.setItem('email', this.user!.email);
+    setTimeout(()=> {this.ngOnInit()},10)
+  }
+
+  confirmEditPassword() {
+    this.oldPassword= this.user?.password;
+    this.user!.password = this.editPasswordForm.controls['newPassword'].value;
+    this.patchUser(this.user!, this.user!.id!);
+    this.updateFirebasePassword(this.user?.password!);
+    sessionStorage.removeItem('password');
+    sessionStorage.setItem('password', this.user!.password);
   }
 
   patchUser(user : User, idUser: number){
     this.patchUserSubscription = this.userService.patchUser(user, idUser).subscribe(
-      observer => { this.user= {...observer} },
+      observer => { this.user = {...observer} },
       () => {console.log("User not found!")},
       () => {console.log("User patched!")
       })
@@ -94,8 +119,42 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.dialog.closeAll()
   }
 
-  updateFirebaseEmail(){
+  async updateFirebaseEmail(email: string){
+    this.afAuth.signInWithEmailAndPassword(this.oldEmail!, this.user?.password!)
+      .then((userCredential)=>{
+        userCredential!.user!.updateEmail(email);
+        console.log("user email updated in firebase")
+      })
+  }
 
+    async updateFirebasePassword(password: string){
+    this.afAuth.signInWithEmailAndPassword(this.user?.email!, this.oldPassword!)
+      .then((userCredential)=>{
+        userCredential!.user!.updatePassword(password);
+       console.log("user password updated in firebase")
+    })
+  }
+
+  passwordMatcher(c: AbstractControl): { [key: string]: boolean } | null {
+    const oldPasswordControl = c.get('oldPassword');
+    const newPasswordControl = c.get('newPassword');
+    const confirmPasswordControl = c.get('confirmPassword');
+
+    if (newPasswordControl?.pristine || confirmPasswordControl?.pristine) {
+      return null;
+    }
+
+    if (newPasswordControl?.value === confirmPasswordControl?.value) {
+      return null;
+    }
+    if (oldPasswordControl?.pristine || this.user?.password){
+      return null;
+    }
+    if (oldPasswordControl?.value === this.user?.password) {
+      return null;
+    }
+
+    return { 'match': true };
   }
 
 
@@ -117,7 +176,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.getUserByEmailSubscription.unsubscribe();
+    this.getUserByEmailSubscription?.unsubscribe();
+    this.patchUserSubscription?.unsubscribe()
   }
 
 

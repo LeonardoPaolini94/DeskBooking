@@ -1,12 +1,12 @@
 {
   "users": [
     {
-      "id": 6,
-      "firstName": "leonardo",
-      "lastName": "paolini",
+      "id": 1,
+      "firstName": "leo",
+      "lastName": "pao",
       "phoneNumber": "3280250786",
-      "email": "leonardo.paolini@outlook.it",
-      "password": "1234567",
+      "email": "leo.pao@outlook.it",
+      "password": "ciao1234",
       "avatar": "assets/img/user-svgrepo-com.svg",
       "role": {
         "id": 1,

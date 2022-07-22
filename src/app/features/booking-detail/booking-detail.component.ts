@@ -1,8 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BookingService} from "../../core/service/booking.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {Booking} from "../../core/models/Booking";
+import {MatDialog} from "@angular/material/dialog";
+import {AuthService} from "../../core/service/auth.service";
+import {UserService} from "../../core/service/user-service/user.service";
 
 @Component({
   selector: 'app-booking-detail',
@@ -18,7 +21,10 @@ export class PrenotationDetailComponent implements OnInit,OnDestroy {
   booking : Booking;
   mapShown : Boolean = false;
 
-  constructor(private bookingService : BookingService, private route : ActivatedRoute) { }
+  constructor(private bookingService : BookingService, private route : ActivatedRoute,private authService : AuthService,
+              private router : Router,
+              private dialog : MatDialog,
+              private userService : UserService) { }
 
   ngOnInit(): void {
     this.getBookingIdSubscription = this.route.paramMap.subscribe(
@@ -45,13 +51,13 @@ export class PrenotationDetailComponent implements OnInit,OnDestroy {
     )
   }
 
-  deleteBookingById(id : number | undefined){
-    this.deleteBookingByIdSubscription = this.bookingService.deleteBookingById(id).subscribe(
-      observer => {},
-      error => console.log(error)
-    )
+  openDialog(dialog : any) {
+    this.dialog.open(dialog)
   }
 
+  closeDialog(){
+    this.dialog.closeAll()
+  }
   showMap(){
     if (this.mapShown == false){
       this.mapShown = true;
@@ -59,6 +65,14 @@ export class PrenotationDetailComponent implements OnInit,OnDestroy {
     else {
       this.mapShown = false;
     }
+  }
+
+  deleteBookingById(id: number | undefined){
+    this.deleteBookingByIdSubscription = this.bookingService.deleteBookingById(id).subscribe(
+      observer => {},
+      error => console.log(error),
+    )
+    this.closeDialog()
   }
 
   ngOnDestroy(): void {

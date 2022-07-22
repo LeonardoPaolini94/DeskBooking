@@ -13,7 +13,7 @@
       <div class="left-prenotation-div">
         <div class="circle-external-div">
           <div class="circle-internal-div">
-              <div class="circle-desk" *ngFor="let i of counter(booking?.room?.maxCapacity); let index = index" [ngStyle]="{'background-color': (index < booking?.room!.nBooking) ? '#0278DB' : 'lightgray'}"></div>
+              <div class="circle-desk" *ngFor="let i of counter(booking?.room?.maxCapacity); let index = index" [ngStyle]="{'background-color': (index < booking?.room!.roomNumber) ? '#0278DB' : 'lightgray'}"></div>
           </div>
         </div>
       </div>
