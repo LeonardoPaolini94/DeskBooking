@@ -16,6 +16,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   emailCheckExist: boolean;
   phoneCheckExist: boolean;
+  oldPasswordCheck: boolean;
 
   private getUserByEmailSubscription: Subscription;
   private patchUserSubscription: Subscription;
@@ -154,18 +155,16 @@ export class SettingsComponent implements OnInit, OnDestroy {
 //---------------------------------------------------------------------------------------
 
 
+
   async submitPassword(){
+    this.oldPassword = this.user?.password;
     this.confirmEditPassword();
-    this.isEditingPassword=false;
   }
 
   confirmEditPassword() {
-    this.oldPassword= this.user?.password;
     this.user!.password = this.editPasswordForm.controls['newPassword'].value;
-    this.patchUser(this.user!, this.user!.id!);
+    this.oldPassword = this.editPasswordForm.controls['oldPassword'].value
     this.updateFirebasePassword(this.user?.password!);
-    sessionStorage.removeItem('password');
-    sessionStorage.setItem('password', this.user!.password);
   }
 
   patchUser(user : User, idUser: number){
@@ -191,12 +190,18 @@ export class SettingsComponent implements OnInit, OnDestroy {
       })
   }
 
-    async updateFirebasePassword(password: string){
+  async updateFirebasePassword(password: string){
     this.afAuth.signInWithEmailAndPassword(this.user?.email!, this.oldPassword!)
       .then((userCredential)=>{
         userCredential!.user!.updatePassword(password);
-       console.log("user password updated in firebase")
-    })
+        this.patchUser(this.user!, this.user!.id!);
+        sessionStorage.removeItem('password');
+        sessionStorage.setItem('password', this.user!.password);
+        this.oldPasswordCheck = false
+        this.isEditingPassword=false;
+        console.log("user password updated in firebase")
+        setTimeout(()=> {this.ngOnInit()},20)
+    }).catch(()=>{this.oldPasswordCheck = true})
   }
 
   passwordMatcher(c: AbstractControl): { [key: string]: boolean } | null {

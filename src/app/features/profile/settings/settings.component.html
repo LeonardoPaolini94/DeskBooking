@@ -84,6 +84,7 @@
             <div class="oldPassword-input-div">
               <label for="oldPassword"></label>
               <input type="password" id="oldPassword" class="input-box" placeholder="vecchia password" formControlName="oldPassword" required/>
+              <div *ngIf="oldPasswordCheck" class="error-class">*Password errata</div>
             </div>
 
             <div class="password-input-div">
