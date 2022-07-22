@@ -232,6 +232,75 @@
         "roomNumber": 535
       },
       "id": 6
+    },
+    {
+      "bookDate": "2022-07-22T08:52:02.086Z",
+      "user": {
+        "id": 6,
+        "firstName": "admin",
+        "lastName": "admin",
+        "phoneNumber": "1231231313",
+        "email": "admin@admin.com",
+        "password": "1234567",
+        "avatar": "assets/img/user-svgrepo-com.svg",
+        "role": {
+          "id": 1,
+          "roleName": "user"
+        }
+      },
+      "room": {
+        "id": 535,
+        "maxCapacity": 10,
+        "isCompanyRoom": true,
+        "roomNumber": 535
+      },
+      "id": 7
+    },
+    {
+      "bookDate": "2022-07-22T09:52:42.038Z",
+      "user": {
+        "id": 6,
+        "firstName": "admin",
+        "lastName": "admin",
+        "phoneNumber": "1231231313",
+        "email": "admin@admin.com",
+        "password": "1234567",
+        "avatar": "assets/img/user-svgrepo-com.svg",
+        "role": {
+          "id": 1,
+          "roleName": "user"
+        }
+      },
+      "room": {
+        "id": 535,
+        "maxCapacity": 10,
+        "isCompanyRoom": true,
+        "roomNumber": 535
+      },
+      "id": 8
+    },
+    {
+      "bookDate": "2022-07-22T10:22:18.441Z",
+      "user": {
+        "id": 6,
+        "firstName": "admin",
+        "lastName": "admin",
+        "phoneNumber": "1231231313",
+        "email": "admin@admin.com",
+        "password": "1234567",
+        "avatar": "assets/img/user-svgrepo-com.svg",
+        "role": {
+          "id": 1,
+          "roleName": "user"
+        }
+      },
+      "room": {
+        "id": 535,
+        "maxCapacity": 10,
+        "isCompanyRoom": true,
+        "roomNumber": 535
+      },
+      "id": 9
     }
   ],
   "roomstatus": [
