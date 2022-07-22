@@ -5,7 +5,7 @@ import {Subscription} from "rxjs";
 import {Booking} from "../../core/models/Booking";
 import {MatDialog} from "@angular/material/dialog";
 import {AuthService} from "../../core/service/auth.service";
-import {UserService} from "../../core/service/user-service/user.service";
+import {RoomStatusService} from "../../core/service/room-status-service/room-status.service";
 
 @Component({
   selector: 'app-booking-detail',
@@ -18,13 +18,16 @@ export class PrenotationDetailComponent implements OnInit,OnDestroy {
   getBookingByIdSubscription : Subscription;
   getBookingIdSubscription : Subscription;
   deleteBookingByIdSubscription : Subscription;
+  getRoomStatusSubscription : Subscription;
   booking : Booking;
   mapShown : Boolean = false;
 
-  constructor(private bookingService : BookingService, private route : ActivatedRoute,
+  constructor(private bookingService : BookingService,
+              private route : ActivatedRoute,
               private authService : AuthService,
               private router : Router,
-              private dialog : MatDialog,) { }
+              private dialog : MatDialog,
+              private roomStatusService : RoomStatusService) { }
 
   ngOnInit(): void {
     this.getBookingIdSubscription = this.route.paramMap.subscribe(
@@ -33,9 +36,8 @@ export class PrenotationDetailComponent implements OnInit,OnDestroy {
       },
       error => console.log(error)
     )
-
     this.getBookingById(this.id);
-
+    this.getRoomStatus();
   }
 
   counter(i: number | undefined) {
@@ -48,6 +50,19 @@ export class PrenotationDetailComponent implements OnInit,OnDestroy {
         this.booking = {...observer}
       },
       error => console.log(error)
+    )
+  }
+
+  getRoomStatus(){
+    this.getRoomStatusSubscription = this.roomStatusService.getAllRoomStatus(this.booking.bookDate!.toString()).subscribe(
+      observer => {
+        for (let i = 0; i < observer.length; i++) {
+          if(observer[i].roomNumber == this.booking.room?.roomNumber){
+            this.booking.room!.roomNumber = observer[i].roomNumber;
+          }
+        }
+      },
+      error => { console.log(error)}
     )
   }
 

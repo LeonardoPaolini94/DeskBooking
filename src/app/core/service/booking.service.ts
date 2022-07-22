@@ -27,6 +27,6 @@ export class BookingService {
   }
 
   postBooking(booking : Booking) : Observable<Booking> {
-    return this.httpClient.post<Booking>("http://localhost:3000/Bookings", booking)
+    return this.httpClient.post<Booking>("http://localhost:8080/booking", booking)
   }
 }

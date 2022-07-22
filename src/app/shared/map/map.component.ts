@@ -7,7 +7,6 @@ import {User} from "../../core/models/User";
 import {UserService} from "../../core/service/user-service/user.service";
 import {BookingService} from "../../core/service/booking.service";
 import {Booking} from "../../core/models/Booking";
-import {Room} from "../../core/models/Room";
 import {RoomService} from "../../core/service/room.service";
 
 @Component({
@@ -27,14 +26,11 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
 
   roomList : RoomStatus[]
 
-  room : Room
+  room : RoomStatus
 
   user : User | undefined
 
   booking : Booking = {}
-
-  // booking : Booking = {bookDate: this.data,room : {maxCapacity: 4, roomNumber: 1, isCompanyRoom: true}
-  //   ,user: {firstName: "", lastName: "", avatar: "", email: "", password: "", role :{roleName: ""}, phoneNumber:""}}
 
   bookingList : Booking[]
 

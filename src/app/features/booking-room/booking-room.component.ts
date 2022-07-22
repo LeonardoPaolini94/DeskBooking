@@ -21,8 +21,6 @@ export class BookingRoomComponent implements OnInit {
     this.date = this.todayDate
   }
 
-
-
   addEvent(type: string, event: MatDatepickerInputEvent<unknown | Date>) {
     if(event.value != null) {
       this.date = event.value as Date

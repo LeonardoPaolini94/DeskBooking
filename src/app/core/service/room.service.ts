@@ -15,7 +15,7 @@ export class RoomService {
     return this.http.get<RoomStatus[]>("http://localhost:8080/api/v1/room")
   }
 
-  getRoomByRoomNumber(roomNumber : number) : Observable<Room> {
-    return this.http.get<Room>("http://localhost:8080/rooms/" + roomNumber)
+  getRoomByRoomNumber(roomNumber : number) : Observable<RoomStatus> {
+    return this.http.get<RoomStatus>("http://localhost:8080/rooms/" + roomNumber)
   }
 }
