@@ -17,13 +17,13 @@
       </div>
 
         <div class="login-form-div">
-          <div class="email-input-div">
+          <div class="email-input">
             <label class="form-label" for="email"></label>
             <input type="email" id="email" placeholder="email" class="input-box" formControlName="email" required/>
           </div>
 
 
-          <div class="password-input-div">
+          <div class="password-input">
             <label class="form-label" for="password"></label>
             <input type="password" id="password" placeholder="password" class="input-box" formControlName="password" minlength="7" required/>
 
@@ -32,7 +32,7 @@
 
       <div class="login-buttons-div">
 
-        <button class="signup-btn white-btn" routerLink="/auth/signup">Registrati</button>
+        <button type="button" class="signup-btn white-btn" routerLink="/auth/signup">Registrati</button>
         <button [disabled]="!loginForm.valid" type="submit" class="login-btn blue-btn">Accedi</button>
 
       </div>

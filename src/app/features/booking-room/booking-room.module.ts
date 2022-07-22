@@ -34,6 +34,9 @@ export const MY_DATE_FORMAT = {
         RouterModule.forChild(routes),
         PipesModule
     ],
+  exports: [
+    BookingRoomComponent
+  ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: MY_DATE_FORMAT},
   ]

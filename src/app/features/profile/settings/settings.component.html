@@ -1,10 +1,10 @@
-<app-header class="header-background"></app-header>
+<app-header class="header-background" [userByUpdate]="user"></app-header>
 
 <main class="settings-main" *ngIf="!isEditingProfile && !isEditingPassword">
   <div class="settings-container">
     <div class="settings-container-picture">
       <div class="container-picture-camera">
-        <a><i class="bi bi-camera-fill fa-lg"></i></a> <!--aggiungere path modale -->
+        <a><i class="bi bi-camera-fill fa-lg btn" mat-menu-item (click)="openDialog(dialog)"></i></a>
       </div>
       <div class="container-picture-img">
         <img src="{{user?.avatar}}">
@@ -72,6 +72,51 @@
 
 <main class="settings-main" *ngIf="isEditingPassword">
   <div class="settings-container">
+      <div class="container-editPassword">
+        <div class="editPassword-title-div">
+          <h1 class="editPassword-title">MODIFICA PASSWORD</h1>
+        </div>
+        <form [formGroup]="editPasswordForm" (ngSubmit)="submitPassword()" class="editPassword-form" ngNativeValidate>
+
+          <div class="editPassword-form-div">
+            <div class="oldPassword-input-div">
+              <label for="oldPassword"></label>
+              <input type="password" id="oldPassword" class="input-box" placeholder="vecchia password" formControlName="oldPassword" required/>
+            </div>
+
+            <div class="password-input-div">
+              <label for="password"></label>
+              <input type="password" id="password" class="input-box" placeholder="nuova password" formControlName="newPassword" required/>
+            </div>
+            <div class="confirmPassword-input-div">
+              <label for="confirmPassword"></label>
+              <input type="password" id="confirmPassword" class="input-box" placeholder="ripeti nuova password" formControlName="confirmPassword" required/>
+            </div>
+            <div class="editPassword-buttons-div">
+              <button [disabled]="!editPasswordForm.valid" type="submit" class="editPassword-btn blue-btn">CONFERMA</button>
+            </div>
 
   </div>
+
+        </form>
+
+      </div>
+  </div>
 </main>
+
+
+<ng-template #dialog>
+  <h1 mat-dialog-title></h1>
+  <div mat-dialog-content>
+    <div class="modale-img">
+       <div class="form-group">
+        <label for="file">Scegli Immagine</label>
+        <input type="file" id="file" class="file-input" accept=".png, .jpg, .jpeg" (change)="onFileSelected($event)"  />
+      </div>
+      <div class="col-sm-4">
+        <button (click)="onSaveFile()" class="login-btn blue-btn m-1">Carica</button>
+        <button class="signup-btn white-btn m-1" (click)="closeDialog()">Annulla</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

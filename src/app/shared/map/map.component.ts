@@ -31,9 +31,6 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
 
   booking : Booking = {}
 
-  // booking : Booking = {bookDate: this.data,room : {maxCapacity: 4, roomNumber: 1, isCompanyRoom: true}
-  //   ,user: {firstName: "", lastName: "", avatar: "", email: "", password: "", role :{roleName: ""}, phoneNumber:""}}
-
   bookingList : Booking[]
 
   getAllRoomStatusSubscription : Subscription
@@ -144,7 +141,6 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
     return fullDate
   }
 
-
   ngOnDestroy(): void {
     this.getAllRoomStatusSubscription?.unsubscribe()
     this.getUserByEmailSubscription?.unsubscribe()
@@ -152,9 +148,4 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
     this.getRoomByRoomNumberSubscription?.unsubscribe()
     this.postBookingSubscription?.unsubscribe()
   }
-
-
-
-
-
 }

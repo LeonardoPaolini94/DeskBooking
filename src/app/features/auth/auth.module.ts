@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import {RouterModule, Routes} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
 import { SignupComponent } from './signup/signup.component';
+import {MatButtonModule} from "@angular/material/button";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -15,10 +16,11 @@ const routes: Routes = [
     LoginComponent,
     SignupComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        ReactiveFormsModule,
+        MatButtonModule
+    ]
 })
 export class AuthModule { }
