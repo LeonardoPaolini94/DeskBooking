@@ -153,6 +153,7 @@
     height: 25%;
     display: flex;
     justify-content: center;
+    flex-direction: column;
   }
   .phoneNumber-input-div::placeholder{
     color: black;
@@ -275,12 +276,14 @@
   height: 25%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 .oldPassword-input-div{
   width: 100%;
   height: 25%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 .editPassword-buttons-div{
   height: 16%;
@@ -289,6 +292,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.back-to-profile{
+  margin: 1rem;
+  text-align: center;
+  color: #a1a1a1;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 

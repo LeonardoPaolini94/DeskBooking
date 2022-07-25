@@ -7,7 +7,7 @@
         <a><i class="bi bi-camera-fill fa-lg btn" mat-menu-item (click)="openDialog(dialog)"></i></a>
       </div>
       <div class="container-picture-img">
-        <img src="{{user?.avatar}}">
+        <img src="{{user?.avatar == null ? 'assets/img/user-svgrepo-com.svg' : user?.avatar}}" id="profileAvatar">
       </div>
       <div class="container-picture-camera"></div>
     </div>
@@ -55,10 +55,12 @@
             <div class="email-input-div">
               <label for="email"></label>
               <input type="email" id="email" class="input-box" formControlName="email" required/>
+              <div *ngIf="emailCheckExist" class="error-class">*Email già esistente</div>
             </div>
             <div class="phoneNumber-input-div">
               <label for="phoneNumber"></label>
               <input type="text" id="phoneNumber" class="input-box" formControlName="phoneNumber" required/>
+              <div *ngIf="phoneCheckExist" class="error-class">*Telefono già esistente</div>
             </div>
         </div>
 
@@ -82,6 +84,7 @@
             <div class="oldPassword-input-div">
               <label for="oldPassword"></label>
               <input type="password" id="oldPassword" class="input-box" placeholder="vecchia password" formControlName="oldPassword" required/>
+              <div *ngIf="oldPasswordCheck" class="error-class">*Password errata</div>
             </div>
 
             <div class="password-input-div">
@@ -91,9 +94,13 @@
             <div class="confirmPassword-input-div">
               <label for="confirmPassword"></label>
               <input type="password" id="confirmPassword" class="input-box" placeholder="ripeti nuova password" formControlName="confirmPassword" required/>
+              <div *ngIf="!editPasswordForm.valid && editPasswordForm.touched" class="error-class">*Le due password devono corrispondere</div>
             </div>
             <div class="editPassword-buttons-div">
               <button [disabled]="!editPasswordForm.valid" type="submit" class="editPassword-btn blue-btn">CONFERMA</button>
+            </div>
+            <div class="back-to-profile" (click)="goToProfile()">
+              <span>Torna al profilo</span>
             </div>
 
   </div>

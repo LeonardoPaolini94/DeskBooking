@@ -6,6 +6,7 @@ import {UserService} from "../../../core/service/user-service/user.service";
 import {Subscription} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
+import {AvatarService} from "../../../core/service/avatar.service";
 
 @Component({
   selector: 'app-settings',
@@ -14,8 +15,14 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 })
 export class SettingsComponent implements OnInit, OnDestroy {
 
+  emailCheckExist: boolean;
+  phoneCheckExist: boolean;
+  oldPasswordCheck: boolean;
+
   private getUserByEmailSubscription: Subscription;
   private patchUserSubscription: Subscription;
+  private verifyEmailSubscription: Subscription;
+  private verifyPhoneNumberSubscription: Subscription;
   isEditingProfile: boolean= false;
   isEditingPassword: boolean=false;
   editProfileForm: FormGroup;
@@ -29,7 +36,14 @@ export class SettingsComponent implements OnInit, OnDestroy {
   fileToUpload: File | null = null;
   formData: FormData
 
-  constructor(private authService: AuthService, private userService: UserService, private afAuth: AngularFireAuth, private dialog : MatDialog) { }
+
+
+
+  constructor(private authService: AuthService,
+              private userService: UserService,
+              private afAuth: AngularFireAuth,
+              private dialog : MatDialog,
+              private avatarService : AvatarService) { }
 
   ngOnInit(): void {
     let email = sessionStorage.getItem('email')
@@ -55,11 +69,47 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   getUserByEmail(email : string){
-    this.getUserByEmailSubscription = this.userService.getAllUser().subscribe(
-      observer => {this.user = [...observer].find(user => user.email == email) },
+    // this.getUserByEmailSubscription = this.userService.getAllUser().subscribe(
+    //   observer => {this.user = [...observer].find(user => user.email == email) },
+    //   () => {console.log("User not found!")},
+    //   () => {console.log("User found!")
+    //   })
+    this.userService.getUserByEmail(email).subscribe(
+      observer => {this.user = {...observer} },
       () => {console.log("User not found!")},
-      () => {console.log("User found!")
-      })
+      () => {this.getAvatarImage(this.user?.id)})
+
+  }
+  getAvatarImage(userId : number | undefined){
+    if(userId){
+      this.userService.getAvatar(userId).subscribe(image =>{
+        this.createImage(image),
+          this.avatarService.update(image)
+      },
+        err => this.handleImageRetrievalError(err));
+    }
+
+  }
+
+  private createImage(image: Blob) {
+    const preview = document.getElementById("profileAvatar") as HTMLImageElement;
+    if (image && image.size > 0) {
+      let reader = new FileReader();
+
+      reader.addEventListener("load", () => {
+        if (typeof reader.result === "string") {
+          preview.src = reader.result;
+        }
+      }, false);
+
+      if(image){
+        reader.readAsDataURL(image);
+      }
+    }
+  }
+
+  private handleImageRetrievalError(err: any) {
+    console.error(err);
   }
 
   editPassword() {
@@ -72,18 +122,34 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.editProfileForm.patchValue({firstName: this.user?.firstName, lastName: this.user?.lastName, email: this.user?.email, phoneNumber: this.user?.phoneNumber,})
   }
 
-  async submitProfile() {
-    this.confirmEditProfile();
-    this.isEditingProfile= false;
+  //---------------------------------------------------------------------------------------
+  emailExist(){
+    this.emailCheckExist = true
   }
 
-  async submitPassword(){
-    this.confirmEditPassword();
-    this.isEditingPassword=false;
+  emailNotExist(){
+    this.emailCheckExist = false
+    this.user!.phoneNumber = this.editProfileForm.controls['phoneNumber'].value;
+    this.verifyPhoneNumber(this.user!.phoneNumber)
+  }
+
+  phoneNumberExist(){
+    console.log('number exist')
+    this.phoneCheckExist = true
+  }
+
+  phoneNumberNotExist(){
+    this.phoneCheckExist = false
+    this.confirmEditProfile();
+  }
+
+  async submitProfile() {
+    this.oldEmail=this.user?.email;
+    this.user!.email = this.editProfileForm.controls['email'].value;
+    this.verifyEmail(this.user!.email)
   }
 
   confirmEditProfile() {
-    this.oldEmail=this.user?.email;
     this.user!.firstName = this.editProfileForm.controls['firstName'].value;
     this.user!.lastName = this.editProfileForm.controls['lastName'].value;
     this.user!.email = this.editProfileForm.controls['email'].value;
@@ -92,16 +158,55 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.updateFirebaseEmail(this.user?.email!);
     sessionStorage.removeItem('email');
     sessionStorage.setItem('email', this.user!.email);
-    setTimeout(()=> {this.ngOnInit()},10)
+    this.isEditingProfile= false;
+    setTimeout(()=> {this.ngOnInit()},20)
+  }
+
+  verifyEmail(email : string){
+    this.verifyEmailSubscription = this.userService.getUserByEmail(email).subscribe(
+      observer => {
+        if(observer.email == sessionStorage.getItem('email')){
+          this.emailNotExist()
+        }else{
+          this.emailExist()
+        }
+      },
+      () => {this.emailNotExist()},
+      () => {console.log("User found!")
+      })
+  }
+
+  verifyPhoneNumber(phoneNumber : string){
+    this.verifyPhoneNumberSubscription = this.userService.getUserByPhoneNumber(phoneNumber).subscribe(
+      observer => {
+        console.log(sessionStorage.getItem('phoneNumber'))
+        console.log(observer.phoneNumber)
+        if(observer.phoneNumber == sessionStorage.getItem('phoneNumber')){
+          this.phoneNumberNotExist()
+        }else{
+          this.phoneNumberExist()
+        }
+      },
+      () => {this.phoneNumberNotExist()},
+      () => {console.log("Phone Number found!")
+      })
+  }
+
+
+//---------------------------------------------------------------------------------------
+
+
+
+
+  async submitPassword(){
+    this.oldPassword = this.user?.password;
+    this.confirmEditPassword();
   }
 
   confirmEditPassword() {
-    this.oldPassword= this.user?.password;
     this.user!.password = this.editPasswordForm.controls['newPassword'].value;
-    this.patchUser(this.user!, this.user!.id!);
+    this.oldPassword = this.editPasswordForm.controls['oldPassword'].value
     this.updateFirebasePassword(this.user?.password!);
-    sessionStorage.removeItem('password');
-    sessionStorage.setItem('password', this.user!.password);
   }
 
   patchUser(user : User, idUser: number){
@@ -127,16 +232,21 @@ export class SettingsComponent implements OnInit, OnDestroy {
       })
   }
 
-    async updateFirebasePassword(password: string){
+  async updateFirebasePassword(password: string){
     this.afAuth.signInWithEmailAndPassword(this.user?.email!, this.oldPassword!)
       .then((userCredential)=>{
         userCredential!.user!.updatePassword(password);
-       console.log("user password updated in firebase")
-    })
+        this.patchUser(this.user!, this.user!.id!);
+        sessionStorage.removeItem('password');
+        sessionStorage.setItem('password', this.user!.password);
+        this.oldPasswordCheck = false
+        this.isEditingPassword=false;
+        console.log("user password updated in firebase")
+        setTimeout(()=> {this.ngOnInit()},20)
+    }).catch(()=>{this.oldPasswordCheck = true})
   }
 
   passwordMatcher(c: AbstractControl): { [key: string]: boolean } | null {
-    const oldPasswordControl = c.get('oldPassword');
     const newPasswordControl = c.get('newPassword');
     const confirmPasswordControl = c.get('confirmPassword');
 
@@ -145,12 +255,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
     }
 
     if (newPasswordControl?.value === confirmPasswordControl?.value) {
-      return null;
-    }
-    if (oldPasswordControl?.pristine || this.user?.password){
-      return null;
-    }
-    if (oldPasswordControl?.value === this.user?.password) {
       return null;
     }
 
@@ -162,13 +266,15 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.fileToUpload  = event.target.files[0];
   }
 
-   onSaveFile() {
+   async onSaveFile() {
     this.formData = new FormData();
     this.formData.append('avatar', this.fileToUpload as File);
 
-    if(this.user?.id){
+    if(this.user && this.user.id){
       this.closeDialog()
-      return this.userService.patchAvatar(this.user?.id , this.formData).subscribe()
+      return this.userService.patchAvatar(this.user.id , this.formData).subscribe(
+        next => {this.getAvatarImage(this.user?.id)}
+      )
     }
     else {
       return this.closeDialog()
@@ -178,7 +284,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.getUserByEmailSubscription?.unsubscribe();
     this.patchUserSubscription?.unsubscribe()
+    this.verifyEmailSubscription?.unsubscribe()
+    this.verifyPhoneNumberSubscription?.unsubscribe()
   }
 
-
+  goToProfile() {
+    this.isEditingPassword = false
+  }
 }

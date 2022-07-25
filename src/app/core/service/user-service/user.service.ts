@@ -18,10 +18,13 @@ export class UserService {
     return this.http.patch<User>("http://localhost:8080/api/v1/user/" + idUser, user)
   }
 
-  // Funziona soltanto se è presente nel back una custom query specifica
 
   getUserByEmail(email: string | null) : Observable<User> {
     return this.http.get<User>("http://localhost:8080/api/v1/user/email/" + email)
+  }
+
+  getUserByPhoneNumber(phoneNumber : string | null) : Observable<User> {
+    return this.http.get<User>("http://localhost:8080/api/v1/user/phoneNumber/" + phoneNumber)
   }
 
   getAllUser() : Observable<User[]> {
@@ -31,6 +34,10 @@ export class UserService {
   patchAvatar(idUser: number, formData: FormData): Observable<any>{
 
     return this.http.patch("http://localhost:8080/api/v1/user/" + idUser + "/avatar", formData)
+  }
 
+  getAvatar(idUser : number) : Observable<Blob>{
+    console.log("sono nel service")
+    return this.http.get("http://localhost:8080/api/v1/user/" + idUser + "/profileImage" ,  { responseType: 'blob' } )
   }
 }
