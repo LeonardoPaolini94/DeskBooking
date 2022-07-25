@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {Subscription} from "rxjs";
 import {UserService} from "../service/user-service/user.service";
+import {AvatarService} from "../service/avatar.service";
 
 @Component({
   selector: 'app-header',
@@ -16,12 +17,14 @@ export class HeaderComponent implements OnInit,OnDestroy{
   @Input() userByUpdate: User | undefined;
   user : User | undefined
   private getUserByEmailSubscription: Subscription;
+  private avatarSubscription : Subscription
    imageToShow: any = null;
 
   constructor(private authService : AuthService,
               private route : Router,
               private dialog : MatDialog,
-              private userService : UserService){ }
+              private userService : UserService,
+              private avatarService : AvatarService){ }
 
 
 
@@ -30,8 +33,6 @@ export class HeaderComponent implements OnInit,OnDestroy{
     let email = sessionStorage.getItem('email')
     if(email){
       this.getUserByEmail(email)
-     // this.getAvatarImage(this.user?.id)
-
     }
   }
 
@@ -41,9 +42,11 @@ export class HeaderComponent implements OnInit,OnDestroy{
 
   getUserByEmail(email : string){
     this.getUserByEmailSubscription = this.userService.getUserByEmail(email).subscribe(
-      observer => {this.user = {...observer} , sessionStorage.setItem('phoneNumber',{...observer}.phoneNumber) },
+      observer => {this.user = {...observer} , sessionStorage.setItem('phoneNumber',{...observer}.phoneNumber),
+        this.getAvatarImage(this.user?.id)},
       () => {console.log("User not found!")},
-      () => {this.getAvatarImage(this.user?.id)})
+      () => {
+        this.avatarSubscription = this.avatarService.data$.subscribe(val => this.createImage(val))})
   }
 
 
@@ -98,5 +101,6 @@ export class HeaderComponent implements OnInit,OnDestroy{
 
   ngOnDestroy(): void {
     this.getUserByEmailSubscription?.unsubscribe()
+    this.avatarSubscription?.unsubscribe()
   }
 }

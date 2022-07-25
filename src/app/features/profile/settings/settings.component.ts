@@ -6,6 +6,7 @@ import {UserService} from "../../../core/service/user-service/user.service";
 import {Subscription} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
+import {AvatarService} from "../../../core/service/avatar.service";
 
 @Component({
   selector: 'app-settings',
@@ -38,7 +39,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
 
 
-  constructor(private authService: AuthService, private userService: UserService, private afAuth: AngularFireAuth, private dialog : MatDialog) { }
+  constructor(private authService: AuthService,
+              private userService: UserService,
+              private afAuth: AngularFireAuth,
+              private dialog : MatDialog,
+              private avatarService : AvatarService) { }
 
   ngOnInit(): void {
     let email = sessionStorage.getItem('email')
@@ -77,7 +82,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
   getAvatarImage(userId : number | undefined){
     if(userId){
-      this.userService.getAvatar(userId).subscribe(image => this.createImage(image),
+      this.userService.getAvatar(userId).subscribe(image =>{
+        this.createImage(image),
+          this.avatarService.update(image)
+      },
         err => this.handleImageRetrievalError(err));
     }
 
@@ -258,13 +266,15 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.fileToUpload  = event.target.files[0];
   }
 
-   onSaveFile() {
+   async onSaveFile() {
     this.formData = new FormData();
     this.formData.append('avatar', this.fileToUpload as File);
 
-    if(this.user?.id){
+    if(this.user && this.user.id){
       this.closeDialog()
-      return this.userService.patchAvatar(this.user?.id , this.formData).subscribe()
+      return this.userService.patchAvatar(this.user.id , this.formData).subscribe(
+        next => {this.getAvatarImage(this.user?.id)}
+      )
     }
     else {
       return this.closeDialog()
