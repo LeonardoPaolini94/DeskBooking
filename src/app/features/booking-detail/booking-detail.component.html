@@ -13,14 +13,14 @@
       <div class="left-prenotation-div">
         <div class="circle-external-div">
           <div class="circle-internal-div">
-              <div class="circle-desk" *ngFor="let i of counter(booking?.room?.maxCapacity); let index = index" [ngStyle]="{'background-color': (index < booking?.room!.roomNumber) ? '#0278DB' : 'lightgray'}"></div>
+              <div class="circle-desk" *ngFor="let i of counter(booking?.roomResponseDTO?.maxCapacity); let index = index" [ngStyle]="{'background-color': (index < booking?.roomResponseDTO!.roomNumber) ? '#0278DB' : 'lightgray'}"></div>
           </div>
         </div>
       </div>
       <div class="right-prenotation-div">
         <div class="left-right-prenotation-div">
           <p class="bi bi-door-closed-fill detail-icons">
-            &nbsp;&nbsp;&nbsp;{{booking?.room?.roomNumber}}
+            &nbsp;&nbsp;&nbsp;{{booking?.roomResponseDTO?.roomNumber}}
           </p>
           <p class="bi bi-building detail-icons second-row">
             &nbsp;&nbsp;&nbsp;5° piano

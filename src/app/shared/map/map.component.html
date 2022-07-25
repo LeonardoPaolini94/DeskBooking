@@ -2,21 +2,21 @@
 
   <div class="corner">
 
-    <div [ngClass]="{'nounikey' : !roomStatusList[27].isCompanyRoom, 'unikey' : roomStatusList[27].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[27])}"
+    <div [ngClass]="{'nounikey' : !roomStatusList[27].isCompanyRoom  || !roomStatusList[27].capacity, 'unikey' : roomStatusList[27].isCompanyRoom && roomStatusList[27].capacity, 'fullBooked' : roomIsFull(roomStatusList[27])}"
          class="room-cell">
-      <a *ngIf="roomStatusList[27].isCompanyRoom && !roomIsFull(roomStatusList[27])" (click)="openDialog(dialog, roomStatusList[27])" ></a>
+      <a *ngIf="roomStatusList[27].isCompanyRoom && !roomIsFull(roomStatusList[27]) && roomStatusList[27].capacity" (click)="openDialog(dialog, roomStatusList[27])" ></a>
       <p class="room-number-corner">{{roomStatusList[27].roomNumber}}</p>
     </div>
 
-    <div [ngClass]="{'nounikey' : !roomStatusList[28].isCompanyRoom, 'unikey' : roomStatusList[28].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[28])}"
+    <div [ngClass]="{'nounikey' : !roomStatusList[28].isCompanyRoom  || !roomStatusList[28].capacity, 'unikey' : roomStatusList[28].isCompanyRoom && roomStatusList[28].capacity, 'fullBooked' : roomIsFull(roomStatusList[28])}"
          class="room-cell">
-      <a *ngIf="roomStatusList[28].isCompanyRoom && !roomIsFull(roomStatusList[28])" (click)="openDialog(dialog, roomStatusList[28])" ></a>
+      <a *ngIf="roomStatusList[28].isCompanyRoom && !roomIsFull(roomStatusList[28]) && roomStatusList[28].capacity" (click)="openDialog(dialog, roomStatusList[28])" ></a>
       <p class="room-number-corner">{{roomStatusList[28].roomNumber}}</p>
     </div>
 
-    <div [ngClass]="{'nounikey' : !roomStatusList[26].isCompanyRoom, 'unikey' : roomStatusList[26].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[26])}"
+    <div [ngClass]="{'nounikey' : !roomStatusList[26].isCompanyRoom  || !roomStatusList[26].capacity, 'unikey' : roomStatusList[26].isCompanyRoom && roomStatusList[26].capacity, 'fullBooked' : roomIsFull(roomStatusList[26])}"
          class="room-cell">
-      <a *ngIf="roomStatusList[26].isCompanyRoom && !roomIsFull(roomStatusList[26])" (click)="openDialog(dialog, roomStatusList[26])" ></a>
+      <a *ngIf="roomStatusList[26].isCompanyRoom && !roomIsFull(roomStatusList[26]) && roomStatusList[26].capacity" (click)="openDialog(dialog, roomStatusList[26])" ></a>
       <p class="room-number-corner">{{roomStatusList[26].roomNumber}}</p>
     </div>
 
@@ -24,172 +24,172 @@
 
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[29].isCompanyRoom, 'unikey' : roomStatusList[29].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[29])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[29].isCompanyRoom  || !roomStatusList[29].capacity, 'unikey' : roomStatusList[29].isCompanyRoom && roomStatusList[29].capacity, 'fullBooked' : roomIsFull(roomStatusList[29])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[29].isCompanyRoom && !roomIsFull(roomStatusList[29])" (click)="openDialog(dialog, roomStatusList[29])" ></a>
-    <p *ngIf="roomStatusList[29].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[29]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[29].isCompanyRoom && !roomIsFull(roomStatusList[29]) && roomStatusList[29].capacity" (click)="openDialog(dialog, roomStatusList[29])" ></a>
+    <p *ngIf="roomStatusList[29].isCompanyRoom && roomStatusList[29].capacity" [ngClass]="roomIsFull(roomStatusList[29]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[29].roomNumber}}</p>
-    <p *ngIf="roomStatusList[29].capacity != 0" class="room-capacity">{{roomStatusList[29].nbooking}} / {{roomStatusList[29].capacity}}</p>
+    <p *ngIf="roomStatusList[29].capacity" class="room-capacity">{{roomStatusList[29].numBooking}} / {{roomStatusList[29].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[30].isCompanyRoom, 'unikey' : roomStatusList[30].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[30])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[30].isCompanyRoom  || !roomStatusList[30].capacity, 'unikey' : roomStatusList[30].isCompanyRoom && roomStatusList[30].capacity, 'fullBooked' : roomIsFull(roomStatusList[30])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[30].isCompanyRoom && !roomIsFull(roomStatusList[30])" (click)="openDialog(dialog, roomStatusList[30])" ></a>
-    <p *ngIf="roomStatusList[30].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[30]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[30].isCompanyRoom && !roomIsFull(roomStatusList[30]) && roomStatusList[30].capacity" (click)="openDialog(dialog, roomStatusList[30])" ></a>
+    <p *ngIf="roomStatusList[30].isCompanyRoom && roomStatusList[30].capacity" [ngClass]="roomIsFull(roomStatusList[30]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[30].roomNumber}}</p>
-    <p *ngIf="roomStatusList[30].capacity != 0" class="room-capacity">{{roomStatusList[30].nbooking}} / {{roomStatusList[30].capacity}}</p>
+    <p *ngIf="roomStatusList[30].capacity" class="room-capacity">{{roomStatusList[30].numBooking}} / {{roomStatusList[30].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[31].isCompanyRoom, 'unikey' : roomStatusList[31].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[31])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[31].isCompanyRoom  || !roomStatusList[31].capacity, 'unikey' : roomStatusList[31].isCompanyRoom && roomStatusList[31].capacity, 'fullBooked' : roomIsFull(roomStatusList[31])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[31].isCompanyRoom && !roomIsFull(roomStatusList[31])" (click)="openDialog(dialog, roomStatusList[31])" ></a>
-    <p *ngIf="roomStatusList[31].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[31]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[31].isCompanyRoom && !roomIsFull(roomStatusList[31]) && roomStatusList[31].capacity" (click)="openDialog(dialog, roomStatusList[31])" ></a>
+    <p *ngIf="roomStatusList[31].isCompanyRoom && roomStatusList[31].capacity" [ngClass]="roomIsFull(roomStatusList[31]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[31].roomNumber}}</p>
-    <p *ngIf="roomStatusList[31].capacity != 0" class="room-capacity">{{roomStatusList[31].nbooking}} / {{roomStatusList[31].capacity}}</p>
+    <p *ngIf="roomStatusList[31].capacity" class="room-capacity">{{roomStatusList[31].numBooking}} / {{roomStatusList[31].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[32].isCompanyRoom, 'unikey' : roomStatusList[32].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[32])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[32].isCompanyRoom  || !roomStatusList[32].capacity, 'unikey' : roomStatusList[32].isCompanyRoom && roomStatusList[32].capacity, 'fullBooked' : roomIsFull(roomStatusList[32])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[32].isCompanyRoom && !roomIsFull(roomStatusList[32])" (click)="openDialog(dialog, roomStatusList[32])" ></a>
-    <p *ngIf="roomStatusList[32].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[32]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[32].isCompanyRoom && !roomIsFull(roomStatusList[32]) && roomStatusList[32].capacity" (click)="openDialog(dialog, roomStatusList[32])" ></a>
+    <p *ngIf="roomStatusList[32].isCompanyRoom && roomStatusList[32].capacity" [ngClass]="roomIsFull(roomStatusList[32]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[32].roomNumber}}</p>
-    <p *ngIf="roomStatusList[32].capacity != 0" class="room-capacity">{{roomStatusList[32].nbooking}} / {{roomStatusList[32].capacity}}</p>
+    <p *ngIf="roomStatusList[32].capacity" class="room-capacity">{{roomStatusList[32].numBooking}} / {{roomStatusList[32].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[33].isCompanyRoom, 'unikey' : roomStatusList[33].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[33])}"
-    class="room-cell">
-    <a *ngIf="roomStatusList[33].isCompanyRoom && !roomIsFull(roomStatusList[33])" (click)="openDialog(dialog, roomStatusList[33])" ></a>
-    <p *ngIf="roomStatusList[33].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[33]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+  <div [ngClass]="{'nounikey' : !roomStatusList[33].isCompanyRoom  || !roomStatusList[33].capacity, 'unikey' : roomStatusList[36].isCompanyRoom && roomStatusList[33].capacity, 'fullBooked' : roomIsFull(roomStatusList[33])}"
+       class="room-cell">
+    <a *ngIf="roomStatusList[33].isCompanyRoom && !roomIsFull(roomStatusList[33]) && roomStatusList[33].capacity" (click)="openDialog(dialog, roomStatusList[33])" ></a>
+    <p *ngIf="roomStatusList[33].isCompanyRoom && roomStatusList[33].capacity" [ngClass]="roomIsFull(roomStatusList[33]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[33].roomNumber}}</p>
-    <p *ngIf="roomStatusList[33].capacity != 0" class="room-capacity">{{roomStatusList[33].nbooking}} / {{roomStatusList[33].capacity}}</p>
+    <p *ngIf="roomStatusList[33].capacity" class="room-capacity">{{roomStatusList[33].numBooking}} / {{roomStatusList[33].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[34].isCompanyRoom, 'unikey' : roomStatusList[34].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[34])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[34].isCompanyRoom  || !roomStatusList[34].capacity, 'unikey' : roomStatusList[34].isCompanyRoom && roomStatusList[34].capacity, 'fullBooked' : roomIsFull(roomStatusList[34])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[34].isCompanyRoom && !roomIsFull(roomStatusList[34])" (click)="openDialog(dialog, roomStatusList[34])" ></a>
-    <p *ngIf="roomStatusList[34].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[34]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[34].isCompanyRoom && !roomIsFull(roomStatusList[34]) && roomStatusList[34].capacity" (click)="openDialog(dialog, roomStatusList[34])" ></a>
+    <p *ngIf="roomStatusList[34].isCompanyRoom && roomStatusList[34].capacity" [ngClass]="roomIsFull(roomStatusList[34]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[34].roomNumber}}</p>
-    <p *ngIf="roomStatusList[34].capacity != 0" class="room-capacity">{{roomStatusList[34].nbooking}} / {{roomStatusList[34].capacity}}</p>
+    <p *ngIf="roomStatusList[34].capacity" class="room-capacity">{{roomStatusList[34].numBooking}} / {{roomStatusList[34].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[35].isCompanyRoom, 'unikey' : roomStatusList[35].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[35])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[35].isCompanyRoom  || !roomStatusList[35].capacity, 'unikey' : roomStatusList[35].isCompanyRoom && roomStatusList[35].capacity, 'fullBooked' : roomIsFull(roomStatusList[35])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[35].isCompanyRoom && !roomIsFull(roomStatusList[35])" (click)="openDialog(dialog, roomStatusList[35])" ></a>
-    <p *ngIf="roomStatusList[35].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[35]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[35].isCompanyRoom && !roomIsFull(roomStatusList[35]) && roomStatusList[35].capacity" (click)="openDialog(dialog, roomStatusList[35])" ></a>
+    <p *ngIf="roomStatusList[35].isCompanyRoom && roomStatusList[35].capacity" [ngClass]="roomIsFull(roomStatusList[35]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[35].roomNumber}}</p>
-    <p *ngIf="roomStatusList[35].capacity != 0" class="room-capacity">{{roomStatusList[35].nbooking}} / {{roomStatusList[35].capacity}}</p>
+    <p *ngIf="roomStatusList[35].capacity" class="room-capacity">{{roomStatusList[35].numBooking}} / {{roomStatusList[35].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[36].isCompanyRoom, 'unikey' : roomStatusList[36].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[36])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[36].isCompanyRoom  || !roomStatusList[36].capacity, 'unikey' : roomStatusList[36].isCompanyRoom && roomStatusList[36].capacity, 'fullBooked' : roomIsFull(roomStatusList[36])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[36].isCompanyRoom && !roomIsFull(roomStatusList[36])" (click)="openDialog(dialog, roomStatusList[36])" ></a>
-    <p *ngIf="roomStatusList[36].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[36]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[36].isCompanyRoom && !roomIsFull(roomStatusList[36]) && roomStatusList[36].capacity" (click)="openDialog(dialog, roomStatusList[36])" ></a>
+    <p *ngIf="roomStatusList[36].isCompanyRoom && roomStatusList[36].capacity" [ngClass]="roomIsFull(roomStatusList[36]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[36].roomNumber}}</p>
-    <p *ngIf="roomStatusList[36].capacity != 0" class="room-capacity">{{roomStatusList[36].nbooking}} / {{roomStatusList[36].capacity}}</p>
+    <p *ngIf="roomStatusList[36].capacity" class="room-capacity">{{roomStatusList[36].numBooking}} / {{roomStatusList[36].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[37].isCompanyRoom, 'unikey' : roomStatusList[37].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[37])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[37].isCompanyRoom  || !roomStatusList[37].capacity, 'unikey' : roomStatusList[37].isCompanyRoom && roomStatusList[37].capacity, 'fullBooked' : roomIsFull(roomStatusList[37])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[37].isCompanyRoom && !roomIsFull(roomStatusList[37])" (click)="openDialog(dialog, roomStatusList[37])" ></a>
-    <p *ngIf="roomStatusList[37].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[37]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[37].isCompanyRoom && !roomIsFull(roomStatusList[37]) && roomStatusList[37].capacity" (click)="openDialog(dialog, roomStatusList[37])" ></a>
+    <p *ngIf="roomStatusList[37].isCompanyRoom && roomStatusList[37].capacity" [ngClass]="roomIsFull(roomStatusList[37]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[37].roomNumber}}</p>
-    <p *ngIf="roomStatusList[37].capacity != 0" class="room-capacity">{{roomStatusList[37].nbooking}} / {{roomStatusList[37].capacity}}</p>
+    <p *ngIf="roomStatusList[37].capacity" class="room-capacity">{{roomStatusList[37].numBooking}} / {{roomStatusList[37].capacity}}</p>
   </div>
 
   <div class="corner">
 
-    <div [ngClass]="{'nounikey' : !roomStatusList[0].isCompanyRoom, 'unikey' : roomStatusList[0].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[0])}"
+    <div [ngClass]="{'nounikey' : !roomStatusList[0].isCompanyRoom  || !roomStatusList[0].capacity, 'unikey' : roomStatusList[0].isCompanyRoom && roomStatusList[0].capacity, 'fullBooked' : roomIsFull(roomStatusList[0])}"
          class="room-cell">
-      <a *ngIf="roomStatusList[0].isCompanyRoom && !roomIsFull(roomStatusList[0])" (click)="openDialog(dialog, roomStatusList[0])" ></a>
+      <a *ngIf="roomStatusList[0].isCompanyRoom && !roomIsFull(roomStatusList[0]) && roomStatusList[0].capacity" (click)="openDialog(dialog, roomStatusList[0])" ></a>
       <p class="room-number-corner">{{roomStatusList[0].roomNumber}}</p>
     </div>
 
-    <div [ngClass]="{'nounikey' : !roomStatusList[1].isCompanyRoom, 'unikey' : roomStatusList[1].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[1])}"
+    <div [ngClass]="{'nounikey' : !roomStatusList[1].isCompanyRoom  || !roomStatusList[1].capacity, 'unikey' : roomStatusList[1].isCompanyRoom && roomStatusList[1].capacity, 'fullBooked' : roomIsFull(roomStatusList[1])}"
          class="room-cell">
-      <a *ngIf="roomStatusList[1].isCompanyRoom && !roomIsFull(roomStatusList[1])" (click)="openDialog(dialog, roomStatusList[1])" ></a>
+      <a *ngIf="roomStatusList[1].isCompanyRoom && !roomIsFull(roomStatusList[1]) && roomStatusList[1].capacity" (click)="openDialog(dialog, roomStatusList[1])" ></a>
       <p class="room-number-corner">{{roomStatusList[1].roomNumber}}</p>
     </div>
 
     <div></div>
 
-    <div [ngClass]="{'nounikey' : !roomStatusList[2].isCompanyRoom, 'unikey' : roomStatusList[2].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[2])}"
+    <div [ngClass]="{'nounikey' : !roomStatusList[2].isCompanyRoom  || !roomStatusList[2].capacity, 'unikey' : roomStatusList[2].isCompanyRoom && roomStatusList[2].capacity, 'fullBooked' : roomIsFull(roomStatusList[2])}"
          class="room-cell">
-      <a *ngIf="roomStatusList[2].isCompanyRoom && !roomIsFull(roomStatusList[2])" (click)="openDialog(dialog, roomStatusList[2])" ></a>
+      <a *ngIf="roomStatusList[2].isCompanyRoom && !roomIsFull(roomStatusList[2]) && roomStatusList[2].capacity" (click)="openDialog(dialog, roomStatusList[2])" ></a>
       <p class="room-number-corner">{{roomStatusList[2].roomNumber}}</p>
     </div>
 
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[25].isCompanyRoom, 'unikey' : roomStatusList[25].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[25])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[25].isCompanyRoom  || !roomStatusList[25].capacity, 'unikey' : roomStatusList[25].isCompanyRoom && roomStatusList[25].capacity, 'fullBooked' : roomIsFull(roomStatusList[25])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[25].isCompanyRoom && !roomIsFull(roomStatusList[25])" (click)="openDialog(dialog, roomStatusList[25])" ></a>
-    <p *ngIf="roomStatusList[25].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[25]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[25].isCompanyRoom && !roomIsFull(roomStatusList[25]) && roomStatusList[25].capacity" (click)="openDialog(dialog, roomStatusList[25])" ></a>
+    <p *ngIf="roomStatusList[25].isCompanyRoom && roomStatusList[25].capacity" [ngClass]="roomIsFull(roomStatusList[25]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[25].roomNumber}}</p>
-    <p *ngIf="roomStatusList[25].capacity != 0" class="room-capacity">{{roomStatusList[25].nbooking}} / {{roomStatusList[25].capacity}}</p>
+    <p *ngIf="roomStatusList[25].capacity" class="room-capacity">{{roomStatusList[25].numBooking}} / {{roomStatusList[25].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[3].isCompanyRoom, 'unikey' : roomStatusList[3].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[3])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[3].isCompanyRoom  || !roomStatusList[3].capacity, 'unikey' : roomStatusList[3].isCompanyRoom && roomStatusList[3].capacity, 'fullBooked' : roomIsFull(roomStatusList[3])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[3].isCompanyRoom && !roomIsFull(roomStatusList[3])" (click)="openDialog(dialog, roomStatusList[3])" ></a>
-    <p *ngIf="roomStatusList[3].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[3]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[3].isCompanyRoom && !roomIsFull(roomStatusList[3]) && roomStatusList[3].capacity" (click)="openDialog(dialog, roomStatusList[3])" ></a>
+    <p *ngIf="roomStatusList[3].isCompanyRoom && roomStatusList[3].capacity" [ngClass]="roomIsFull(roomStatusList[3]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[3].roomNumber}}</p>
-    <p *ngIf="roomStatusList[3].capacity != 0" class="room-capacity">{{roomStatusList[3].nbooking}} / {{roomStatusList[3].capacity}}</p>
+    <p *ngIf="roomStatusList[3].capacity" class="room-capacity">{{roomStatusList[3].numBooking}} / {{roomStatusList[3].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[24].isCompanyRoom, 'unikey' : roomStatusList[24].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[24])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[24].isCompanyRoom  || !roomStatusList[24].capacity, 'unikey' : roomStatusList[24].isCompanyRoom && roomStatusList[24].capacity, 'fullBooked' : roomIsFull(roomStatusList[24])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[24].isCompanyRoom && !roomIsFull(roomStatusList[24])" (click)="openDialog(dialog, roomStatusList[24])" ></a>
-    <p *ngIf="roomStatusList[24].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[24]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[24].isCompanyRoom && !roomIsFull(roomStatusList[24]) && roomStatusList[24].capacity" (click)="openDialog(dialog, roomStatusList[24])" ></a>
+    <p *ngIf="roomStatusList[24].isCompanyRoom && roomStatusList[24].capacity" [ngClass]="roomIsFull(roomStatusList[24]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[24].roomNumber}}</p>
-    <p *ngIf="roomStatusList[24].capacity != 0" class="room-capacity">{{roomStatusList[24].nbooking}} / {{roomStatusList[24].capacity}}</p>
+    <p *ngIf="roomStatusList[24].capacity" class="room-capacity">{{roomStatusList[24].numBooking}} / {{roomStatusList[24].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[4].isCompanyRoom, 'unikey' : roomStatusList[4].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[4])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[4].isCompanyRoom  || !roomStatusList[4].capacity, 'unikey' : roomStatusList[4].isCompanyRoom && roomStatusList[4].capacity, 'fullBooked' : roomIsFull(roomStatusList[4])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[4].isCompanyRoom && !roomIsFull(roomStatusList[4])" (click)="openDialog(dialog, roomStatusList[4])" ></a>
-    <p *ngIf="roomStatusList[4].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[4]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[4].isCompanyRoom && !roomIsFull(roomStatusList[4]) && roomStatusList[4].capacity" (click)="openDialog(dialog, roomStatusList[4])" ></a>
+    <p *ngIf="roomStatusList[4].isCompanyRoom && roomStatusList[4].capacity" [ngClass]="roomIsFull(roomStatusList[4]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[4].roomNumber}}</p>
-    <p *ngIf="roomStatusList[4].capacity != 0" class="room-capacity">{{roomStatusList[4].nbooking}} / {{roomStatusList[4].capacity}}</p>
+    <p *ngIf="roomStatusList[4].capacity" class="room-capacity">{{roomStatusList[4].numBooking}} / {{roomStatusList[4].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[23].isCompanyRoom, 'unikey' : roomStatusList[23].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[23])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[23].isCompanyRoom  || !roomStatusList[23].capacity, 'unikey' : roomStatusList[23].isCompanyRoom && roomStatusList[23].capacity, 'fullBooked' : roomIsFull(roomStatusList[23])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[23].isCompanyRoom && !roomIsFull(roomStatusList[23])" (click)="openDialog(dialog, roomStatusList[23])" ></a>
-    <p *ngIf="roomStatusList[23].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[23]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[23].isCompanyRoom && !roomIsFull(roomStatusList[23]) && roomStatusList[23].capacity" (click)="openDialog(dialog, roomStatusList[23])" ></a>
+    <p *ngIf="roomStatusList[23].isCompanyRoom && roomStatusList[23].capacity" [ngClass]="roomIsFull(roomStatusList[23]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[23].roomNumber}}</p>
-    <p *ngIf="roomStatusList[23].capacity != 0" class="room-capacity">{{roomStatusList[23].nbooking}} / {{roomStatusList[23].capacity}}</p>
+    <p *ngIf="roomStatusList[23].capacity" class="room-capacity">{{roomStatusList[23].numBooking}} / {{roomStatusList[23].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[5].isCompanyRoom, 'unikey' : roomStatusList[5].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[5])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[5].isCompanyRoom  || !roomStatusList[5].capacity, 'unikey' : roomStatusList[5].isCompanyRoom && roomStatusList[5].capacity, 'fullBooked' : roomIsFull(roomStatusList[5])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[5].isCompanyRoom && !roomIsFull(roomStatusList[5])" (click)="openDialog(dialog, roomStatusList[5])" ></a>
-    <p *ngIf="roomStatusList[5].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[5]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[5].isCompanyRoom && !roomIsFull(roomStatusList[5]) && roomStatusList[5].capacity" (click)="openDialog(dialog, roomStatusList[5])" ></a>
+    <p *ngIf="roomStatusList[5].isCompanyRoom && roomStatusList[5].capacity" [ngClass]="roomIsFull(roomStatusList[5]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[5].roomNumber}}</p>
-    <p *ngIf="roomStatusList[5].capacity != 0" class="room-capacity">{{roomStatusList[5].nbooking}} / {{roomStatusList[5].capacity}}</p>
+    <p *ngIf="roomStatusList[5].capacity" class="room-capacity">{{roomStatusList[5].numBooking}} / {{roomStatusList[5].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[22].isCompanyRoom, 'unikey' : roomStatusList[22].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[22])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[22].isCompanyRoom  || !roomStatusList[22].capacity, 'unikey' : roomStatusList[22].isCompanyRoom && roomStatusList[22].capacity, 'fullBooked' : roomIsFull(roomStatusList[22])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[22].isCompanyRoom && !roomIsFull(roomStatusList[22])" (click)="openDialog(dialog, roomStatusList[22])" ></a>
-    <p *ngIf="roomStatusList[22].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[22]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[22].isCompanyRoom && !roomIsFull(roomStatusList[22]) && roomStatusList[22].capacity" (click)="openDialog(dialog, roomStatusList[22])" ></a>
+    <p *ngIf="roomStatusList[22].isCompanyRoom && roomStatusList[22].capacity" [ngClass]="roomIsFull(roomStatusList[22]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[22].roomNumber}}</p>
-    <p *ngIf="roomStatusList[22].capacity != 0" class="room-capacity">{{roomStatusList[22].nbooking}} / {{roomStatusList[22].capacity}}</p>
+    <p *ngIf="roomStatusList[22].capacity" class="room-capacity">{{roomStatusList[22].numBooking}} / {{roomStatusList[22].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[6].isCompanyRoom, 'unikey' : roomStatusList[6].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[6])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[6].isCompanyRoom  || !roomStatusList[6].capacity, 'unikey' : roomStatusList[6].isCompanyRoom && roomStatusList[6].capacity, 'fullBooked' : roomIsFull(roomStatusList[6])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[6].isCompanyRoom && !roomIsFull(roomStatusList[6])" (click)="openDialog(dialog, roomStatusList[6])" ></a>
-    <p *ngIf="roomStatusList[6].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[6]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[6].isCompanyRoom && !roomIsFull(roomStatusList[6]) && roomStatusList[6].capacity" (click)="openDialog(dialog, roomStatusList[6])" ></a>
+    <p *ngIf="roomStatusList[6].isCompanyRoom && roomStatusList[6].capacity" [ngClass]="roomIsFull(roomStatusList[6]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[6].roomNumber}}</p>
-    <p *ngIf="roomStatusList[6].capacity != 0" class="room-capacity">{{roomStatusList[6].nbooking}} / {{roomStatusList[6].capacity}}</p>
+    <p *ngIf="roomStatusList[6].capacity" class="room-capacity">{{roomStatusList[6].numBooking}} / {{roomStatusList[6].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[21].isCompanyRoom, 'unikey' : roomStatusList[21].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[21])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[21].isCompanyRoom  || !roomStatusList[21].capacity, 'unikey' : roomStatusList[21].isCompanyRoom && roomStatusList[21].capacity, 'fullBooked' : roomIsFull(roomStatusList[21])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[21].isCompanyRoom && !roomIsFull(roomStatusList[21])" (click)="openDialog(dialog, roomStatusList[21])" ></a>
-    <p *ngIf="roomStatusList[21].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[21]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[21].isCompanyRoom && !roomIsFull(roomStatusList[21]) && roomStatusList[21].capacity" (click)="openDialog(dialog, roomStatusList[21])" ></a>
+    <p *ngIf="roomStatusList[21].isCompanyRoom && roomStatusList[21].capacity" [ngClass]="roomIsFull(roomStatusList[21]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[21].roomNumber}}</p>
-    <p *ngIf="roomStatusList[21].capacity != 0" class="room-capacity">{{roomStatusList[21].nbooking}} / {{roomStatusList[21].capacity}}</p>
+    <p *ngIf="roomStatusList[21].capacity" class="room-capacity">{{roomStatusList[21].numBooking}} / {{roomStatusList[21].capacity}}</p>
   </div>
 
   <div class="stairs">
@@ -197,110 +197,111 @@
   </div>
   <div class="corner">
 
-    <div [ngClass]="{'nounikey' : !roomStatusList[20].isCompanyRoom, 'unikey' : roomStatusList[20].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[20])}"
+    <div [ngClass]="{'nounikey' : !roomStatusList[20].isCompanyRoom  || !roomStatusList[20].capacity, 'unikey' : roomStatusList[20].isCompanyRoom && roomStatusList[20].capacity, 'fullBooked' : roomIsFull(roomStatusList[20])}"
          class="room-cell">
-      <a *ngIf="roomStatusList[20].isCompanyRoom && !roomIsFull(roomStatusList[20])" (click)="openDialog(dialog, roomStatusList[20])" ></a>
+      <a *ngIf="roomStatusList[20].isCompanyRoom && !roomIsFull(roomStatusList[20]) && roomStatusList[20].capacity" (click)="openDialog(dialog, roomStatusList[20])" ></a>
       <p class="room-number-corner">{{roomStatusList[20].roomNumber}}</p>
     </div>
 
     <div></div>
 
-    <div [ngClass]="{'nounikey' : !roomStatusList[19].isCompanyRoom, 'unikey' : roomStatusList[19].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[19])}"
+    <div [ngClass]="{'nounikey' : !roomStatusList[19].isCompanyRoom  || !roomStatusList[19].capacity, 'unikey' : roomStatusList[19].isCompanyRoom && roomStatusList[19].capacity, 'fullBooked' : roomIsFull(roomStatusList[19])}"
          class="room-cell">
-      <a *ngIf="roomStatusList[19].isCompanyRoom && !roomIsFull(roomStatusList[19])" (click)="openDialog(dialog, roomStatusList[19])" ></a>
+      <a *ngIf="roomStatusList[19].isCompanyRoom && !roomIsFull(roomStatusList[19]) && roomStatusList[19].capacity" (click)="openDialog(dialog, roomStatusList[19])" ></a>
       <p class="room-number-corner">{{roomStatusList[19].roomNumber}}</p>
     </div>
 
-    <div [ngClass]="{'nounikey' : !roomStatusList[18].isCompanyRoom, 'unikey' : roomStatusList[18].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[18])}"
+    <div [ngClass]="{'nounikey' : !roomStatusList[18].isCompanyRoom  || !roomStatusList[18].capacity, 'unikey' : roomStatusList[18].isCompanyRoom && roomStatusList[18].capacity, 'fullBooked' : roomIsFull(roomStatusList[18])}"
          class="room-cell">
-      <a *ngIf="roomStatusList[18].isCompanyRoom && !roomIsFull(roomStatusList[18])" (click)="openDialog(dialog, roomStatusList[18])" ></a>
+      <a *ngIf="roomStatusList[18].isCompanyRoom && !roomIsFull(roomStatusList[18]) && roomStatusList[18].capacity" (click)="openDialog(dialog, roomStatusList[18])" ></a>
       <p class="room-number-corner">{{roomStatusList[18].roomNumber}}</p>
     </div>
 
   </div>
-  <div [ngClass]="{'nounikey' : !roomStatusList[17].isCompanyRoom, 'unikey' : roomStatusList[17].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[17])}"
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[17].isCompanyRoom  || !roomStatusList[17].capacity, 'unikey' : roomStatusList[17].isCompanyRoom && roomStatusList[17].capacity, 'fullBooked' : roomIsFull(roomStatusList[17])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[17].isCompanyRoom && !roomIsFull(roomStatusList[17])" (click)="openDialog(dialog, roomStatusList[17])" ></a>
-    <p *ngIf="roomStatusList[17].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[17]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[17].isCompanyRoom && !roomIsFull(roomStatusList[17]) && roomStatusList[17].capacity" (click)="openDialog(dialog, roomStatusList[17])" ></a>
+    <p *ngIf="roomStatusList[17].isCompanyRoom && roomStatusList[17].capacity" [ngClass]="roomIsFull(roomStatusList[17]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[17].roomNumber}}</p>
-    <p *ngIf="roomStatusList[17].capacity != 0" class="room-capacity">{{roomStatusList[17].nbooking}} / {{roomStatusList[17].capacity}}</p>
+    <p *ngIf="roomStatusList[17].capacity" class="room-capacity">{{roomStatusList[17].numBooking}} / {{roomStatusList[17].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[16].isCompanyRoom, 'unikey' : roomStatusList[16].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[16])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[16].isCompanyRoom  || !roomStatusList[16].capacity, 'unikey' : roomStatusList[16].isCompanyRoom && roomStatusList[16].capacity, 'fullBooked' : roomIsFull(roomStatusList[16])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[16].isCompanyRoom && !roomIsFull(roomStatusList[16])" (click)="openDialog(dialog, roomStatusList[16])" ></a>
-    <p *ngIf="roomStatusList[16].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[16]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[16].isCompanyRoom && !roomIsFull(roomStatusList[16]) && roomStatusList[16].capacity" (click)="openDialog(dialog, roomStatusList[16])" ></a>
+    <p *ngIf="roomStatusList[16].isCompanyRoom && roomStatusList[16].capacity" [ngClass]="roomIsFull(roomStatusList[16]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[16].roomNumber}}</p>
-    <p *ngIf="roomStatusList[16].capacity != 0" class="room-capacity">{{roomStatusList[16].nbooking}} / {{roomStatusList[16].capacity}}</p>
+    <p *ngIf="roomStatusList[16].capacity" class="room-capacity">{{roomStatusList[16].numBooking}} / {{roomStatusList[16].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[15].isCompanyRoom, 'unikey' : roomStatusList[15].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[15])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[15].isCompanyRoom  || !roomStatusList[15].capacity, 'unikey' : roomStatusList[15].isCompanyRoom && roomStatusList[15].capacity, 'fullBooked' : roomIsFull(roomStatusList[15])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[15].isCompanyRoom && !roomIsFull(roomStatusList[15])" (click)="openDialog(dialog, roomStatusList[15])" ></a>
-    <p *ngIf="roomStatusList[15].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[15]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[15].isCompanyRoom && !roomIsFull(roomStatusList[15]) && roomStatusList[15].capacity" (click)="openDialog(dialog, roomStatusList[15])" ></a>
+    <p *ngIf="roomStatusList[15].isCompanyRoom && roomStatusList[15].capacity" [ngClass]="roomIsFull(roomStatusList[15]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[15].roomNumber}}</p>
-    <p *ngIf="roomStatusList[15].capacity != 0" class="room-capacity">{{roomStatusList[15].nbooking}} / {{roomStatusList[15].capacity}}</p>
+    <p *ngIf="roomStatusList[15].capacity" class="room-capacity">{{roomStatusList[15].numBooking}} / {{roomStatusList[15].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[14].isCompanyRoom, 'unikey' : roomStatusList[14].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[14])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[14].isCompanyRoom  || !roomStatusList[14].capacity, 'unikey' : roomStatusList[14].isCompanyRoom && roomStatusList[14].capacity, 'fullBooked' : roomIsFull(roomStatusList[14])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[14].isCompanyRoom && !roomIsFull(roomStatusList[14])" (click)="openDialog(dialog, roomStatusList[14])" ></a>
-    <p *ngIf="roomStatusList[14].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[14]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[14].isCompanyRoom && !roomIsFull(roomStatusList[14]) && roomStatusList[14].capacity" (click)="openDialog(dialog, roomStatusList[14])" ></a>
+    <p *ngIf="roomStatusList[14].isCompanyRoom && roomStatusList[14].capacity" [ngClass]="roomIsFull(roomStatusList[14]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[14].roomNumber}}</p>
-    <p *ngIf="roomStatusList[14].capacity != 0" class="room-capacity">{{roomStatusList[14].nbooking}} / {{roomStatusList[14].capacity}}</p>
+    <p *ngIf="roomStatusList[14].capacity" class="room-capacity">{{roomStatusList[14].numBooking}} / {{roomStatusList[14].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[13].isCompanyRoom, 'unikey' : roomStatusList[13].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[13])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[13].isCompanyRoom  || !roomStatusList[13].capacity, 'unikey' : roomStatusList[13].isCompanyRoom && roomStatusList[13].capacity, 'fullBooked' : roomIsFull(roomStatusList[13])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[13].isCompanyRoom && !roomIsFull(roomStatusList[13])" (click)="openDialog(dialog, roomStatusList[13])" ></a>
-    <p *ngIf="roomStatusList[13].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[13]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[13].isCompanyRoom && !roomIsFull(roomStatusList[13]) && roomStatusList[13].capacity" (click)="openDialog(dialog, roomStatusList[13])" ></a>
+    <p *ngIf="roomStatusList[13].isCompanyRoom && roomStatusList[13].capacity" [ngClass]="roomIsFull(roomStatusList[13]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[13].roomNumber}}</p>
-    <p *ngIf="roomStatusList[13].capacity != 0" class="room-capacity">{{roomStatusList[13].nbooking}} / {{roomStatusList[13].capacity}}</p>
+    <p *ngIf="roomStatusList[13].capacity" class="room-capacity">{{roomStatusList[13].numBooking}} / {{roomStatusList[13].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[12].isCompanyRoom, 'unikey' : roomStatusList[12].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[12])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[12].isCompanyRoom  || !roomStatusList[12].capacity, 'unikey' : roomStatusList[12].isCompanyRoom && roomStatusList[12].capacity, 'fullBooked' : roomIsFull(roomStatusList[12])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[12].isCompanyRoom && !roomIsFull(roomStatusList[12])" (click)="openDialog(dialog, roomStatusList[12])" ></a>
-    <p *ngIf="roomStatusList[12].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[12]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[12].isCompanyRoom && !roomIsFull(roomStatusList[12]) && roomStatusList[12].capacity" (click)="openDialog(dialog, roomStatusList[12])" ></a>
+    <p *ngIf="roomStatusList[12].isCompanyRoom && roomStatusList[12].capacity" [ngClass]="roomIsFull(roomStatusList[12]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[12].roomNumber}}</p>
-    <p *ngIf="roomStatusList[12].capacity != 0" class="room-capacity">{{roomStatusList[12].nbooking}} / {{roomStatusList[12].capacity}}</p>
+    <p *ngIf="roomStatusList[12].capacity" class="room-capacity">{{roomStatusList[12].numBooking}} / {{roomStatusList[12].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[11].isCompanyRoom, 'unikey' : roomStatusList[11].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[11])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[11].isCompanyRoom  || !roomStatusList[11].capacity, 'unikey' : roomStatusList[11].isCompanyRoom && roomStatusList[11].capacity, 'fullBooked' : roomIsFull(roomStatusList[11])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[11].isCompanyRoom && !roomIsFull(roomStatusList[11])" (click)="openDialog(dialog, roomStatusList[11])" ></a>
-    <p *ngIf="roomStatusList[11].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[11]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[11].isCompanyRoom && !roomIsFull(roomStatusList[11]) && roomStatusList[11].capacity" (click)="openDialog(dialog, roomStatusList[11])" ></a>
+    <p *ngIf="roomStatusList[11].isCompanyRoom && roomStatusList[11].capacity" [ngClass]="roomIsFull(roomStatusList[11]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[11].roomNumber}}</p>
-    <p *ngIf="roomStatusList[11].capacity != 0" class="room-capacity">{{roomStatusList[11].nbooking}} / {{roomStatusList[11].capacity}}</p>
+    <p *ngIf="roomStatusList[11].capacity" class="room-capacity">{{roomStatusList[11].numBooking}} / {{roomStatusList[11].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[10].isCompanyRoom, 'unikey' : roomStatusList[10].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[10])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[10].isCompanyRoom  || !roomStatusList[10].capacity, 'unikey' : roomStatusList[10].isCompanyRoom && roomStatusList[10].capacity, 'fullBooked' : roomIsFull(roomStatusList[10])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[10].isCompanyRoom && !roomIsFull(roomStatusList[10])" (click)="openDialog(dialog, roomStatusList[10])" ></a>
-    <p *ngIf="roomStatusList[10].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[10]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[10].isCompanyRoom && !roomIsFull(roomStatusList[10]) && roomStatusList[10].capacity" (click)="openDialog(dialog, roomStatusList[10])" ></a>
+    <p *ngIf="roomStatusList[10].isCompanyRoom && roomStatusList[10].capacity" [ngClass]="roomIsFull(roomStatusList[10]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[10].roomNumber}}</p>
-    <p *ngIf="roomStatusList[10].capacity != 0" class="room-capacity">{{roomStatusList[10].nbooking}} / {{roomStatusList[10].capacity}}</p>
+    <p *ngIf="roomStatusList[10].capacity" class="room-capacity">{{roomStatusList[10].numBooking}} / {{roomStatusList[10].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[9].isCompanyRoom, 'unikey' : roomStatusList[9].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[9])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[9].isCompanyRoom  || !roomStatusList[9].capacity, 'unikey' : roomStatusList[9].isCompanyRoom && roomStatusList[9].capacity, 'fullBooked' : roomIsFull(roomStatusList[9])}"
        class="room-cell">
-    <a *ngIf="roomStatusList[9].isCompanyRoom && !roomIsFull(roomStatusList[9])" (click)="openDialog(dialog, roomStatusList[9])" ></a>
-    <p *ngIf="roomStatusList[9].isCompanyRoom" [ngClass]="roomIsFull(roomStatusList[9]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
+    <a *ngIf="roomStatusList[9].isCompanyRoom && !roomIsFull(roomStatusList[9]) && roomStatusList[9].capacity" (click)="openDialog(dialog, roomStatusList[9])" ></a>
+    <p *ngIf="roomStatusList[9].isCompanyRoom && roomStatusList[9].capacity" [ngClass]="roomIsFull(roomStatusList[9]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
     <p class="room-number">{{roomStatusList[9].roomNumber}}</p>
-    <p *ngIf="roomStatusList[9].capacity != 0" class="room-capacity">{{roomStatusList[9].nbooking}} / {{roomStatusList[9].capacity}}</p>
+    <p *ngIf="roomStatusList[9].capacity" class="room-capacity">{{roomStatusList[9].numBooking}} / {{roomStatusList[9].capacity}}</p>
   </div>
 
   <div class="corner">
 
-    <div [ngClass]="{'nounikey' : !roomStatusList[8].isCompanyRoom, 'unikey' : roomStatusList[8].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[8])}"
+    <div [ngClass]="{'nounikey' : !roomStatusList[8].isCompanyRoom  || !roomStatusList[8].capacity, 'unikey' : roomStatusList[8].isCompanyRoom && roomStatusList[8].capacity, 'fullBooked' : roomIsFull(roomStatusList[8])}"
          class="room-cell left-room-one">
-      <a *ngIf="roomStatusList[8].isCompanyRoom && !roomIsFull(roomStatusList[8])" (click)="openDialog(dialog, roomStatusList[8])" ></a>
+      <a *ngIf="roomStatusList[8].isCompanyRoom && !roomIsFull(roomStatusList[8]) && roomStatusList[8].capacity" (click)="openDialog(dialog, roomStatusList[8])" ></a>
       <p class="room-number-corner">{{roomStatusList[8].roomNumber}}</p>
     </div>
 
-    <div [ngClass]="{'nounikey' : !roomStatusList[7].isCompanyRoom, 'unikey' : roomStatusList[7].isCompanyRoom, 'fullBooked' : roomIsFull(roomStatusList[7])}"
+    <div [ngClass]="{'nounikey' : !roomStatusList[7].isCompanyRoom  || !roomStatusList[7].capacity, 'unikey' : roomStatusList[7].isCompanyRoom && roomStatusList[7].capacity, 'fullBooked' : roomIsFull(roomStatusList[7])}"
          class="room-cell left-room-two">
-      <a *ngIf="roomStatusList[7].isCompanyRoom && !roomIsFull(roomStatusList[7])" (click)="openDialog(dialog, roomStatusList[7])" ></a>
+      <a *ngIf="roomStatusList[7].isCompanyRoom && !roomIsFull(roomStatusList[7]) && roomStatusList[7].capacity" (click)="openDialog(dialog, roomStatusList[7])" ></a>
       <p class="room-number-corner">{{roomStatusList[7].roomNumber}}</p>
     </div>
 

@@ -23,13 +23,9 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
 
   roomStatus : RoomStatus
 
-  firstRoomStatusList : RoomStatus[]
-
-  roomStatusList : RoomStatus[] = []
+  roomStatusList : RoomStatus[]
 
   room : Room
-
-  roomList : Room[]
 
   user : User | undefined
 
@@ -37,7 +33,6 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
 
   bookingList : Booking[]
 
-  getAllRoomsSubscription : Subscription
   getAllRoomStatusSubscription : Subscription
   getUserByEmailSubscription :Subscription
   getAllBookingsSubscription :Subscription
@@ -51,7 +46,7 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
               private dialog : MatDialog) { }
 
   ngOnInit(): void {
-    this.getAllRooms()
+    this.getAllRoomStatus()
     this.getAllBookings()
     let email =  sessionStorage.getItem('email')
     if(email) {
@@ -61,32 +56,26 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['date'].currentValue != changes['date'].previousValue) {
-      this.getAllRooms()
+      this.getAllRoomStatus()
     }
   }
 
   roomIsFull(roomStatus : RoomStatus) {
-    if(roomStatus.isCompanyRoom && roomStatus.nbooking == roomStatus.capacity ) {
+    if(roomStatus.isCompanyRoom && roomStatus.numBooking == roomStatus.capacity && roomStatus.capacity != null) {
       return true;
     }
     else return false
   }
 
-  getAllRoomStatus(date : Date) {
-    this.getAllRoomStatusSubscription = this.roomStatusService.getAllRoomStatus(this.myFormatDate(date)).subscribe(
-      observer => {this.firstRoomStatusList = [...observer]},
+  getAllRoomStatus() {
+    this.getAllRoomStatusSubscription = this.roomStatusService.getAllRoomStatus(this.myFormatDate(this.date)).subscribe(
+      observer => {this.roomStatusList = [...observer]},
       error => {console.log("Rooms status list not found")},
-      () => {this.addStatusToRoom(this.roomList)}
+      () => {"Rooms status list found"}
     )
   }
 
-  getAllRooms() {
-    this.getAllRoomsSubscription = this.roomService.getAllRooms().subscribe(
-      observer => {this.roomList = [...observer]},
-      error => {console.log("Rooms list not found")},
-      () => {this.getAllRoomStatus(this.date)}
-    )
-  }
+
 
   getUserByEmail(email : string){
     this.getUserByEmailSubscription = this.userService.getAllUser().subscribe(
@@ -113,16 +102,20 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
   }
 
   postBooking() {
-    this.booking.bookDate = this.date
-    this.booking.user = this.user
-    this.booking.room = this.room
+    this.booking.bookDate = new Date(
+      this.date.getFullYear(),
+      this.date.getMonth(),
+      this.date.getDate() + 1
+    )
+    this.booking.userResponseDTO = this.user
+    this.booking.roomResponseDTO = this.room
     console.log(this.booking)
     this.postBookingSubscription = this.bookingService.postBooking(this.booking).subscribe(
       observer => {},
       error => {console.log("PostBooking: error!")},
-      () => {console.log("PostBooking: Done!")
-        this.closeDialog()}
+      () => {console.log("PostBooking: Done!")}
     )
+    this.closeDialog()
   }
 
   openDialog(dialog : any, room : RoomStatus) {
@@ -155,29 +148,8 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
     return fullDate
   }
 
-   addStatusToRoom(rooms : Room[]){
-      this.roomList.forEach(room => {
-        let newRoomStatus : RoomStatus = {
-          id : room.id as number,
-          roomNumber : room.roomNumber,
-          isCompanyRoom : room.isCompanyRoom,
-          maxCapacity : room.maxCapacity,
-          capacity : 0,
-          nbooking : 0
-        }
-        this.roomStatusList.push(newRoomStatus)
-      })
-      for (let i = 0; i < this.roomStatusList.length; i++) {
-        for (let j = 0; j < this.firstRoomStatusList.length; j++) {
-          if(this.roomStatusList[i].roomNumber == this.firstRoomStatusList[j].roomNumber){
-            this.roomStatusList[i] = {...this.firstRoomStatusList[j]};
-          }
-        }
-      }
-  }
 
   ngOnDestroy(): void {
-    this.getAllRoomsSubscription?.unsubscribe()
     this.getAllRoomStatusSubscription?.unsubscribe()
     this.getUserByEmailSubscription?.unsubscribe()
     this.getAllBookingsSubscription?.unsubscribe()
