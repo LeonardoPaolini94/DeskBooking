@@ -19,8 +19,6 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
 
   @Input() date : Date
 
-  data : Date = new Date(Date.now())
-
   roomStatus : RoomStatus
 
   roomStatusList : RoomStatus[]
