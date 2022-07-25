@@ -52,7 +52,8 @@ export class SignupComponent implements OnInit,OnDestroy {
         phoneNumber : this.signupForm.value.phoneNumber,
         email : this.signupForm.value.email.trim(),
         password : this.signupForm.value.password.trim(),
-        avatar : "assets/img/user-svgrepo-com.svg",
+      //  avatar : "assets/img/user-svgrepo-com.svg",
+        avatar : null ,
         roleResponseDTO :  {
           id : 1,
           roleName : "user"
