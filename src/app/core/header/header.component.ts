@@ -26,9 +26,12 @@ export class HeaderComponent implements OnInit,OnDestroy{
 
 
   ngOnInit(): void {
+
     let email = sessionStorage.getItem('email')
     if(email){
       this.getUserByEmail(email)
+     // this.getAvatarImage(this.user?.id)
+
     }
   }
 
@@ -40,8 +43,7 @@ export class HeaderComponent implements OnInit,OnDestroy{
     this.getUserByEmailSubscription = this.userService.getUserByEmail(email).subscribe(
       observer => {this.user = {...observer} , sessionStorage.setItem('phoneNumber',{...observer}.phoneNumber) },
       () => {console.log("User not found!")},
-      () => {console.log("User found!")
-      })
+      () => {this.getAvatarImage(this.user?.id)})
   }
 
 
@@ -63,21 +65,29 @@ export class HeaderComponent implements OnInit,OnDestroy{
 
 
 
-   getAvatarImage(userId : number){
-    this.userService.getAvatar(userId).subscribe(image => this.createImage(image),
-      err => this.handleImageRetrievalError(err));
+   getAvatarImage(userId : number | undefined){
+    if(userId){
+      this.userService.getAvatar(userId).subscribe(image => this.createImage(image),
+        err => this.handleImageRetrievalError(err));
+    }
+
   }
 
   private createImage(image: Blob) {
+    const preview = document.getElementById("headerAvatar") as HTMLImageElement;
     console.log(image)
     if (image && image.size > 0) {
       let reader = new FileReader();
 
       reader.addEventListener("load", () => {
-        this.imageToShow = reader.result;
+        if (typeof reader.result === "string") {
+          preview.src = reader.result;
+        }
       }, false);
 
-      reader.readAsDataURL(this.imageToShow);
+      if(image){
+        reader.readAsDataURL(image);
+      }
       console.log(this.imageToShow)
     }
   }

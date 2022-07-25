@@ -64,11 +64,44 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   getUserByEmail(email : string){
-    this.getUserByEmailSubscription = this.userService.getUserByEmail(email).subscribe(
-      observer => {this.user = {...observer}},
+    // this.getUserByEmailSubscription = this.userService.getAllUser().subscribe(
+    //   observer => {this.user = [...observer].find(user => user.email == email) },
+    //   () => {console.log("User not found!")},
+    //   () => {console.log("User found!")
+    //   })
+    this.userService.getUserByEmail(email).subscribe(
+      observer => {this.user = {...observer} },
       () => {console.log("User not found!")},
-      () => {console.log("User found!")
-      })
+      () => {this.getAvatarImage(this.user?.id)})
+
+  }
+  getAvatarImage(userId : number | undefined){
+    if(userId){
+      this.userService.getAvatar(userId).subscribe(image => this.createImage(image),
+        err => this.handleImageRetrievalError(err));
+    }
+
+  }
+
+  private createImage(image: Blob) {
+    const preview = document.getElementById("profileAvatar") as HTMLImageElement;
+    if (image && image.size > 0) {
+      let reader = new FileReader();
+
+      reader.addEventListener("load", () => {
+        if (typeof reader.result === "string") {
+          preview.src = reader.result;
+        }
+      }, false);
+
+      if(image){
+        reader.readAsDataURL(image);
+      }
+    }
+  }
+
+  private handleImageRetrievalError(err: any) {
+    console.error(err);
   }
 
   editPassword() {
