@@ -76,8 +76,8 @@ export class PrenotationDetailComponent implements OnInit,OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.getBookingIdSubscription.unsubscribe();
-    this.getBookingByIdSubscription.unsubscribe();
+    this.getBookingIdSubscription?.unsubscribe();
+    this.getBookingByIdSubscription?.unsubscribe();
     this.deleteBookingByIdSubscription?.unsubscribe();
   }
 
