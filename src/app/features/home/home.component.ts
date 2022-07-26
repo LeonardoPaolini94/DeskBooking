@@ -13,7 +13,6 @@ import {UserService} from "../../core/service/user-service/user.service";
 export class HomeComponent implements OnInit, OnDestroy {
 
   user: User
-
   bookingsList: Booking[]
   exist: Boolean = false;
   private getBookingsByUserSubscription: Subscription;
