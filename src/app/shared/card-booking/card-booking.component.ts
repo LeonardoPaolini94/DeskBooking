@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {BookingService} from "../../core/service/booking.service";
 import {Subscription} from "rxjs";
 import {Booking} from "../../core/models/Booking";
@@ -10,24 +10,25 @@ import {User} from "../../core/models/User";
   templateUrl: './card-booking.component.html',
   styleUrls: ['./card-booking.component.scss']
 })
-export class CardBookingComponent implements OnInit,OnDestroy {
+export class CardBookingComponent implements OnInit, OnDestroy {
 
-  user : User
+  @Input() bookingsList : Booking[]
+  @Input() exist : Boolean = false;
 
-  bookingsList : Booking[]
-  exist : Boolean = false;
-  private getBookingsByUserSubscription : Subscription;
-  private getUserByEmailSubscription: Subscription;
+  private getBookingsByUserSubscription: Subscription;
 
-  constructor(private bookingService : BookingService,
-              private userService : UserService) { }
+
+  constructor(private bookingService: BookingService) { }
+
 
   ngOnInit(): void {
-    let email = sessionStorage.getItem('email')
-    if(email){
-      this.getUserByEmail(email)
+
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['bookingsList'].firstChange){
+      this.getBookingsByUser()
     }
-    this.getBookingsByUser()
   }
 
   getBookingsByUser(){
@@ -44,20 +45,10 @@ export class CardBookingComponent implements OnInit,OnDestroy {
     )
   }
 
-  getUserByEmail(email : string){
-    this.getUserByEmailSubscription = this.userService.getUserByEmail(email).subscribe(
-      observer => {this.user = {...observer}
-        sessionStorage.setItem('id',String({...observer}.id))
-      },
-      () => {console.log("User not found!")},
-      () => {console.log("User found!")
-      })
-  }
-
   ngOnDestroy(): void {
     this.getBookingsByUserSubscription?.unsubscribe()
-    this.getUserByEmailSubscription?.unsubscribe()
   }
+
 
 
 }

@@ -7,7 +7,7 @@
     <p class="mt-4">PRENOTAZIONE STANZE</p>
     <mat-form-field appearance="outline" color="primary">
       <mat-label>Scegli la data</mat-label>
-      <input matInput [matDatepicker]="picker" placeholder="{{todayDate | myDateView}}"
+      <input matInput [matDatepicker]="picker" [min]="todayDate" placeholder="{{todayDate | myDateView}}"
              (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
