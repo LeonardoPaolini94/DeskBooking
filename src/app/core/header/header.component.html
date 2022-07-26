@@ -1,8 +1,10 @@
 <div class="header">
 
   <div class="nav-items-div">
-    <a routerLink="/home" class="nav-links"><span class="nav-items">Home</span></a>
-    <a routerLink="/bookingadmin" class="nav-links"><span class="nav-items">Nuova prenotazione</span></a>
+    <a *ngIf="user?.roleResponseDTO?.roleName=='user'" routerLink="/cardBooking" class="nav-links"><span class="nav-items">Home</span></a>
+    <a *ngIf="user?.roleResponseDTO?.roleName=='admin'" routerLink="/bookingadmin" class="nav-links"><span class="nav-items">Home</span></a>
+    <a *ngIf="user?.roleResponseDTO?.roleName=='admin'" routerLink="/bookingadmin" class="nav-links"><span class="nav-items">Nuova prenotazione</span></a>
+    <a *ngIf="user?.roleResponseDTO?.roleName=='user'" routerLink="/bookingroom" class="nav-links"><span class="nav-items">Nuova prenotazione</span></a>
   </div>
 
 

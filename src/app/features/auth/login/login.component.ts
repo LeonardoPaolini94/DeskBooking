@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {UserService} from "../../../core/service/user-service/user.service";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
+import {User} from "../../../core/models/User";
 
 
 @Component({
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit,OnDestroy {
   checkEmail: boolean;
   private verifyEmailSubscription: Subscription;
   passwordNotExist: boolean;
+  user: User | undefined;
 
 
   constructor(private authService : AuthService,
@@ -59,7 +61,12 @@ export class LoginComponent implements OnInit,OnDestroy {
          console.log(reason);
         });
 
-      this.route.navigateByUrl('/home').then();
+      if (sessionStorage.getItem('role') == 'user'){
+        this.route.navigateByUrl('/home').then();
+      } else if (sessionStorage.getItem('role') == 'admin'){
+        this.route.navigateByUrl('/bookingadmin').then();
+      }
+
     }
   }
 
@@ -80,7 +87,7 @@ export class LoginComponent implements OnInit,OnDestroy {
 
   verifyEmail(email : string){
     this.verifyEmailSubscription = this.userService.getUserByEmail(email).subscribe(
-      observer => {this.verifyFirebasePassword()},
+      observer => {this.verifyFirebasePassword(), this.user= {...observer}, sessionStorage.setItem('role', this.user.roleResponseDTO.roleName)},
       () => {this.emailNotExist()},
       () => {console.log("User found!")
       })
