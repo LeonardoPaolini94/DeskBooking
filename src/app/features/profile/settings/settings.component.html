@@ -22,13 +22,9 @@
         <h4>{{user?.phoneNumber}}</h4>
       </div>
     </div>
-    <div class="settings-container-buttons">
-      <div class="container-buttons-editPassword">
-        <button type="button" class="editPassword-btn white-btn" (click)="editPassword()">CAMBIA PASSWORD</button>
-      </div>
-      <div class="container-buttons-editProfile">
-        <button type="button" class="editProfile-btn blue-btn" (click)="editProfile()">MODIFICA PROFILO</button>
-      </div>
+    <div class="w-100 d-flex justify-content-evenly mb-3">
+        <button type="button" class="setting-btn white-btn" (click)="editPassword()">CAMBIA PASSWORD</button>
+        <button type="button" class="setting-btn blue-btn" (click)="editProfile()">MODIFICA PROFILO</button>
     </div>
   </div>
 </main>
@@ -65,7 +61,7 @@
         </div>
 
         <div class="editProfile-buttons-div">
-          <button [disabled]="!editProfileForm.valid" type="submit" class="editProfile-btn blue-btn">CONFERMA</button>
+          <button [disabled]="!editProfileForm.valid" type="submit" class="login-btn blue-btn">CONFERMA</button>
         </div>
       </form>
     </div>
@@ -97,7 +93,7 @@
               <div *ngIf="!editPasswordForm.valid && editPasswordForm.touched" class="error-class">*Le due password devono corrispondere</div>
             </div>
             <div class="editPassword-buttons-div">
-              <button [disabled]="!editPasswordForm.valid" type="submit" class="editPassword-btn blue-btn">CONFERMA</button>
+              <button [disabled]="!editPasswordForm.valid" type="submit" class="login-btn blue-btn">CONFERMA</button>
             </div>
             <div class="back-to-profile" (click)="goToProfile()">
               <span>Torna al profilo</span>

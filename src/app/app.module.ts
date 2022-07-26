@@ -11,7 +11,6 @@ import {UnauthorizedInterceptor} from "./core/service/interceptor/unauthorized.i
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpTokenInterceptor} from "./core/service/interceptor/http-token.interceptor";
 
-
 firebase.initializeApp(environment.firebaseConfig);
 
 @NgModule({
@@ -26,7 +25,8 @@ firebase.initializeApp(environment.firebaseConfig);
     AngularFireAuthModule,
     BrowserAnimationsModule
   ],
-  providers: [{
+  providers: [
+    {
     provide: HTTP_INTERCEPTORS,
     useClass: UnauthorizedInterceptor,
     multi: true
