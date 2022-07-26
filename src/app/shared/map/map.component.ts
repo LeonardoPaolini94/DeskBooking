@@ -9,6 +9,7 @@ import {BookingService} from "../../core/service/booking.service";
 import {Booking} from "../../core/models/Booking";
 import {Room} from "../../core/models/Room";
 import {RoomService} from "../../core/service/room-service/room.service";
+import {AvatarService} from "../../core/service/avatar.service";
 
 @Component({
   selector: 'app-map',
@@ -36,12 +37,14 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
   getAllBookingsSubscription :Subscription
   getRoomByRoomNumberSubscription : Subscription
   postBookingSubscription : Subscription
+  private avatarSubscription: Subscription;
 
   constructor(private roomStatusService : RoomStatusService,
               private userService : UserService,
               private bookingService : BookingService,
               private roomService : RoomService,
-              private dialog : MatDialog) { }
+              private dialog : MatDialog,
+              private avatarService : AvatarService) { }
 
   ngOnInit(): void {
     this.getAllRoomStatus()
@@ -69,7 +72,7 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
     this.getAllRoomStatusSubscription = this.roomStatusService.getAllRoomStatus(this.myFormatDate(this.date)).subscribe(
       observer => {this.roomStatusList = [...observer]},
       error => {console.log("Rooms status list not found")},
-      () => {"Rooms status list found"}
+      () => {console.log("Room status list found")}
     )
   }
 
@@ -77,10 +80,38 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
 
   getUserByEmail(email : string){
     this.getUserByEmailSubscription = this.userService.getAllUser().subscribe(
-      observer => {this.user = [...observer].find(user => user.email == email) },
+      observer => {this.user = [...observer].find(user => user.email == email)
+        this.getAvatarImage(this.user?.id)},
       () => {console.log("User not found!")},
-      () => {console.log("User found!")
+      () => {this.avatarSubscription = this.avatarService.data$.subscribe(val => this.createImage(val))
       })
+  }
+
+  private createImage(image: Blob) {
+    const preview = document.getElementById("avatarMap") as HTMLImageElement;
+    if (image && image.size > 0) {
+      let reader = new FileReader();
+      reader.addEventListener("load", () => {
+        if (typeof reader.result === "string") {
+          preview.src = reader.result;
+        }
+      }, false);
+
+      if(image){
+        reader.readAsDataURL(image);
+      }
+    }
+  }
+
+  getAvatarImage(userId : number | undefined){
+    if(userId){
+      this.userService.getAvatar(userId).subscribe(image => this.createImage(image),
+        err => this.handleImageRetrievalError(err));
+    }
+  }
+
+  private handleImageRetrievalError(err: any) {
+    console.error(err);
   }
 
   getAllBookings(){
@@ -153,5 +184,6 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
     this.getAllBookingsSubscription?.unsubscribe()
     this.getRoomByRoomNumberSubscription?.unsubscribe()
     this.postBookingSubscription?.unsubscribe()
+    this.avatarSubscription?.unsubscribe()
   }
 }

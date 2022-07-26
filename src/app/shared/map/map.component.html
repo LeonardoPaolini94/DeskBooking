@@ -335,7 +335,7 @@
     <div class="dialog-body">
 
     <div class="d-flex align-items-center">
-      <img class="user-avatar" src="{{user?.avatar}}">
+      <img class="user-avatar" src="{{user?.avatar == null ? 'assets/img/user-svgrepo-com.svg' : user?.avatar}}" id="avatarMap">
       <p class="user-name">{{user?.firstName}} {{user?.lastName}}</p>
     </div>
     <div class="dialog-booking-info">
