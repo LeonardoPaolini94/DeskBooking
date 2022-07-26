@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HomeAdminComponent } from './home-admin.component';
 import {RouterModule, Routes} from "@angular/router";
 import {HeaderModule} from "../../core/header/header.module";
-import {SharedModule} from "../../shared/shared.module";
-import {BookingRoomModule} from "../booking-room/booking-room.module";
 
 const routes : Routes = [{
   path: '', component: HomeAdminComponent}]
@@ -16,9 +14,7 @@ const routes : Routes = [{
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    HeaderModule,
-    SharedModule,
-    BookingRoomModule
+    HeaderModule
   ]
 })
 export class HomeAdminModule { }

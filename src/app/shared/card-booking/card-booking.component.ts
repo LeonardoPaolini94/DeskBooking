@@ -22,7 +22,7 @@ export class CardBookingComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-
+    this.getBookingsByUser()
   }
 
   ngOnChanges(changes: SimpleChanges): void {

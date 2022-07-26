@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
 import {BookingRoomComponent} from "./booking-room.component";
 import {HeaderModule} from "../../core/header/header.module";
-import {SharedModule} from "../../shared/shared.module";
 import {MaterialModule} from "../../material.module";
 import {MAT_DATE_LOCALE} from "@angular/material/core";
 import {PipesModule} from "../../core/pipes/pipes.module";
+import {MapModule} from "../map/map.module";
 
 const routes : Routes = [{
   path: '', component: BookingRoomComponent
@@ -26,14 +26,14 @@ export const MY_DATE_FORMAT = {
 
 @NgModule({
   declarations: [BookingRoomComponent],
-    imports: [
-        CommonModule,
-        HeaderModule,
-        SharedModule,
-        MaterialModule,
-        RouterModule.forChild(routes),
-        PipesModule
-    ],
+  imports: [
+    CommonModule,
+    HeaderModule,
+    MaterialModule,
+    RouterModule.forChild(routes),
+    PipesModule,
+    MapModule
+  ],
   exports: [
     BookingRoomComponent
   ],
