@@ -10,15 +10,18 @@ const routes : Routes = [{
   path: '', component: HomeAdminComponent}]
 
 @NgModule({
-  declarations: [
-    HomeAdminComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    HeaderModule,
-    SharedModule,
-    BookingRoomModule
-  ]
+    declarations: [
+        HomeAdminComponent
+    ],
+    exports: [
+        HomeAdminComponent
+    ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        HeaderModule,
+        SharedModule,
+        BookingRoomModule
+    ]
 })
 export class HomeAdminModule { }

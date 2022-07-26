@@ -1,25 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home.component';
-import {HomeAdminModule} from "../home-admin/home-admin.module";
+import { HomeUserComponent } from './home-user.component';
 import {RouterModule, Routes} from "@angular/router";
+import {CardBookingModule} from "../card-booking/card-booking.module";
 import {HeaderModule} from "../../core/header/header.module";
-import {HomeUserModule} from "../home-user/home-user.module";
 
 const routes : Routes = [{
-  path: '', component: HomeComponent
-}]
+  path: '', component: HomeUserComponent
+}
+]
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeUserComponent
+  ],
+  exports: [
+    HomeUserComponent
   ],
   imports: [
     CommonModule,
-    HomeAdminModule,
+    CardBookingModule,
     HeaderModule,
-    HomeUserModule,
     RouterModule.forChild(routes)
   ]
 })
-export class HomeModule { }
+export class HomeUserModule { }

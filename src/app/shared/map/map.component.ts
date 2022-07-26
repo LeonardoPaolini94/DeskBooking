@@ -92,7 +92,7 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
     this.getUserByEmailSubscription = this.userService.getAllUser().subscribe(
       observer => {this.user = [...observer].find(user => user.email == email) },
       () => {console.log("User not found!")},
-      () => {console.log("User found!")
+      () => {console.log("User found!", sessionStorage.getItem('role'))
       })
   }
 

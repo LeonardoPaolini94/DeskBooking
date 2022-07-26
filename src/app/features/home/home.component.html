@@ -1,2 +1,2 @@
-<app-header></app-header>
-<app-card-booking></app-card-booking>
+<app-home-user *ngIf="role === 'user'"></app-home-user>
+<app-home-admin *ngIf="role === 'admin'"></app-home-admin>

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {RoleResponseDTO} from "../../core/models/RoleResponseDTO";
+import firebase from "firebase/compat";
+import {User} from "../../core/models/User";
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  role: string;
 
-  constructor(){ }
+  constructor() {
+    this.role = sessionStorage.getItem('role')!;
+    console.log('costruttore', this.role)
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    debugger
+    console.log('ciao', this.role);
+  }
 
 }

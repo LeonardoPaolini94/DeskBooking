@@ -10,6 +10,7 @@ import firebase from "firebase/compat/app";
 import {UnauthorizedInterceptor} from "./core/service/interceptor/unauthorized.interceptor";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpTokenInterceptor} from "./core/service/interceptor/http-token.interceptor";
+import {SharedModule} from "./shared/shared.module";
 
 
 firebase.initializeApp(environment.firebaseConfig);
@@ -24,7 +25,8 @@ firebase.initializeApp(environment.firebaseConfig);
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -32,14 +32,17 @@ export class HeaderComponent implements OnInit,OnDestroy{
   }
 
   ngOnChanges(): void {
+/*
     this.user = this.userByUpdate;
+*/
   }
 
   getUserByEmail(email : string){
     this.getUserByEmailSubscription = this.userService.getUserByEmail(email).subscribe(
-      observer => {this.user = {...observer} },
+      observer => {this.user = {...observer};
+        sessionStorage.setItem('role', this.user?.roleResponseDTO.roleName)},
       () => {console.log("User not found!")},
-      () => {console.log("User found!")
+      () => {console.log("User found!");
       })
   }
 

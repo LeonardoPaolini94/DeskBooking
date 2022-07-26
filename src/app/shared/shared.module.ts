@@ -15,8 +15,8 @@ import {RouterModule} from "@angular/router";
     PipesModule,
     RouterModule
   ],
-  exports: [
-    MapComponent
-  ]
+    exports: [
+        MapComponent
+    ]
 })
 export class SharedModule { }

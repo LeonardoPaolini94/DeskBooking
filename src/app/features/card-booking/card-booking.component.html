@@ -1,3 +1,5 @@
+
+<app-header></app-header>
 <div id="container" *ngIf="exist else template">
   <a routerLink="/booking-detail/{{booking.id}}" class="cardHome" *ngFor="let booking of bookingsList">
     <div class="date">
@@ -9,7 +11,7 @@
       </div>
     </div>
     <div class="bodyCard">
-      <img src="assets/img/key-svgrepo-com (1).svg">
+      <img src="../../../assets/img/key-svgrepo-com%20(1).svg">
       <p class="cardText">{{booking.room?.roomNumber}}</p>
     </div>
   </a>
