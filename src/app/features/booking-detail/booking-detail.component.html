@@ -46,7 +46,7 @@
       <div mat-dialog-content>
         <p class="text-center">Sei sicuro di voler annullare la prenotazione?</p>
         <div>
-          <button class="signup-btn white-btn m-1" routerLink="/prenotation-detail/:id">Indietro</button>
+          <button class="signup-btn white-btn m-1" (click)="closeDialog()" routerLink="/prenotation-detail/:id">Indietro</button>
           <button type="submit" class="login-btn blue-btn m-1" (click)="deleteBookingById(booking.id)" routerLink="/home">Conferma</button>
         </div>
       </div>
