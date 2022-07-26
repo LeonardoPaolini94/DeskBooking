@@ -150,6 +150,7 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
   openDialog(dialog : any, room : RoomStatus) {
     this.dialog.open(dialog)
     this.roomStatus = room
+    this.getAvatarImage(this.user?.id)
     this.getRoomByRoomNumber(this.roomStatus.roomNumber)
   }
 
