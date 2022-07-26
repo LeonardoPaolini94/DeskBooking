@@ -96,7 +96,7 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
       observer => {this.room = {...observer}},
       () => {console.log("Room not found!")},
       () => {console.log("Room found!")}
-      )
+    )
   }
 
   postBooking() {

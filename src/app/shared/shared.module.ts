@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MapComponent} from "./map/map.component";
 import {PipesModule} from "../core/pipes/pipes.module";
 import {RouterModule} from "@angular/router";
 
@@ -8,7 +7,6 @@ import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
-    MapComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +14,6 @@ import {RouterModule} from "@angular/router";
     RouterModule
   ],
   exports: [
-    MapComponent
   ]
 })
 export class SharedModule { }
