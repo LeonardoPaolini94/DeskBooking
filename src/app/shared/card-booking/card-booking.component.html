@@ -1,8 +1,8 @@
-<div id="container" *ngIf="exist else template">
+<div id="container" *ngIf="exist && bookingsList.length > 0 else template">
   <a routerLink="/booking-detail/{{booking.id}}" class="cardHome" *ngFor="let booking of bookingsList">
     <div class="date">
       <div class="h5-container">
-        <h5># {{booking.id}}</h5>
+        <h5># {{booking.id | bookingNumber}}</h5>
       </div>
       <div class="cardTitle">
         <p>{{booking.bookDate}}</p>
