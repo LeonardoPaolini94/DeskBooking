@@ -29,7 +29,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(email){
       this.getUserByEmail(email)
     }
-    this.getBookingsByUser()
   }
 
 
@@ -53,8 +52,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         sessionStorage.setItem('id',String({...observer}.id))
       },
       () => {console.log("User not found!")},
-      () => {console.log("User found!")
-      })
+      () => {this.getBookingsByUser()})
   }
 
   ngOnDestroy(): void {
