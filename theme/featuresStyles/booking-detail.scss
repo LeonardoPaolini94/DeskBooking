@@ -4,18 +4,19 @@
   display: flex;
   justify-content: center;
   padding: 5.5em;
+
 }
 
 .prenotation-detail-div{
-  width: 70rem;
-  height: 27rem;
+  width: 60rem;
+  height: 25rem;
   border-radius: 0rem 0rem 0rem 4rem;
   background-color: white;
 }
 
 .prenotation-top-div{
   height: 3rem;
-  width: 70rem;
+  width: 100%;
   background-color: #0278DB;
   display: flex;
   justify-content: space-between;
@@ -55,7 +56,7 @@
 
 .right-prenotation-div{
   height: 100%;
-  width: 50%;
+  width: 100%;
   display: flex;
   margin-top: 1rem;
 }
@@ -74,12 +75,14 @@
 }
 
 .left-right-prenotation-div{
-  padding: 4rem 0rem 4rem 2rem;
-  width: 20rem;
+  padding: 4rem 0rem 4rem 13rem;
+  width: 50%;
   height: 100%;
   display: flex;
   flex-direction: column;
-
+  p {
+    font-size: 1.6rem;
+  }
 }
 
 .second-row{
@@ -87,17 +90,20 @@
 }
 
 .right-right-prenotation-div{
-  padding: 4rem 2rem 4rem 0;
-  width: 40rem;
+  padding: 4rem 2rem 4rem 3.5rem;
+  width: 50%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  p {
+    font-size: 1.6rem;
+  }
 }
 
 
 
 .black-white-btn{
-  width: 20rem;
+  width: 15rem;
   font-size: 1.3rem;
   border-radius: 1rem;
   border: 1px solid black;
@@ -108,7 +114,7 @@
 }
 
 .modify-btn{
-  width: 20rem;
+  width: 15rem;
   font-size: 1.3rem;
   border-radius: 1rem;
   border: 1px solid #0278DB;

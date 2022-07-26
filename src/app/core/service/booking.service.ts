@@ -29,4 +29,7 @@ export class BookingService {
     return this.httpClient.delete<Booking>("http://localhost:8080/api/v1/booking/" + id);
   }
 
+  patchBooking(id: number ,booking: Booking) : Observable<Booking> {
+    return this.httpClient.patch<Booking>("http://localhost:8080/api/v1/booking/" + id, booking);
+  }
 }

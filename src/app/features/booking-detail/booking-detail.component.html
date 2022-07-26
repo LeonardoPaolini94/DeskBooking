@@ -3,20 +3,14 @@
   <div class="prenotation-detail-div">
     <div class="prenotation-top-div">
      <p>
-       # {{booking?.id}}
+       # {{booking.id | bookingNumber}}
      </p>
       <a routerLink="/home">
         <i class="fa fa-times"></i>
       </a>
     </div>
     <div class="prenotation-body-div">
-      <div class="left-prenotation-div">
-        <div class="circle-external-div">
-          <div class="circle-internal-div">
-              <div class="circle-desk" *ngFor="let i of counter(booking?.roomResponseDTO?.maxCapacity)" [ngStyle]="{'background-color': (i <booking!.roomResponseDTO!.maxCapacity) ? '#0278DB' : 'lightgray'}"></div>
-          </div>
-        </div>
-      </div>
+
       <div class="right-prenotation-div">
         <div class="left-right-prenotation-div">
           <p class="bi bi-door-closed-fill detail-icons">
@@ -38,7 +32,7 @@
     </div>
     <div class="bot-prenotation-div">
       <button class="signup-btn black-white-btn" (click)="openDialog(dialog)">Annulla Prenotazione</button>
-      <button class="login-btn modify-btn" (click)="showMap()">Modifica</button>
+      <button class="login-btn modify-btn" (click)="openModify(dialogModify)">Modifica</button>
     </div>
 
     <ng-template #dialog>
@@ -52,9 +46,26 @@
       </div>
     </ng-template>
 
+    <ng-template #dialogModify>
+      <h1 mat-dialog-title>Modifica</h1>
+      <div mat-dialog-content>
+
+        <form ngForm="">
+          <select formControlName="roomsSelect" name="roomsSelect" id="roomsSelect">
+            <option *ngFor="let r of roomStatusList" value="{{r}}">{{r.roomNumber}}</option>
+          </select>
+          <button type="submit" class="login-btn blue-btn m-1" (click)="modifyBookingRoom()">Conferma</button>
+
+        </form>
+
+
+      </div>
+    </ng-template>
+
   </div>
 </div>
 <div id="map-container" *ngIf="mapShown">
   <app-map></app-map>
+
 </div>
 
