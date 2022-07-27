@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-    <div class="bot-prenotation-div">
+    <div class="bot-prenotation-div" *ngIf="isFuture()">
       <button class="signup-btn black-white-btn" (click)="openDialog(dialog)">Annulla Prenotazione</button>
       <button class="login-btn modify-btn" (click)="openModify(dialogModify)">Modifica</button>
     </div>
@@ -39,7 +39,7 @@
       <h1 mat-dialog-title></h1>
       <div mat-dialog-content>
         <p class="text-center">Sei sicuro di voler annullare la prenotazione?</p>
-        <div>
+        <div >
           <button class="signup-btn white-btn m-1" routerLink="/prenotation-detail/:id">Indietro</button>
           <button type="submit" class="login-btn blue-btn m-1" (click)="deleteBookingById(booking.id)" routerLink="/home">Conferma</button>
         </div>
@@ -50,11 +50,12 @@
       <h1 mat-dialog-title>Modifica</h1>
       <div mat-dialog-content>
 
-        <form ngForm="">
-          <select formControlName="roomsSelect" name="roomsSelect" id="roomsSelect">
-            <option *ngFor="let r of roomStatusList" value="{{r}}">{{r.roomNumber}}</option>
+        <form [formGroup]="formRooms"  (ngSubmit)="modifyBookingRoom()">
+          <select formControlName="roomsSelect" name="roomsSelect" id="roomsSelect" >
+            <option value="{{null}}">--</option>
+            <option *ngFor="let r of roomStatusList" value="{{r.id}}">{{r.roomNumber}}</option>
           </select>
-          <button type="submit" class="login-btn blue-btn m-1" (click)="modifyBookingRoom()">Conferma</button>
+          <button type="submit" class="login-btn blue-btn m-1">Conferma</button>
 
         </form>
 
