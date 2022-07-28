@@ -328,7 +328,8 @@
 </div>
 
 <ng-template #dialog>
-  <div mat-dialog-content class="my-dialog">
+
+  <div *ngIf="!bookingExist" mat-dialog-content class="my-dialog">
     <div class="dialog-head">
       <p class="dialog-booking-number"># {{bookingList.length + 1 | bookingNumber}}</p>
     </div>
@@ -349,9 +350,21 @@
       </div>
       <div class="w-100 d-flex justify-content-evenly mb-3">
         <button class="signup-btn white-btn" (click)="closeDialog()">Annulla</button>
-        <button type="submit" class="login-btn blue-btn" (click)="postBooking()" routerLink="/home">Conferma</button>
+        <button type="submit" class="login-btn blue-btn" (click)="confirmBooking()" >Conferma</button>
       </div>
     </div>
   </div>
+
+
+  <div *ngIf="bookingExist" mat-dialog-content class="my-dialog-error">
+    <div class="dialog-body-error">
+      <p class="user-name">Hai già una prenotazione in questa data</p>
+      <button type="button" class="login-btn blue-btn" (click)="closeDialog()">OK</button>
+    </div>
+  </div>
+
 </ng-template>
+
+
+
 

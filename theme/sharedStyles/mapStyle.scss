@@ -188,6 +188,20 @@
   margin-top: 2rem;
 }
 
+.dialog-body-error{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 85%;
+  margin-top: 2rem;
+}
+
+.my-dialog-error{
+    height: 10rem;
+    width: 30rem;
+}
+
 .dialog-booking-info {
   display: flex;
   flex-direction: column;

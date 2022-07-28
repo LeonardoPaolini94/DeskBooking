@@ -9,6 +9,7 @@ import {BookingService} from "../../core/service/booking.service";
 import {Booking} from "../../core/models/Booking";
 import {Room} from "../../core/models/Room";
 import {RoomService} from "../../core/service/room-service/room.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-map',
@@ -18,6 +19,8 @@ import {RoomService} from "../../core/service/room-service/room.service";
 export class MapComponent implements OnInit,OnChanges, OnDestroy {
 
   @Input() date : Date
+
+  bookingExist : boolean = false
 
   roomStatus : RoomStatus
 
@@ -36,12 +39,14 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
   getAllBookingsSubscription :Subscription
   getRoomByRoomNumberSubscription : Subscription
   postBookingSubscription : Subscription
+  getBookingsByDateAndUserIdSubscription: Subscription;
 
   constructor(private roomStatusService : RoomStatusService,
               private userService : UserService,
               private bookingService : BookingService,
               private roomService : RoomService,
-              private dialog : MatDialog) { }
+              private dialog : MatDialog,
+              private router : Router) { }
 
   ngOnInit(): void {
     this.getAllRoomStatus()
@@ -99,6 +104,31 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
     )
   }
 
+  //-------------------------------------------------------------------------------------------------------------------------------
+
+  confirmBooking(){
+    this.booking.bookDate = new Date(
+      this.date.getFullYear(),
+      this.date.getMonth(),
+      this.date.getDate() + 1
+    )
+
+    let date = this.booking.bookDate.toISOString().slice(0,10)
+
+
+    this.getBookingsByDateAndUserId(date)
+
+  }
+
+  getBookingsByDateAndUserId(date : string){
+    this.getBookingsByDateAndUserIdSubscription = this.bookingService.getBookingByBookDateAndUserId(date,sessionStorage.getItem('id')).subscribe(
+      observer => {},
+      () => {this.postBooking()},
+      () => {this.bookingExist = true}
+    )
+  }
+
+
   postBooking() {
     this.booking.bookDate = new Date(
       this.date.getFullYear(),
@@ -107,14 +137,15 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
     )
     this.booking.userResponseDTO = this.user
     this.booking.roomResponseDTO = this.room
-    console.log(this.booking)
     this.postBookingSubscription = this.bookingService.postBooking(this.booking).subscribe(
       observer => {},
       error => {console.log("PostBooking: error!")},
       () => {console.log("PostBooking: Done!")}
     )
     this.closeDialog()
+    this.router.navigateByUrl("/home")
   }
+  //-------------------------------------------------------------------------------------------------------------------------------
 
   openDialog(dialog : any, room : RoomStatus) {
     this.dialog.open(dialog)
@@ -124,6 +155,7 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
 
   closeDialog(){
     this.dialog.closeAll()
+    this.bookingExist = false
   }
 
   myFormatDate (date : Date) {
@@ -153,5 +185,6 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
     this.getAllBookingsSubscription?.unsubscribe()
     this.getRoomByRoomNumberSubscription?.unsubscribe()
     this.postBookingSubscription?.unsubscribe()
+    this.getBookingsByDateAndUserIdSubscription?.unsubscribe()
   }
 }

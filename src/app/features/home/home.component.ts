@@ -35,7 +35,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   getBookingsByUser(){
     this.getBookingsByUserSubscription = this.bookingService.getBookingsByUser(sessionStorage.getItem('id')).subscribe(
       observer => {
-        // @ts-ignore
         this.bookingsList = [...observer]
         if (this.bookingsList.length > 0){
           this.exist = true
