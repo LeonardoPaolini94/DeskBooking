@@ -29,6 +29,9 @@ export class BookingService {
     return this.httpClient.delete<Booking>("http://localhost:8080/api/v1/booking/" + id);
   }
 
+  patchBooking(id: number ,idRoom: number) : Observable<Booking> {
+    return this.httpClient.patch<Booking>("http://localhost:8080/api/v1/booking/" + id +"/" + idRoom, null);
+  }
   getBookingByBookDateAndUserId(date: string, id: string | null) : Observable<Booking>{
     return this.httpClient.get<Booking>("http://localhost:8080/api/v1/booking/user/" + date + "/" + id);
   }
