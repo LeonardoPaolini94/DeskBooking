@@ -97,7 +97,7 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
     if (image && image.size > 0) {
       let reader = new FileReader();
       reader.addEventListener("load", () => {
-        if (typeof reader.result === "string") {
+        if (typeof reader.result === "string" && preview) {
           preview.src = reader.result;
         }
       }, false);
@@ -178,12 +178,12 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
     this.booking.userResponseDTO = this.user
     this.booking.roomResponseDTO = this.room
     this.postBookingSubscription = this.bookingService.postBooking(this.booking).subscribe(
-      observer => {},
+      observer => {this.router.navigateByUrl("/home")},
       error => {console.log("PostBooking: error!")},
       () => {console.log("PostBooking: Done!")}
     )
     this.closeDialog()
-    this.router.navigateByUrl("/home")
+
   }
   //-------------------------------------------------------------------------------------------------------------------------------
 
