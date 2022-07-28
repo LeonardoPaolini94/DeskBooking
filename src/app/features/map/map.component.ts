@@ -155,9 +155,18 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
     this.getBookingsByDateAndUserIdSubscription = this.bookingService.getBookingByBookDateAndUserId(date,sessionStorage.getItem('id')).subscribe(
       observer => {},
       () => {this.postBooking()},
-      () => {this.bookingExist = true}
+      () => {this.bookingExist = true,this.catello()}
     )
   }
+
+  catello(){
+    let close = document.querySelector('.cdk-overlay-dark-backdrop')
+    // @ts-ignore
+    close.addEventListener('click', () => {
+      this.closeDialog()
+    });
+  }
+
 
 
   postBooking() {
