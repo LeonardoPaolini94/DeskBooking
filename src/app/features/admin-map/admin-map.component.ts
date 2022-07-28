@@ -109,14 +109,11 @@ export class AdminMapComponent implements OnInit {
     this.management.capacity = this.capacity
     this.management.userResponseDTO = this.user
     this.management.roomResponseDTO = this.room
-    // this.getManagementByRoom(this.room)
-    if(this.isManagementValid(this.management)){
       this.postManagementSubscription = this.managementService.postManagement(this.management).subscribe(
         observer => {},
         error => {console.log("Post management : Error")},
         () => {console.log("Post management: Done")}
       )
-    }
     this.closeDialog()
   }
 
@@ -209,42 +206,47 @@ export class AdminMapComponent implements OnInit {
   //     return true
   // }
 
-  isManagementValid(management : Management) : boolean {
+  // isManagementValid(management : Management) : boolean {
+  //
+  //   let isValid : boolean = true
+  //   // this.getManagementByRoom(this.room)
+  //
+  //   for(let existing of this.roomManagements) {
+  //
+  //     if (existing.startDate && existing.endDate && management.startDate && management.endDate) {
+  //
+  //       console.log("esistono")
+  //
+  //       if (management.startDate < management.endDate) {
+  //
+  //         console.log("nostro controllo")
+  //         isValid = !(existing.startDate <= management.startDate && management.startDate <= existing.endDate
+  //         || existing.startDate <= management.endDate && management.endDate <= existing.endDate)
+  //           // ((management.startDate >= existing.startDate || management.startDate <= existing.endDate
+  //           //   && management.endDate <= existing.endDate || management.endDate >= existing.startDate))
+  //           // && !(existing.startDate >= management.startDate && existing.startDate <= management.endDate
+  //           //   || existing.endDate <= management.endDate && existing.endDate >= management.startDate))
+  //         console.log(isValid)
+  //
+  //
+  //       } else{
+  //         console.log("non nel nostro controllo")
+  //         isValid = false
+  //       }
+  //
+  //
+  //     }else{
+  //       console.log("non esistono")
+  //       isValid = false
+  //     }
+  //     if(!isValid)
+  //       break
+  //   }
+  //   console.log(this.roomManagements.length, this.roomManagements)
+  //   return isValid
+  //
+  // }
 
-    let isValid : boolean = true
-    // this.getManagementByRoom(this.room)
-
-    this.roomManagements.forEach(existing => {
-
-      if (existing.startDate && existing.endDate && management.startDate && management.endDate) {
-
-        console.log("esistono")
-
-        if (management.startDate < management.endDate) {
-
-          console.log("nostro controllo")
-          isValid = (!(management.startDate >= existing.startDate && management.startDate <= existing.endDate
-              || management.endDate <= existing.endDate && management.endDate >= existing.startDate)
-            && !(existing.startDate >= management.startDate && existing.startDate <= management.endDate
-              || existing.endDate <= management.endDate && existing.endDate >= management.startDate))
-          console.log(isValid)
-
-
-        } else{
-          console.log("non nel nostro controllo")
-          isValid = false
-        }
-
-
-      }else{
-        console.log("non esistono")
-        isValid = false
-      }
-    })
-    console.log(this.roomManagements.length, this.roomManagements)
-    return isValid
-
-  }
 
 
   ngOnDestroy(): void {
