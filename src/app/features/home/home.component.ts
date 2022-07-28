@@ -29,14 +29,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(email){
       this.getUserByEmail(email)
     }
-    this.getBookingsByUser()
   }
 
 
   getBookingsByUser(){
     this.getBookingsByUserSubscription = this.bookingService.getBookingsByUser(sessionStorage.getItem('id')).subscribe(
       observer => {
-        // @ts-ignore
         this.bookingsList = [...observer]
         if (this.bookingsList.length > 0){
           this.exist = true
@@ -53,8 +51,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         sessionStorage.setItem('id',String({...observer}.id))
       },
       () => {console.log("User not found!")},
-      () => {console.log("User found!")
-      })
+      () => {this.getBookingsByUser()})
   }
 
   ngOnDestroy(): void {

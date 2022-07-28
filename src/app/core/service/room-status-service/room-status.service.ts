@@ -14,4 +14,8 @@ export class RoomStatusService {
     return this.http.get<RoomStatus[]>("http://localhost:8080/api/v1/room/status/" + date)
   }
 
+  getRoomStatusByIdAndDate(id : number ,date : String) : Observable<RoomStatus>{
+    return this.http.get<RoomStatus>("http://localhost:8080/api/v1/room/status/"+id+"/" + date)
+  }
+
 }

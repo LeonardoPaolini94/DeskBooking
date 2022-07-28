@@ -159,7 +159,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     sessionStorage.removeItem('email');
     sessionStorage.setItem('email', this.user!.email);
     this.isEditingProfile= false;
-    setTimeout(()=> {this.ngOnInit()},20)
+    setTimeout(()=> {this.ngOnInit()},50)
   }
 
   verifyEmail(email : string){

@@ -6,6 +6,10 @@ import {Booking} from "../../core/models/Booking";
 import {MatDialog} from "@angular/material/dialog";
 import {AuthService} from "../../core/service/auth.service";
 import {UserService} from "../../core/service/user-service/user.service";
+import {RoomStatus} from "../../core/models/RoomStatus";
+import {RoomStatusService} from "../../core/service/room-status-service/room-status.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Room} from "../../core/models/Room";
 
 @Component({
   selector: 'app-booking-detail',
@@ -20,13 +24,27 @@ export class PrenotationDetailComponent implements OnInit,OnDestroy {
   deleteBookingByIdSubscription : Subscription;
   booking : Booking;
   mapShown : Boolean = false;
+  roomStatusSubscription: Subscription;
+  todayDate : Date = new Date(Date.now())
 
-  constructor(private bookingService : BookingService, private route : ActivatedRoute,private authService : AuthService,
+  roomStatusList : RoomStatus[]
+  private getAllRoomStatusSubscription: Subscription;
+  formRooms : FormGroup
+  private modifyBookingSubscription: Subscription;
+
+
+  constructor(private bookingService : BookingService,
+              private route : ActivatedRoute,
+              private authService : AuthService,
               private router : Router,
               private dialog : MatDialog,
-              private userService : UserService) { }
+              private roomStatusService : RoomStatusService) { }
 
   ngOnInit(): void {
+    this.formRooms = new FormGroup({
+      roomsSelect : new FormControl('',[Validators.required])
+    })
+
     this.getBookingIdSubscription = this.route.paramMap.subscribe(
       params => {
         this.id = Number(params.get('id'))
@@ -35,11 +53,6 @@ export class PrenotationDetailComponent implements OnInit,OnDestroy {
     )
 
     this.getBookingById(this.id);
-
-  }
-
-  counter(i: number | undefined) {
-    return new Array(i);
   }
 
   getBookingById(id : number){
@@ -56,15 +69,8 @@ export class PrenotationDetailComponent implements OnInit,OnDestroy {
   }
 
   closeDialog(){
+    this.formRooms.reset(this.formRooms.value);
     this.dialog.closeAll()
-  }
-  showMap(){
-    if (this.mapShown == false){
-      this.mapShown = true;
-    }
-    else {
-      this.mapShown = false;
-    }
   }
 
   deleteBookingById(id: number | undefined){
@@ -75,10 +81,48 @@ export class PrenotationDetailComponent implements OnInit,OnDestroy {
     this.closeDialog()
   }
 
+
+  openModify(dialogModify: any) {
+    if (this.booking.bookDate){
+      this.getAllRoomStatus(this.booking.bookDate)
+    }
+
+    this.dialog.open(dialogModify)
+  }
+
+  getAllRoomStatus(date : Date) {
+    this.getAllRoomStatusSubscription = this.roomStatusService.getAllRoomStatus(date.toString()).subscribe(
+      observer => {this.roomStatusList = [...observer]
+        this.roomStatusList = this.roomStatusList.filter(room => room.isCompanyRoom && room.capacity > room.numBooking)},
+      error => {console.log("Rooms status list not found")},
+      () => {console.log("Room status list found")}
+    )
+  }
+
+  modifyBookingRoom() {
+    let room =this.formRooms.controls['roomsSelect'].value
+    if (room == null) room = this.booking.roomResponseDTO?.id
+    this.modifyBookingSubscription = this.bookingService.patchBooking(this.id ,room).subscribe(
+      observer => {this.getBookingById(this.id)},
+      error => {console.log("Rooms status list not found")}
+    )
+
+    this.closeDialog()
+  }
+
+  isFuture() {
+    console.log(this.todayDate.toISOString().slice(0,10))
+    console.log(this.booking.bookDate)
+    return this.todayDate.toISOString().slice(0,10) < (this.booking.bookDate ? this.booking.bookDate : this.todayDate.toISOString().slice(0,10))
+  }
+
   ngOnDestroy(): void {
     this.getBookingIdSubscription?.unsubscribe();
     this.getBookingByIdSubscription?.unsubscribe();
     this.deleteBookingByIdSubscription?.unsubscribe();
+    this.roomStatusSubscription?.unsubscribe()
+    this.modifyBookingSubscription?.unsubscribe()
   }
+
 
 }
