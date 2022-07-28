@@ -107,7 +107,6 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
     )
     this.booking.userResponseDTO = this.user
     this.booking.roomResponseDTO = this.room
-    console.log(this.booking)
     this.postBookingSubscription = this.bookingService.postBooking(this.booking).subscribe(
       observer => {},
       error => {console.log("PostBooking: error!")},

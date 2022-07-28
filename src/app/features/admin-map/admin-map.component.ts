@@ -9,6 +9,8 @@ import {UserService} from "../../core/service/user-service/user.service";
 import {BookingService} from "../../core/service/booking.service";
 import {RoomService} from "../../core/service/room-service/room.service";
 import {MatDialog} from "@angular/material/dialog";
+import {MatDatepickerInputEvent} from "@angular/material/datepicker";
+import {ManagementService} from "../../core/service/management-service/management.service";
 
 @Component({
   selector: 'app-admin-map',
@@ -27,19 +29,32 @@ export class AdminMapComponent implements OnInit {
 
   user : User | undefined
 
-  management : Management
+  startDate : Date
+
+  dateValidator : Date
+
+  endDate : Date
+
+  management : Management = {}
+
+  capacity : number
+
+  check : boolean = true
+
+  roomManagements : Management[] = []
 
 
   getAllRoomStatusSubscription : Subscription
   getUserByEmailSubscription :Subscription
   getAllBookingsSubscription :Subscription
   getRoomByRoomNumberSubscription : Subscription
-  postBookingSubscription : Subscription
+  postManagementSubscription : Subscription
+  getManagementByRoomSubscription : Subscription
 
   constructor(private roomStatusService : RoomStatusService,
               private userService : UserService,
-              private bookingService : BookingService,
               private roomService : RoomService,
+              private managementService : ManagementService,
               private dialog : MatDialog) { }
 
   ngOnInit(): void {
@@ -80,6 +95,39 @@ export class AdminMapComponent implements OnInit {
     )
   }
 
+  postManagement() {
+    this.management.endDate = new Date(
+      this.endDate.getFullYear(),
+      this.endDate.getMonth(),
+      this.endDate.getDate() + 1
+    )
+    this.management.startDate = new Date(
+      this.startDate.getFullYear(),
+      this.startDate.getMonth(),
+      this.startDate.getDate() + 1
+    )
+    this.management.capacity = this.capacity
+    this.management.userResponseDTO = this.user
+    this.management.roomResponseDTO = this.room
+    this.getManagementByRoom(this.room.id as number)
+    if(this.isManagementValid(this.management)){
+      this.postManagementSubscription = this.managementService.postManagement(this.management).subscribe(
+        observer => {},
+        error => {console.log("Post management : Error")},
+        () => {console.log("Post management: Done")}
+      )
+    }
+    this.closeDialog()
+  }
+
+  getManagementByRoom(id : number) {
+    this.getManagementByRoomSubscription = this.managementService.getManagementByRoom(id).subscribe(
+      observer => {this.roomManagements = [...observer]},
+      error => {console.log("Management not found")},
+      () => {console.log("Management found")}
+    )
+  }
+
   myFormatDate (date : Date) {
     let year = date.getFullYear().toString()
     let mm = date.getMonth() + 1
@@ -101,15 +149,74 @@ export class AdminMapComponent implements OnInit {
   }
 
   openDialog(dialog : any, room : RoomStatus) {
-
+    this.dialog.open(dialog)
+    this.roomStatus = room
+    this.getRoomByRoomNumber(this.roomStatus.roomNumber)
   }
+
+  closeDialog(){
+    this.getAllRoomStatus()
+    this.dialog.closeAll()
+  }
+
+  addStartDate(type: string, event: MatDatepickerInputEvent<unknown | Date>) {
+    if(event.value != null) {
+      this.startDate = event.value as Date
+    }
+    this.dateValidator = new Date(
+      this.startDate.getFullYear(),
+      this.startDate.getMonth(),
+      this.startDate.getDate() + 1
+    )
+  }
+
+  addEndDate(type: string, event: MatDatepickerInputEvent<unknown | Date>) {
+    if(event.value != null) {
+      this.endDate = event.value as Date
+    }
+  }
+
+  openDialogChecker() : boolean {
+    this.check = !this.check
+    return this.check
+  }
+
+  isManagementValid(management : Management) : boolean {
+
+      for (let existing of this.roomManagements) {
+        if (existing.startDate && existing.endDate && management.startDate && management.endDate) {
+          console.log("esistono")
+          if (management.startDate < management.endDate) {
+            console.log("nostro controllo")
+            return (!(management.startDate >= existing.startDate && management.startDate <= existing.endDate
+                || management.endDate <= existing.endDate && management.endDate >= existing.startDate)
+              && !(existing.startDate >= management.startDate && existing.startDate <= management.endDate
+                || existing.endDate <= management.endDate && existing.endDate >= management.startDate))
+          } else{
+            console.log("non nel nostro controllo")
+            return false
+          }
+
+
+        } else{
+          console.log("non esistono")
+          return false
+        }
+
+
+      }
+      console.log("non entro in un cazzo di niente")
+      return true
+  }
+
 
   ngOnDestroy(): void {
     this.getAllRoomStatusSubscription?.unsubscribe()
     this.getUserByEmailSubscription?.unsubscribe()
     this.getAllBookingsSubscription?.unsubscribe()
     this.getRoomByRoomNumberSubscription?.unsubscribe()
-    this.postBookingSubscription?.unsubscribe()
+    this.postManagementSubscription?.unsubscribe()
+    this.getManagementByRoomSubscription?.unsubscribe()
   }
 
 }
