@@ -91,7 +91,7 @@ export class AdminMapComponent implements OnInit {
     this.getRoomByRoomNumberSubscription = this.roomService.getRoomByRoomNumber(roomNumber).subscribe(
       observer => {this.room = {...observer}},
       () => {console.log("Room not found!")},
-      () => {console.log("Room found!")}
+      () => {this.getManagementByRoom(this.room)}
     )
   }
 
@@ -109,7 +109,7 @@ export class AdminMapComponent implements OnInit {
     this.management.capacity = this.capacity
     this.management.userResponseDTO = this.user
     this.management.roomResponseDTO = this.room
-    this.getManagementByRoom(this.room.id as number)
+    // this.getManagementByRoom(this.room)
     if(this.isManagementValid(this.management)){
       this.postManagementSubscription = this.managementService.postManagement(this.management).subscribe(
         observer => {},
@@ -120,11 +120,11 @@ export class AdminMapComponent implements OnInit {
     this.closeDialog()
   }
 
-  getManagementByRoom(id : number) {
-    this.getManagementByRoomSubscription = this.managementService.getManagementByRoom(id).subscribe(
+  getManagementByRoom(room : Room) {
+    this.getManagementByRoomSubscription = this.managementService.getManagementByRoom(room.id as number).subscribe(
       observer => {this.roomManagements = [...observer]},
       error => {console.log("Management not found")},
-      () => {console.log("Management found")}
+      () => {console.log("Management found", this.roomManagements)}
     )
   }
 
@@ -181,32 +181,69 @@ export class AdminMapComponent implements OnInit {
     return this.check
   }
 
+  // isManagementValid(management : Management) : boolean {
+  //
+  //     for (let existing of this.roomManagements) {
+  //       if (existing.startDate && existing.endDate && management.startDate && management.endDate) {
+  //         console.log("esistono")
+  //         if (management.startDate < management.endDate) {
+  //           console.log("nostro controllo")
+  //           return (!(management.startDate >= existing.startDate && management.startDate <= existing.endDate
+  //               || management.endDate <= existing.endDate && management.endDate >= existing.startDate)
+  //             && !(existing.startDate >= management.startDate && existing.startDate <= management.endDate
+  //               || existing.endDate <= management.endDate && existing.endDate >= management.startDate))
+  //         } else{
+  //           console.log("non nel nostro controllo")
+  //           return false
+  //         }
+  //
+  //
+  //       } else{
+  //         console.log("non esistono")
+  //         return false
+  //       }
+  //
+  //
+  //     }
+  //     console.log("non entro in un cazzo di niente")
+  //     return true
+  // }
+
   isManagementValid(management : Management) : boolean {
 
-      for (let existing of this.roomManagements) {
-        if (existing.startDate && existing.endDate && management.startDate && management.endDate) {
-          console.log("esistono")
-          if (management.startDate < management.endDate) {
-            console.log("nostro controllo")
-            return (!(management.startDate >= existing.startDate && management.startDate <= existing.endDate
-                || management.endDate <= existing.endDate && management.endDate >= existing.startDate)
-              && !(existing.startDate >= management.startDate && existing.startDate <= management.endDate
-                || existing.endDate <= management.endDate && existing.endDate >= management.startDate))
-          } else{
-            console.log("non nel nostro controllo")
-            return false
-          }
+    let isValid : boolean = true
+    // this.getManagementByRoom(this.room)
+
+    this.roomManagements.forEach(existing => {
+
+      if (existing.startDate && existing.endDate && management.startDate && management.endDate) {
+
+        console.log("esistono")
+
+        if (management.startDate < management.endDate) {
+
+          console.log("nostro controllo")
+          isValid = (!(management.startDate >= existing.startDate && management.startDate <= existing.endDate
+              || management.endDate <= existing.endDate && management.endDate >= existing.startDate)
+            && !(existing.startDate >= management.startDate && existing.startDate <= management.endDate
+              || existing.endDate <= management.endDate && existing.endDate >= management.startDate))
+          console.log(isValid)
 
 
         } else{
-          console.log("non esistono")
-          return false
+          console.log("non nel nostro controllo")
+          isValid = false
         }
 
 
+      }else{
+        console.log("non esistono")
+        isValid = false
       }
-      console.log("non entro in un cazzo di niente")
-      return true
+    })
+    console.log(this.roomManagements.length, this.roomManagements)
+    return isValid
+
   }
 
 
