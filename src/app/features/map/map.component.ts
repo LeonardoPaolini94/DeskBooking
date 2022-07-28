@@ -187,7 +187,6 @@ export class MapComponent implements OnInit,OnChanges, OnDestroy {
 
   closeDialog(){
     this.dialog.closeAll()
-    // this.bookingExist = false
     setTimeout(()=>{this.bookingExist = false},100)
   }
 
