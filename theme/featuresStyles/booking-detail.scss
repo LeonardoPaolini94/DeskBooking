@@ -167,8 +167,45 @@
   border-radius: 50%;
 }
 
-#map-container{
-  padding: 5.5rem;
+.booking-mod-container{
   display: flex;
-  justify-content: center;
+  .modal-close-div{
+    height: fit-content;
+    .modal-close-icon{
+      height: fit-content;
+      text-decoration: none;
+      color: black;
+      i{
+        font-size: 2rem;
+      }
+    }
+    .modal-close-icon :hover{
+      color: black;
+      cursor: pointer;
+    }
+  }
+  .booking-detail-modal{
+    height: 10rem;
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 1rem;
+    .modal-div{
+      height: 100%;
+      .modal-form{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        select{
+          width: 40%;
+          margin-top: 0.6rem;
+          padding: 0.2rem;
+          border-radius: 0.8rem;
+        }
+      }
+    }
+  }
 }

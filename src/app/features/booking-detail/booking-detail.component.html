@@ -40,33 +40,34 @@
       <div mat-dialog-content>
         <p class="text-center">Sei sicuro di voler annullare la prenotazione?</p>
         <div >
-          <button class="signup-btn white-btn m-1" routerLink="/prenotation-detail/:id">Indietro</button>
+          <button class="signup-btn white-btn m-1" (click)="closeDialog()">Indietro</button>
           <button type="submit" class="login-btn blue-btn m-1" (click)="deleteBookingById(booking.id)" routerLink="/home">Conferma</button>
         </div>
       </div>
     </ng-template>
 
     <ng-template #dialogModify>
-      <h1 mat-dialog-title>Modifica</h1>
-      <div mat-dialog-content>
-
-        <form [formGroup]="formRooms"  (ngSubmit)="modifyBookingRoom()">
-          <select formControlName="roomsSelect" name="roomsSelect" id="roomsSelect" >
-            <option value="{{null}}">--</option>
-            <option *ngFor="let r of roomStatusList" value="{{r.id}}">{{r.roomNumber}}</option>
-          </select>
-          <button type="submit" class="login-btn blue-btn m-1">Conferma</button>
-
-        </form>
-
-
+      <div class="booking-mod-container">
+        <div class="booking-detail-modal">
+          <h1 mat-dialog-title class="mat-booking-title">Modifica</h1>
+          <div mat-dialog-content class="modal-div">
+            <form [formGroup]="formRooms"  (ngSubmit)="modifyBookingRoom()" class="modal-form">
+              <select formControlName="roomsSelect" name="roomsSelect" id="roomsSelect">
+                <option value="{{null}}">--</option>
+                <option *ngFor="let r of roomStatusList" value="{{r.id}}">{{r.roomNumber}}</option>
+              </select>
+              <button type="submit" class="login-btn blue-btn m-1">Conferma</button>
+            </form>
+          </div>
+        </div>
+        <div class="modal-close-div">
+          <a (click)="closeDialog()" class="modal-close-icon">
+            <i class="fa fa-times"></i>
+          </a>
+        </div>
       </div>
     </ng-template>
-
   </div>
 </div>
-<div id="map-container" *ngIf="mapShown">
-  <app-map></app-map>
 
-</div>
 

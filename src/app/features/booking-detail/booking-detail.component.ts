@@ -69,7 +69,6 @@ export class PrenotationDetailComponent implements OnInit,OnDestroy {
   }
 
   closeDialog(){
-   // this.formRooms.controls['roomsSelect'].reset()
     this.formRooms.reset(this.formRooms.value);
     this.dialog.closeAll()
   }
