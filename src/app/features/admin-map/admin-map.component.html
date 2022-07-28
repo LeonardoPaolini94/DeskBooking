@@ -317,6 +317,7 @@
 
 
 <ng-template #dialog>
+
   <div mat-dialog-content class="my-dialog-admin">
     <div class="dialog-head">
       <p class="dialog-booking-number"></p>
@@ -364,7 +365,8 @@
 </ng-template>
 
 <ng-template #editDialog>
-  <div mat-dialog-content class="my-dialog-admin">
+
+  <div *ngIf="check" mat-dialog-content class="my-dialog-admin">
     <div class="dialog-head">
       <p class="dialog-booking-number"></p>
     </div>
@@ -408,4 +410,51 @@
       </div>
     </div>
   </div>
+
+  <div *ngIf="!check" mat-dialog-content class="my-dialog-admin">
+    <div class="dialog-head">
+      <p class="dialog-booking-number"></p>
+    </div>
+    <div class="dialog-body">
+      <div class="d-flex">
+        <img class="dialog-room-key" src="assets/img/key-svgrepo-com (1).svg">
+        <p class="dialog-room-number">{{roomStatus.roomNumber}}</p>
+      </div>
+      <div class="dialog-booking-info w-100">
+
+        <div class="d-flex justify-content-around">
+          <mat-form-field appearance="outline" color="primary">
+            <mat-label>Data di inizio</mat-label>
+            <input matInput [matDatepicker]="pickerstart" [min]="date"  placeholder="{{date | myDateView}}"
+                   (dateInput)="addStartDate('input', $event)" (dateChange)="addStartDate('change', $event)">
+            <mat-datepicker-toggle matSuffix [for]="pickerstart"></mat-datepicker-toggle>
+            <mat-datepicker #pickerstart></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" color="primary">
+            <mat-label>Data di fine</mat-label>
+            <input matInput [matDatepicker]="pickerend" [min]="dateValidator"  placeholder="{{date | myDateView}}"
+                   (dateInput)="addEndDate('input', $event)" (dateChange)="addEndDate('change', $event)">
+            <mat-datepicker-toggle matSuffix [for]="pickerend"></mat-datepicker-toggle>
+            <mat-datepicker #pickerend></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center">
+          <i class="fa fa-user icon-size"></i>
+          <mat-form-field class="capacity-input" appearance="outline" color="primary">
+            <mat-label>Capacità</mat-label>
+            <input matInput type="number" placeholder="1" value="1" [min]="1" [max]="roomStatus.maxCapacity" [(ngModel)]="capacity">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="w-100 d-flex justify-content-evenly mb-3">
+        <button class="signup-btn white-btn" (click)="closeDialog()" >Annulla</button>
+        <button type="submit" class="login-btn blue-btn" (click)="postManagement()">Conferma</button>
+      </div>
+    </div>
+  </div>
+
+
 </ng-template>
