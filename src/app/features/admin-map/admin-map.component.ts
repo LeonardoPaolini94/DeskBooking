@@ -43,6 +43,8 @@ export class AdminMapComponent implements OnInit {
 
   roomManagements : Management[] = []
 
+  id : number
+
 
   getAllRoomStatusSubscription : Subscription
   getUserByEmailSubscription :Subscription
@@ -50,6 +52,7 @@ export class AdminMapComponent implements OnInit {
   getRoomByRoomNumberSubscription : Subscription
   postManagementSubscription : Subscription
   getManagementByRoomSubscription : Subscription
+  patchManagementSubscription : Subscription
 
   constructor(private roomStatusService : RoomStatusService,
               private userService : UserService,
@@ -113,6 +116,36 @@ export class AdminMapComponent implements OnInit {
         observer => {},
         error => {console.log("Post management : Error")},
         () => {console.log("Post management: Done")}
+      )
+    this.closeDialog()
+  }
+
+  editManagement() {
+    this.roomManagements.forEach(manage => {
+      if(manage.startDate && manage.endDate){
+        if(new Date(manage.startDate) <= this.date && this.date <= new Date(manage.endDate)){
+          this.id = manage.id as number
+        }
+      }
+    })
+      this.management.endDate = new Date(
+        this.endDate.getFullYear(),
+        this.endDate.getMonth(),
+        this.endDate.getDate() + 1
+      )
+      this.management.startDate = new Date(
+        this.startDate.getFullYear(),
+        this.startDate.getMonth(),
+        this.startDate.getDate() + 1
+      )
+      this.management.id = this.id
+      this.management.capacity = this.capacity
+      this.management.userResponseDTO = this.user
+      this.management.roomResponseDTO = this.room
+      this.patchManagementSubscription = this.managementService.patchManagement(this.management).subscribe(
+        observer => {},
+        error => {console.log("Management not updated")},
+        () => {console.log("Management updated"), this.getAllRoomStatus()}
       )
     this.closeDialog()
   }
@@ -246,8 +279,23 @@ export class AdminMapComponent implements OnInit {
   //   return isValid
   //
   // }
-  // myFilter = (date: Date): boolean => {
-  //
+
+
+
+  // myFilter = (listOfManagement: Management[]): boolean => {
+  //   let dateArray : Date[] = []
+  //   listOfManagement.forEach(management => {
+  //     let currentDate = new Date(management.startDate as Date)
+  //     if(management.startDate && management.endDate){
+  //       while (management.startDate <= management.endDate){
+  //         dateArray.push(new Date(currentDate as Date))
+  //         currentDate = new Date(currentDate?.getFullYear(), currentDate?.getMonth(), currentDate?.getDate() +1)
+  //       }
+  //     }
+  //   })
+  //   dateArray.forEach(day => {
+  //     return
+  //   })
   // }
 
 
@@ -258,6 +306,7 @@ export class AdminMapComponent implements OnInit {
     this.getRoomByRoomNumberSubscription?.unsubscribe()
     this.postManagementSubscription?.unsubscribe()
     this.getManagementByRoomSubscription?.unsubscribe()
+    this.patchManagementSubscription?.unsubscribe()
   }
 
 }
