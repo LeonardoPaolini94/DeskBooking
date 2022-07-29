@@ -51,8 +51,11 @@ export class HeaderComponent implements OnInit,OnDestroy{
 
 
   async logout() {
-    this.authService.signout().then(()=>
-      this.authService.removeUser());
+    this.authService.signout().then(()=>{
+        this.authService.removeUser()
+        this.avatarService.data$.unsubscribe()
+      }
+    );
     this.closeDialog();
     setTimeout(()=>{this.route.navigateByUrl('/auth/login').then()},10)
   }
