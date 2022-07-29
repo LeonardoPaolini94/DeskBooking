@@ -73,7 +73,10 @@ export class HeaderComponent implements OnInit,OnDestroy{
 
    getAvatarImage(userId : number | undefined){
     if(userId){
-      this.userService.getAvatar(userId).subscribe(image => this.createImage(image),
+      this.userService.getAvatar(userId).subscribe(image => {
+        this.createImage(image)
+        this.avatarService.update(image)
+        },
         err => this.handleImageRetrievalError(err));
     }
 
