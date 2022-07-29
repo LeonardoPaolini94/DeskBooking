@@ -28,8 +28,4 @@ export class ManagementService {
   getManagementByRoom(id : number) : Observable<Management[]> {
     return this.httpClient.get<Management[]>("http://localhost:8080/api/v1/management/room/" + id)
   }
-
-  patchManagement(management : Management) : Observable<Management> {
-    return this.httpClient.patch<Management>("http://localhost:8080/api/v1/management/" + management.id, management)
-  }
 }
