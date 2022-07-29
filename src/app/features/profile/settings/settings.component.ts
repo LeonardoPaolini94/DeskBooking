@@ -159,7 +159,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     sessionStorage.removeItem('email');
     sessionStorage.setItem('email', this.user!.email);
     this.isEditingProfile= false;
-    setTimeout(()=> {this.ngOnInit()},20)
+    setTimeout(()=> {this.ngOnInit()},50)
   }
 
   verifyEmail(email : string){
@@ -281,6 +281,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
     }
   }
 
+  goToProfile() {
+    this.isEditingPassword = false
+    this.getAvatarImage(this.user?.id)
+  }
+
   ngOnDestroy(): void {
     this.getUserByEmailSubscription?.unsubscribe();
     this.patchUserSubscription?.unsubscribe()
@@ -288,7 +293,5 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.verifyPhoneNumberSubscription?.unsubscribe()
   }
 
-  goToProfile() {
-    this.isEditingPassword = false
-  }
+
 }

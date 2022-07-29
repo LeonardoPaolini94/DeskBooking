@@ -3,20 +3,13 @@
   <div class="prenotation-detail-div">
     <div class="prenotation-top-div">
      <p>
-       # {{booking?.id}}
+       # {{booking.id | bookingNumber}}
      </p>
       <a routerLink="/home">
         <i class="fa fa-times"></i>
       </a>
     </div>
     <div class="prenotation-body-div">
-      <div class="left-prenotation-div">
-        <div class="circle-external-div">
-          <div class="circle-internal-div">
-              <div class="circle-desk" *ngFor="let i of counter(booking?.roomResponseDTO?.maxCapacity); let index = index" [ngStyle]="{'background-color': (index < booking?.roomResponseDTO!.roomNumber) ? '#0278DB' : 'lightgray'}"></div>
-          </div>
-        </div>
-      </div>
       <div class="right-prenotation-div">
         <div class="left-right-prenotation-div">
           <p class="bi bi-door-closed-fill detail-icons">
@@ -36,25 +29,42 @@
         </div>
       </div>
     </div>
-    <div class="bot-prenotation-div">
+    <div class="bot-prenotation-div" *ngIf="isFuture()">
       <button class="signup-btn black-white-btn" (click)="openDialog(dialog)">Annulla Prenotazione</button>
-      <button class="login-btn modify-btn" (click)="showMap()">Modifica</button>
+      <button class="login-btn modify-btn" (click)="openModify(dialogModify)">Modifica</button>
     </div>
 
     <ng-template #dialog>
       <h1 mat-dialog-title></h1>
       <div mat-dialog-content>
         <p class="text-center">Sei sicuro di voler annullare la prenotazione?</p>
-        <div>
-          <button class="signup-btn white-btn m-1" routerLink="/prenotation-detail/:id">Indietro</button>
+        <div >
+          <button class="signup-btn white-btn m-1" (click)="closeDialog()">Indietro</button>
           <button type="submit" class="login-btn blue-btn m-1" (click)="deleteBookingById(booking.id)" routerLink="/home">Conferma</button>
         </div>
       </div>
     </ng-template>
 
+    <ng-template #dialogModify>
+      <div class="booking-mod-container">
+        <div class="booking-detail-modal">
+          <h1 mat-dialog-title class="mat-booking-title">Modifica</h1>
+          <div mat-dialog-content class="modal-div">
+            <form [formGroup]="formRooms"  (ngSubmit)="modifyBookingRoom()" class="modal-form">
+              <select formControlName="roomsSelect" name="roomsSelect" id="roomsSelect">
+                <option value="{{null}}">--</option>
+                <option *ngFor="let r of roomStatusList" value="{{r.id}}">{{r.roomNumber}}</option>
+              </select>
+              <button type="submit" class="login-btn blue-btn m-1">Conferma</button>
+            </form>
+          </div>
+        </div>
+        <div class="modal-close-div">
+          <a (click)="closeDialog()" class="modal-close-icon">
+            <i class="fa fa-times"></i>
+          </a>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </div>
-<div id="map-container" *ngIf="mapShown">
-  <app-map></app-map>
-</div>
-
