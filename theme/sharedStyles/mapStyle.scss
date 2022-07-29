@@ -13,18 +13,28 @@
 }
 
 .nounikey{
-  border: 5px solid grey;
+  border: .32rem solid grey;
+  border-radius: 0.5rem;
+}
+
+.fullBooked{
+  border: .32rem solid red;
   border-radius: 0.5rem;
 }
 
 
 .unikey{
-  border: 5px solid limegreen;
+  border: .32rem solid limegreen;
+  border-radius: 0.5rem;
+}
+
+.unikey-managed{
+  border: .32rem solid #0278DB;
   border-radius: 0.5rem;
 }
 
 .segreteria{
-  border: 5px solid grey;
+  border: .32rem solid grey;
   border-radius: 0.5rem;
 }
 
@@ -36,10 +46,6 @@
   height: 4rem;
 }
 
-.fullBooked{
-  border: 5px solid red;
-  border-radius: 0.5rem;
-}
 
 .small-center-div img{
   width: 7rem;
@@ -86,6 +92,14 @@
 
 .legend-color-grey {
   background-color: gray;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: .3rem;
+  margin-right: .5rem;
+}
+
+.legend-color-blue {
+  background-color: #0278DB;
   height: 1.5rem;
   width: 1.5rem;
   border-radius: .3rem;

@@ -1,0 +1,411 @@
+<div *ngIf="roomStatusList" class="map-container">
+
+  <div class="corner">
+
+    <div [ngClass]="{'nounikey' : !roomStatusList[27].isCompanyRoom, 'unikey-managed' : roomStatusList[27].isCompanyRoom}"
+         class="room-cell">
+      <a *ngIf="!roomStatusList[27].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[27])" ></a>
+      <a *ngIf="roomStatusList[27].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[27])" ></a>
+      <p class="room-number-corner">{{roomStatusList[27].roomNumber}}</p>
+    </div>
+
+    <div [ngClass]="{'nounikey' : !roomStatusList[28].isCompanyRoom, 'unikey-managed' : roomStatusList[28].isCompanyRoom}"
+         class="room-cell">
+      <a *ngIf="!roomStatusList[28].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[28])" ></a>
+      <a *ngIf="roomStatusList[28].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[28])" ></a>
+      <p class="room-number-corner">{{roomStatusList[28].roomNumber}}</p>
+    </div>
+
+    <div [ngClass]="{'nounikey' : !roomStatusList[26].isCompanyRoom, 'unikey-managed' : roomStatusList[26].isCompanyRoom}"
+         class="room-cell">
+      <a *ngIf="!roomStatusList[26].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[26])" ></a>
+      <a *ngIf="roomStatusList[26].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[26])" ></a>
+      <p class="room-number-corner">{{roomStatusList[26].roomNumber}}</p>
+    </div>
+
+    <div></div>
+
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[29].isCompanyRoom, 'unikey-managed' : roomStatusList[29].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[29].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[29])" ></a>
+    <a *ngIf="roomStatusList[29].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[29])" ></a>
+    <p class="room-number">{{roomStatusList[29].roomNumber}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[30].isCompanyRoom, 'unikey-managed' : roomStatusList[30].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[30].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[30])" ></a>
+    <a *ngIf="roomStatusList[30].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[30])" ></a>
+    <p class="room-number">{{roomStatusList[30].roomNumber}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[31].isCompanyRoom, 'unikey-managed' : roomStatusList[31].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[31].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[31])" ></a>
+    <a *ngIf="roomStatusList[31].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[31])" ></a>
+    <p class="room-number">{{roomStatusList[31].roomNumber}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[32].isCompanyRoom, 'unikey-managed' : roomStatusList[32].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[32].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[32])" ></a>
+    <a *ngIf="roomStatusList[32].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[32])" ></a>
+    <p class="room-number">{{roomStatusList[32].roomNumber}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[33].isCompanyRoom, 'unikey-managed' : roomStatusList[33].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[33].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[33])" ></a>
+    <a *ngIf="roomStatusList[33].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[33])" ></a>
+    <p class="room-number">{{roomStatusList[33].roomNumber}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[34].isCompanyRoom, 'unikey-managed' : roomStatusList[34].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[34].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[34])" ></a>
+    <a *ngIf="roomStatusList[34].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[34])" ></a>
+    <p class="room-number">{{roomStatusList[34].roomNumber}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[35].isCompanyRoom, 'unikey-managed' : roomStatusList[35].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[35].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[35])" ></a>
+    <a *ngIf="roomStatusList[35].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[35])" ></a>
+    <p class="room-number">{{roomStatusList[35].roomNumber}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[36].isCompanyRoom, 'unikey-managed' : roomStatusList[36].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[36].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[36])" ></a>
+    <a *ngIf="roomStatusList[36].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[36])" ></a>
+    <p class="room-number">{{roomStatusList[36].roomNumber}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[37].isCompanyRoom, 'unikey-managed' : roomStatusList[37].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[37].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[37])" ></a>
+    <a *ngIf="roomStatusList[37].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[37])" ></a>
+    <p class="room-number">{{roomStatusList[37].roomNumber}}</p>
+  </div>
+
+  <div class="corner">
+
+    <div [ngClass]="{'nounikey' : !roomStatusList[0].isCompanyRoom, 'unikey-managed' : roomStatusList[0].isCompanyRoom}"
+         class="room-cell">
+      <a *ngIf="!roomStatusList[0].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[0])" ></a>
+      <a *ngIf="roomStatusList[0].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[0])" ></a>
+      <p class="room-number-corner">{{roomStatusList[0].roomNumber}}</p>
+    </div>
+
+    <div [ngClass]="{'nounikey' : !roomStatusList[1].isCompanyRoom, 'unikey-managed' : roomStatusList[1].isCompanyRoom}"
+         class="room-cell">
+      <a *ngIf="!roomStatusList[1].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[1])" ></a>
+      <a *ngIf="roomStatusList[1].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[1])" ></a>
+      <p class="room-number-corner">{{roomStatusList[1].roomNumber}}</p>
+    </div>
+
+    <div></div>
+
+    <div [ngClass]="{'nounikey' : !roomStatusList[2].isCompanyRoom, 'unikey-managed' : roomStatusList[2].isCompanyRoom}"
+         class="room-cell">
+      <a *ngIf="!roomStatusList[2].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[2])" ></a>
+      <a *ngIf="roomStatusList[2].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[2])" ></a>
+      <p class="room-number-corner">{{roomStatusList[2].roomNumber}}</p>
+    </div>
+
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[25].isCompanyRoom, 'unikey-managed' : roomStatusList[25].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[25].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[25])" ></a>
+    <a *ngIf="roomStatusList[25].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[25])" ></a>
+    <p class="room-number">{{roomStatusList[25].roomNumber}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[3].isCompanyRoom, 'unikey-managed' : roomStatusList[3].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[3].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[3])" ></a>
+    <a *ngIf="roomStatusList[3].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[3])" ></a>
+    <p class="room-number">{{roomStatusList[3].roomNumber}}</p>
+
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[24].isCompanyRoom, 'unikey-managed' : roomStatusList[24].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[24].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[24])" ></a>
+    <a *ngIf="roomStatusList[24].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[24])" ></a>
+    <p class="room-number">{{roomStatusList[24].roomNumber}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[4].isCompanyRoom, 'unikey-managed' : roomStatusList[4].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[4].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[4])" ></a>
+    <a *ngIf="roomStatusList[4].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[4])" ></a>
+    <p class="room-number">{{roomStatusList[4].roomNumber}}</p>
+
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[23].isCompanyRoom, 'unikey-managed' : roomStatusList[23].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[23].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[23])" ></a>
+    <a *ngIf="roomStatusList[23].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[23])" ></a>
+    <p class="room-number">{{roomStatusList[23].roomNumber}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[5].isCompanyRoom, 'unikey-managed' : roomStatusList[5].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[5].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[5])" ></a>
+    <a *ngIf="roomStatusList[5].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[5])" ></a>
+    <p class="room-number">{{roomStatusList[5].roomNumber}}</p>
+
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[22].isCompanyRoom, 'unikey-managed' : roomStatusList[22].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[22].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[22])" ></a>
+    <a *ngIf="roomStatusList[22].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[22])" ></a>
+    <p class="room-number">{{roomStatusList[22].roomNumber}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[6].isCompanyRoom, 'unikey-managed' : roomStatusList[6].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[6].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[6])" ></a>
+    <a *ngIf="roomStatusList[6].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[6])" ></a>
+    <p class="room-number">{{roomStatusList[6].roomNumber}}</p>
+
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[21].isCompanyRoom, 'unikey-managed' : roomStatusList[21].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[21].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[21])" ></a>
+    <a *ngIf="roomStatusList[21].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[21])" ></a>
+    <p class="room-number">{{roomStatusList[21].roomNumber}}</p>
+  </div>
+
+  <div class="stairs">
+    <img src="assets/img/stairsSymbol.png">
+  </div>
+  <div class="corner">
+
+    <div [ngClass]="{'nounikey' : !roomStatusList[20].isCompanyRoom, 'unikey-managed' : roomStatusList[20].isCompanyRoom}"
+         class="room-cell">
+      <a *ngIf="!roomStatusList[20].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[20])" ></a>
+      <a *ngIf="roomStatusList[20].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[20])" ></a>
+      <p class="room-number-corner">{{roomStatusList[20].roomNumber}}</p>
+    </div>
+
+    <div></div>
+
+    <div [ngClass]="{'nounikey' : !roomStatusList[19].isCompanyRoom, 'unikey-managed' : roomStatusList[19].isCompanyRoom}"
+         class="room-cell">
+      <a *ngIf="!roomStatusList[19].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[19])" ></a>
+      <a *ngIf="roomStatusList[19].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[19])" ></a>
+      <p class="room-number-corner">{{roomStatusList[19].roomNumber}}</p>
+    </div>
+
+    <div [ngClass]="{'nounikey' : !roomStatusList[18].isCompanyRoom, 'unikey-managed' : roomStatusList[18].isCompanyRoom}"
+         class="room-cell">
+      <a *ngIf="!roomStatusList[18].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[18])" ></a>
+      <a *ngIf="roomStatusList[18].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[18])" ></a>
+      <p class="room-number-corner">{{roomStatusList[18].roomNumber}}</p>
+    </div>
+
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[17].isCompanyRoom, 'unikey-managed' : roomStatusList[17].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[17].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[17])" ></a>
+    <a *ngIf="roomStatusList[17].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[17])" ></a>
+    <p class="room-number">{{roomStatusList[17].roomNumber}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[16].isCompanyRoom, 'unikey-managed' : roomStatusList[16].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[16].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[16])" ></a>
+    <a *ngIf="roomStatusList[16].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[16])" ></a>
+    <p class="room-number">{{roomStatusList[16].roomNumber}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[15].isCompanyRoom, 'unikey-managed' : roomStatusList[15].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[15].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[15])" ></a>
+    <a *ngIf="roomStatusList[15].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[15])" ></a>
+    <p class="room-number">{{roomStatusList[15].roomNumber}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[14].isCompanyRoom, 'unikey-managed' : roomStatusList[14].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[14].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[14])" ></a>
+    <a *ngIf="roomStatusList[14].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[14])" ></a>
+    <p class="room-number">{{roomStatusList[14].roomNumber}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[13].isCompanyRoom, 'unikey-managed' : roomStatusList[13].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[13].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[13])" ></a>
+    <a *ngIf="roomStatusList[13].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[13])" ></a>
+    <p class="room-number">{{roomStatusList[13].roomNumber}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[12].isCompanyRoom, 'unikey-managed' : roomStatusList[12].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[12].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[12])" ></a>
+    <a *ngIf="roomStatusList[12].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[12])" ></a>
+    <p class="room-number">{{roomStatusList[12].roomNumber}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[11].isCompanyRoom, 'unikey-managed' : roomStatusList[11].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[11].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[11])" ></a>
+    <a *ngIf="roomStatusList[11].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[11])" ></a>
+    <p class="room-number">{{roomStatusList[11].roomNumber}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[10].isCompanyRoom, 'unikey-managed' : roomStatusList[10].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[10].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[10])" ></a>
+    <a *ngIf="roomStatusList[10].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[10])" ></a>
+    <p class="room-number">{{roomStatusList[10].roomNumber}}</p>
+  </div>
+
+  <div [ngClass]="{'nounikey' : !roomStatusList[9].isCompanyRoom, 'unikey-managed' : roomStatusList[9].isCompanyRoom}"
+       class="room-cell">
+    <a *ngIf="!roomStatusList[9].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[9])" ></a>
+    <a *ngIf="roomStatusList[9].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[9])" ></a>
+    <p class="room-number">{{roomStatusList[9].roomNumber}}</p>
+
+  </div>
+
+  <div class="corner">
+
+    <div [ngClass]="{'nounikey' : !roomStatusList[8].isCompanyRoom, 'unikey-managed' : roomStatusList[8].isCompanyRoom}"
+         class="room-cell left-room-one">
+      <a *ngIf="!roomStatusList[8].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[8])" ></a>
+      <a *ngIf="roomStatusList[8].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[8])" ></a>
+      <p class="room-number-corner">{{roomStatusList[8].roomNumber}}</p>
+    </div>
+
+    <div [ngClass]="{'nounikey' : !roomStatusList[7].isCompanyRoom, 'unikey-managed' : roomStatusList[7].isCompanyRoom}"
+         class="room-cell left-room-two">
+      <a *ngIf="!roomStatusList[7].isCompanyRoom && check" (click)="openDialog(dialog, roomStatusList[7])" ></a>
+      <a *ngIf="roomStatusList[7].isCompanyRoom && !check" (click)="openDialog(editDialog, roomStatusList[7])" ></a>
+      <p class="room-number-corner">{{roomStatusList[7].roomNumber}}</p>
+    </div>
+
+  </div>
+
+  <div class="center-div">
+    <div class="d-flex justify-content-end w-100">
+      <button [ngClass]="check ? 'my-pencil' : 'my-pencil-blue'" (click)="openDialogChecker()"><i class="fa fa-pencil"></i></button>
+    </div>
+    <img class="admin-map-logo" src="assets/img/unikey-logo.png">
+    <div class="map-legend">
+      <div class="d-flex">
+        <div class="legend-color-blue"></div>
+        <p class="m-0">Stanza di Unikey</p>
+      </div>
+      <div class="d-flex">
+        <div class="legend-color-grey"></div>
+        <p class="m-0">Stanza non di Unikey</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<ng-template #dialog>
+  <div mat-dialog-content class="my-dialog-admin">
+    <div class="dialog-head">
+      <p class="dialog-booking-number"></p>
+    </div>
+    <div class="dialog-body">
+      <div class="d-flex">
+        <img class="dialog-room-key" src="assets/img/key-svgrepo-com (1).svg">
+        <p class="dialog-room-number">{{roomStatus.roomNumber}}</p>
+      </div>
+      <div class="dialog-booking-info w-100">
+
+      <div class="d-flex justify-content-around">
+        <mat-form-field appearance="outline" color="primary">
+          <mat-label>Data di inizio</mat-label>
+          <input matInput [matDatepicker]="pickerstart" [min]="date"  placeholder="{{date | myDateView}}"
+                 (dateInput)="addStartDate('input', $event)" (dateChange)="addStartDate('change', $event)">
+          <mat-datepicker-toggle matSuffix [for]="pickerstart"></mat-datepicker-toggle>
+          <mat-datepicker #pickerstart></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" color="primary">
+          <mat-label>Data di fine</mat-label>
+          <input matInput [matDatepicker]="pickerend" [min]="dateValidator"  placeholder="{{date | myDateView}}"
+                 (dateInput)="addEndDate('input', $event)" (dateChange)="addEndDate('change', $event)">
+          <mat-datepicker-toggle matSuffix [for]="pickerend"></mat-datepicker-toggle>
+          <mat-datepicker #pickerend></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+        <div class="d-flex justify-content-center align-items-center">
+         <i class="fa fa-user icon-size"></i>
+        <mat-form-field class="capacity-input" appearance="outline" color="primary">
+          <mat-label>Capacità</mat-label>
+          <input matInput type="number" placeholder="1" value="1" [min]="1" [max]="roomStatus.maxCapacity" [(ngModel)]="capacity">
+        </mat-form-field>
+        </div>
+      </div>
+
+      <div class="w-100 d-flex justify-content-evenly mb-3">
+        <button class="signup-btn white-btn" (click)="closeDialog()" >Annulla</button>
+        <button type="submit" class="login-btn blue-btn" (click)="postManagement()">Conferma</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #editDialog>
+  <div mat-dialog-content class="my-dialog-admin">
+    <div class="dialog-head">
+      <p class="dialog-booking-number"></p>
+    </div>
+    <div class="dialog-body">
+      <div class="d-flex">
+        <img class="dialog-room-key" src="assets/img/key-svgrepo-com (1).svg">
+        <p class="dialog-room-number">{{roomStatus.roomNumber}}</p>
+      </div>
+      <div class="dialog-booking-info w-100">
+
+        <div class="d-flex justify-content-around">
+          <mat-form-field appearance="outline" color="primary">
+            <mat-label>Data di inizio</mat-label>
+            <input matInput [matDatepicker]="pickerstart" [min]="date"  placeholder="{{date | myDateView}}"
+                   (dateInput)="addStartDate('input', $event)" (dateChange)="addStartDate('change', $event)">
+            <mat-datepicker-toggle matSuffix [for]="pickerstart"></mat-datepicker-toggle>
+            <mat-datepicker #pickerstart></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" color="primary">
+            <mat-label>Data di fine</mat-label>
+            <input matInput [matDatepicker]="pickerend" [min]="dateValidator"  placeholder="{{date | myDateView}}"
+                   (dateInput)="addEndDate('input', $event)" (dateChange)="addEndDate('change', $event)">
+            <mat-datepicker-toggle matSuffix [for]="pickerend"></mat-datepicker-toggle>
+            <mat-datepicker #pickerend></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center">
+          <i class="fa fa-user icon-size"></i>
+          <mat-form-field class="capacity-input" appearance="outline" color="primary">
+            <mat-label>Capacità</mat-label>
+            <input matInput type="number" placeholder="1" value="1" [min]="1" [max]="roomStatus.maxCapacity" [(ngModel)]="capacity">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="w-100 d-flex justify-content-evenly mb-3">
+        <button class="signup-btn white-btn" (click)="closeDialog()" >Annulla</button>
+        <button type="submit" class="login-btn blue-btn" (click)="postManagement()">Conferma</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

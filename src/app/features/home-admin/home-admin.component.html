@@ -1,5 +1,16 @@
 <app-header></app-header>
-<div>
 
+<div class="main-container d-flex justify-content-center flex-md-wrap">
+  <div class="room-booking-head">
+    <p class="mt-4">PRENOTAZIONE STANZE</p>
+    <mat-form-field appearance="outline" color="primary">
+      <mat-label>Scegli la data</mat-label>
+      <input matInput [matDatepicker]="picker"  placeholder="{{todayDate | myDateView}}"
+             (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <app-admin-map [date]="date"></app-admin-map>
 </div>
 
