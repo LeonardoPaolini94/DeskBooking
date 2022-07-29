@@ -246,7 +246,9 @@ export class AdminMapComponent implements OnInit {
   //   return isValid
   //
   // }
-
+  // myFilter = (date: Date): boolean => {
+  //
+  // }
 
 
   ngOnDestroy(): void {
