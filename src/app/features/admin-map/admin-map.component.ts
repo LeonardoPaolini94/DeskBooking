@@ -45,6 +45,7 @@ export class AdminMapComponent implements OnInit {
 
   id : number
 
+  managementFound : Management;
 
   getAllRoomStatusSubscription : Subscription
   getUserByEmailSubscription :Subscription
@@ -53,6 +54,7 @@ export class AdminMapComponent implements OnInit {
   postManagementSubscription : Subscription
   getManagementByRoomSubscription : Subscription
   patchManagementSubscription : Subscription
+  getManagementByDateAndRoomSubscription : Subscription
 
   constructor(private roomStatusService : RoomStatusService,
               private userService : UserService,
@@ -158,6 +160,14 @@ export class AdminMapComponent implements OnInit {
     )
   }
 
+  getManagementByDateAndRoom(startDate : Date, endDate : Date, roomNumber : number){
+    this.getManagementByDateAndRoomSubscription = this.managementService.getManagementByDateAndRoom(startDate, endDate, roomNumber).subscribe(
+      observer => {this.managementFound = {...observer}},
+      error => console.log("Management not found"),
+      () => {console.log("Management found")}
+    )
+  }
+
   myFormatDate (date : Date) {
     let year = date.getFullYear().toString()
     let mm = date.getMonth() + 1
@@ -221,6 +231,7 @@ export class AdminMapComponent implements OnInit {
     this.postManagementSubscription?.unsubscribe()
     this.getManagementByRoomSubscription?.unsubscribe()
     this.patchManagementSubscription?.unsubscribe()
+    this.getManagementByDateAndRoomSubscription?.unsubscribe();
   }
 
 }
