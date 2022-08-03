@@ -56,7 +56,7 @@
     <p *ngIf="roomStatusList[32].capacity" class="room-capacity">{{roomStatusList[32].numBooking}} / {{roomStatusList[32].capacity}}</p>
   </div>
 
-  <div [ngClass]="{'nounikey' : !roomStatusList[33].isCompanyRoom  || !roomStatusList[33].capacity, 'unikey' : roomStatusList[36].isCompanyRoom && roomStatusList[33].capacity, 'fullBooked' : roomIsFull(roomStatusList[33])}"
+  <div [ngClass]="{'nounikey' : !roomStatusList[33].isCompanyRoom  || !roomStatusList[33].capacity, 'unikey' : roomStatusList[33].isCompanyRoom && roomStatusList[33].capacity, 'fullBooked' : roomIsFull(roomStatusList[33])}"
        class="room-cell">
     <a *ngIf="roomStatusList[33].isCompanyRoom && !roomIsFull(roomStatusList[33]) && roomStatusList[33].capacity" (click)="openDialog(dialog, roomStatusList[33])" ></a>
     <p *ngIf="roomStatusList[33].isCompanyRoom && roomStatusList[33].capacity" [ngClass]="roomIsFull(roomStatusList[33]) ? 'fa fa-lock' : 'fa fa-unlock-alt'" class="room-lock"></p>
