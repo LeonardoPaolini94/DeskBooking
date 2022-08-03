@@ -168,6 +168,8 @@ export class AdminMapComponent implements OnInit {
     )
   }
 
+
+
   myFormatDate (date : Date) {
     let year = date.getFullYear().toString()
     let mm = date.getMonth() + 1
@@ -192,6 +194,9 @@ export class AdminMapComponent implements OnInit {
     this.dialog.open(dialog)
     this.roomStatus = room
     this.getRoomByRoomNumber(this.roomStatus.roomNumber)
+    if (this.management.startDate && this.management.endDate){
+      this.getManagementByDateAndRoom(this.management?.startDate, this.management?.endDate, this.roomStatus.roomNumber)
+    }
   }
 
   closeDialog(){

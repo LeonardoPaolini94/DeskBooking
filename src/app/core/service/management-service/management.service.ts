@@ -21,6 +21,7 @@ export class ManagementService {
   postManagement(Management : Management) : Observable<Management> {
     return this.httpClient.post<Management>("http://localhost:8080/api/v1/management", Management)
   }
+
   deleteManagementById(id : number | undefined) : Observable<Management>{
     return this.httpClient.delete<Management>("http://localhost:8080/api/v1/management/" + id);
   }
