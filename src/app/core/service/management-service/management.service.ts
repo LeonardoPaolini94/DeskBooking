@@ -34,7 +34,7 @@ export class ManagementService {
     return this.httpClient.patch<Management>("http://localhost:8080/api/v1/management/" + management.id, management)
   }
 
-  getManagementByDateAndRoom(startDate : Date, endDate : Date, roomNumber : number) : Observable<Management> {
-    return this.httpClient.get<Management>("http://localhost:8080/api/v1/management/date" + startDate + endDate + "/room" + roomNumber)
+  getManagementByDateAndRoom(date : Date, roomNumber : number) : Observable<Management> {
+    return this.httpClient.get<Management>("http://localhost:8080/api/v1/management/date/" + date + "/room/" + roomNumber)
   }
 }

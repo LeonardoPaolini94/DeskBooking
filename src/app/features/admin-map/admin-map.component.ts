@@ -6,7 +6,6 @@ import {Subscription} from "rxjs";
 import {Management} from "../../core/models/Management";
 import {RoomStatusService} from "../../core/service/room-status-service/room-status.service";
 import {UserService} from "../../core/service/user-service/user.service";
-import {BookingService} from "../../core/service/booking.service";
 import {RoomService} from "../../core/service/room-service/room.service";
 import {MatDialog} from "@angular/material/dialog";
 import {MatDatepickerInputEvent} from "@angular/material/datepicker";
@@ -45,7 +44,7 @@ export class AdminMapComponent implements OnInit {
 
   id : number
 
-  managementFound : Management;
+  managementFound : Management = {};
 
   getAllRoomStatusSubscription : Subscription
   getUserByEmailSubscription :Subscription
@@ -55,6 +54,7 @@ export class AdminMapComponent implements OnInit {
   getManagementByRoomSubscription : Subscription
   patchManagementSubscription : Subscription
   getManagementByDateAndRoomSubscription : Subscription
+  deleteManagementByIdSubscription : Subscription;
 
   constructor(private roomStatusService : RoomStatusService,
               private userService : UserService,
@@ -160,15 +160,28 @@ export class AdminMapComponent implements OnInit {
     )
   }
 
-  getManagementByDateAndRoom(startDate : Date, endDate : Date, roomNumber : number){
-    this.getManagementByDateAndRoomSubscription = this.managementService.getManagementByDateAndRoom(startDate, endDate, roomNumber).subscribe(
-      observer => {this.managementFound = {...observer}},
+  getManagementByDateAndRoom(date : Date, roomNumber : number){
+    console.log(date)
+    this.getManagementByDateAndRoomSubscription = this.managementService.getManagementByDateAndRoom(date, roomNumber).subscribe(
+      observer => {
+        this.managementFound = {...observer}},
       error => console.log("Management not found"),
       () => {console.log("Management found")}
     )
   }
 
-
+  deleteManagementById(id : number | undefined){
+    console.log(this.managementFound)
+    if (this.managementFound){
+      this.deleteManagementByIdSubscription = this.managementService.deleteManagementById(id).subscribe(
+        observer => {},
+        error => {console.log("Management to delete not found")},
+        () => {
+          console.log("Management deleted")
+          this.closeDialog()}
+      )
+    }
+  }
 
   myFormatDate (date : Date) {
     let year = date.getFullYear().toString()
@@ -194,9 +207,8 @@ export class AdminMapComponent implements OnInit {
     this.dialog.open(dialog)
     this.roomStatus = room
     this.getRoomByRoomNumber(this.roomStatus.roomNumber)
-    if (this.management.startDate && this.management.endDate){
-      this.getManagementByDateAndRoom(this.management?.startDate, this.management?.endDate, this.roomStatus.roomNumber)
-    }
+    let managementDate : Date = this.myFormatDate(this.date) as unknown as Date
+    this.getManagementByDateAndRoom(managementDate, this.roomStatus.roomNumber)
   }
 
   closeDialog(){
@@ -237,6 +249,7 @@ export class AdminMapComponent implements OnInit {
     this.getManagementByRoomSubscription?.unsubscribe()
     this.patchManagementSubscription?.unsubscribe()
     this.getManagementByDateAndRoomSubscription?.unsubscribe();
+    this.deleteManagementByIdSubscription?.unsubscribe();
   }
 
 }
