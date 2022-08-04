@@ -366,7 +366,11 @@
 <ng-template #editDialog>
   <div mat-dialog-content class="my-dialog-admin">
     <div class="dialog-head">
-      <p class="dialog-booking-number"></p>
+      <div class="modal-close-div">
+        <a (click)="closeDialog()" class="modal-close-icon">
+          <i class="fa fa-times"></i>
+        </a>
+      </div>
     </div>
     <div class="dialog-body">
       <div class="d-flex">
@@ -403,7 +407,7 @@
       </div>
 
       <div class="w-100 d-flex justify-content-evenly mb-3">
-        <button class="signup-btn white-btn" (click)="deleteManagementById(managementFound?.id)">Elimina</button>
+        <button class="signup-btn red-btn" (click)="deleteManagementById(managementFound?.id)">Elimina</button>
         <button type="submit" class="login-btn blue-btn" (click)="editManagement()">Conferma</button>
       </div>
     </div>
