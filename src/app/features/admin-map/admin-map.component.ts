@@ -80,7 +80,7 @@ export class AdminMapComponent implements OnInit {
     this.getAllRoomStatusSubscription = this.roomStatusService.getAllRoomStatus(this.myFormatDate(this.date)).subscribe(
       observer => {this.roomStatusList = [...observer]},
       error => {console.log("Rooms status list not found")},
-      () => {console.log(this.roomStatusList)}
+      () => {console.log("Rooms status list found")}
     )
   }
 
@@ -123,14 +123,6 @@ export class AdminMapComponent implements OnInit {
   }
 
   editManagement() {
-
-    // this.roomManagements.forEach(manage => {
-    //   if(manage.startDate && manage.endDate){
-    //     if(new Date(manage.startDate) <= this.date && this.date <= new Date(manage.endDate)){
-    //       this.id = manage.id as number
-    //     }
-    //   }
-    // })
       this.management.endDate = new Date(
         this.endDate.getFullYear(),
         this.endDate.getMonth(),
@@ -148,7 +140,7 @@ export class AdminMapComponent implements OnInit {
       this.patchManagementSubscription = this.managementService.patchManagement(this.management).subscribe(
         observer => {},
         error => {console.log("Management not updated")},
-        () => {console.log("Management updated"), this.getAllRoomStatus()}
+        () => {console.log("Management updated")}
       )
     this.closeDialog()
   }
@@ -157,15 +149,15 @@ export class AdminMapComponent implements OnInit {
     this.getManagementByRoomSubscription = this.managementService.getManagementByRoom(room.id as number).subscribe(
       observer => {this.roomManagements = [...observer]},
       error => {console.log("Management not found")},
-      () => {console.log("Management found", this.roomManagements)}
+      () => {console.log("Management found")}
     )
   }
 
-  getManagementByDateAndRoom(startDate : Date, endDate : Date, roomNumber : number){
-    this.getManagementByDateAndRoomSubscription = this.managementService.getManagementByDateAndRoom(startDate, endDate, roomNumber).subscribe(
+  getManagementByDateAndRoom(date : Date, roomNumber : number){
+    this.getManagementByDateAndRoomSubscription = this.managementService.getManagementByDateAndRoom(this.myFormatDate(date), roomNumber).subscribe(
       observer => {this.managementFound = {...observer}},
       error => console.log("Management not found"),
-      () => {console.log("Management found")}
+      () => {console.log("Management found", this.managementFound)}
     )
   }
 
@@ -192,10 +184,7 @@ export class AdminMapComponent implements OnInit {
   openDialog(dialog : any, room : RoomStatus) {
     this.dialog.open(dialog)
     this.roomStatus = room
-    this.getRoomByRoomNumber(this.roomStatus.roomNumber)
-    if(this.management.startDate && this.management.endDate){
-      this.getManagementByDateAndRoom(this.management.startDate, this.management.endDate, this.roomStatus.roomNumber)
-    }
+    this.getManagementByDateAndRoom(this.date, this.roomStatus.roomNumber)
   }
 
   closeDialog(){
