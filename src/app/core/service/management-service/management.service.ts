@@ -34,6 +34,6 @@ export class ManagementService {
   }
 
   getManagementByDateAndRoom(startDate : Date, endDate : Date, roomNumber : number) : Observable<Management> {
-    return this.httpClient.get<Management>("http://localhost:8080/api/v1/management/date" + startDate + endDate + "/room" + roomNumber)
+    return this.httpClient.get<Management>("http://localhost:8080/api/v1/management/date/" + startDate + "/" + endDate + "/room/" + roomNumber)
   }
 }

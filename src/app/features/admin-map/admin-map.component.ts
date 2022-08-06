@@ -123,13 +123,14 @@ export class AdminMapComponent implements OnInit {
   }
 
   editManagement() {
-    this.roomManagements.forEach(manage => {
-      if(manage.startDate && manage.endDate){
-        if(new Date(manage.startDate) <= this.date && this.date <= new Date(manage.endDate)){
-          this.id = manage.id as number
-        }
-      }
-    })
+
+    // this.roomManagements.forEach(manage => {
+    //   if(manage.startDate && manage.endDate){
+    //     if(new Date(manage.startDate) <= this.date && this.date <= new Date(manage.endDate)){
+    //       this.id = manage.id as number
+    //     }
+    //   }
+    // })
       this.management.endDate = new Date(
         this.endDate.getFullYear(),
         this.endDate.getMonth(),
@@ -140,7 +141,7 @@ export class AdminMapComponent implements OnInit {
         this.startDate.getMonth(),
         this.startDate.getDate() + 1
       )
-      this.management.id = this.id
+      this.management.id = this.managementFound.id
       this.management.capacity = this.capacity
       this.management.userResponseDTO = this.user
       this.management.roomResponseDTO = this.room
@@ -192,6 +193,9 @@ export class AdminMapComponent implements OnInit {
     this.dialog.open(dialog)
     this.roomStatus = room
     this.getRoomByRoomNumber(this.roomStatus.roomNumber)
+    if(this.management.startDate && this.management.endDate){
+      this.getManagementByDateAndRoom(this.management.startDate, this.management.endDate, this.roomStatus.roomNumber)
+    }
   }
 
   closeDialog(){
